@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from "react"
 
-const Kontor = () => {
+const Fagartikkel = () => {
 
     return(
         <div>
@@ -11,4 +11,4 @@ const Kontor = () => {
 }
 
 
-export default Kontor
+export default Fagartikkel
