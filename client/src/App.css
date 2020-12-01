@@ -1,0 +1,49 @@
+.container{
+  width: 20vh;
+  margin: 0 auto;
+}
+
+.header-container{
+  text-align: center;
+  width:100%;
+}
+
+h3{
+  opacity: 0.3;
+}
+
+
+
+
+
+#yay{
+  position: absolute;
+  left:-10px;
+  bottom: 60px;
+  width: 50px;
+  padding : 5px 10px;
+  background: #5cb85c;
+  color:white;
+}
+
+#nay{
+  position: absolute;
+  right: -10px;
+  top:60px;
+  color:white;
+  background: #d9534f;
+  padding : 5px 10px;
+  width: 50px;
+}
+
+#or{
+  opacity: 0.3;  
+}
+
+
+.btn-outline-pink{
+  color:pink;
+  border:solid  1px pink;
+  background:inherit;
+  
+}
