@@ -8,6 +8,10 @@ import errorMiddleware from './middleware/errors.js';
 
 import connectDatabase from './config/db.js';
 
+import category from './routes/category.js';
+import administrator from './routes/administrator.js';
+import article from './routes/article.js';
+
 
 const app = express();
 
@@ -21,6 +25,10 @@ app.use(cors({
   origin: 'http://localhost:3000',
   allowedHeaders: ['Content-Type']
 }))
+
+app.use(`${process.env.BASEURL}/categories`, category);
+app.use(`${process.env.BASEURL}/administrators`, administrator);
+app.use(`${process.env.BASEURL}/articles`, article);
 
 app.use(errorMiddleware);
 
