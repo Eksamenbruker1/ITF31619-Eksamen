@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from "react"
 
-const Header = () => {
+const Container = () => {
 
     return(
         <div>
@@ -11,4 +11,4 @@ const Header = () => {
 }
 
 
-export default Header
+export default Container
