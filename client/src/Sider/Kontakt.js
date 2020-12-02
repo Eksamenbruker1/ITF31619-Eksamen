@@ -9,7 +9,7 @@ const Kontakt= () => {
 
     return(
         <div>
-            <Header ActiveItem="Fagartikler"></Header>
+            <Header ActiveItem="Kontakt"></Header>
             <ImageCard imgSource={banner} TextColor="black" Content="Kontakt oss" Width="Full"></ImageCard>
         </div>
         )
