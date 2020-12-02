@@ -17,7 +17,7 @@ const SimpleCardContainer = (data) => {
     return(
         <Wrapper > 
             {city.data.Kontor.map((office)=>(
-                <SimpleCard  data={office}></SimpleCard>
+                <SimpleCard data={office}></SimpleCard>
             ))}
         </Wrapper>
         )

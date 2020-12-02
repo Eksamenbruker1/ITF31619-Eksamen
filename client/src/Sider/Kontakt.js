@@ -13,7 +13,6 @@ const Kontakt= () => {
             <ImageCard imgSource={banner} TextColor="black" Content="Kontakt oss" Width="Full"></ImageCard>
         </div>
         )
-
 }
 
 
