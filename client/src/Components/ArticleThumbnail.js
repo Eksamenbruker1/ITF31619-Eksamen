@@ -6,8 +6,7 @@ import { Router, Link, useHistory,useParams} from 'react-router-dom';
 const Wrapper = styled.nav`
     *{
         text-decoration:none;
-    }
-    margin: 40px;    
+    }    
     display:flex;
     border-radius:5px;
     border: solid 7px #e2e2e5;
