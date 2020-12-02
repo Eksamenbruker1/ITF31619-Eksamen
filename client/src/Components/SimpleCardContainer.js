@@ -9,6 +9,12 @@ const Wrapper = styled.nav`
     column-gap: 20px;
     row-gap:20px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media only screen and (max-width: 800px){
+        grid-template-columns: 1fr 1fr 1fr; 
+    }
+    @media only screen and (max-width: 500px){
+        grid-template-columns: 1fr 1fr; 
+    }
 `;
 
 const SimpleCardContainer = (data) => {
