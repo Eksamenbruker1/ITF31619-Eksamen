@@ -9,12 +9,13 @@ import styled from "styled-components"
  * 
  */
 
-const Container = styled.div`
+const Container = styled.section`
     height: ${props => props.imgSource==="none"?"20vw":"auto"};
     background-color:${props => props.imgSource==="none"?"blue":"none"};
     width: ${props => props.ContainerWidth};
     position: relative;
     text-align: center;
+    margin-bottom:${props => props.fit?"20px":"0px"};
     color: white;
 `;
 
@@ -29,13 +30,13 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-    width:100%;
+    width:90%;
 `;
 
 
 
 
-const ImageCard = ({Content,Width,imgSource,TextColor}) => {
+const ImageCard = ({Content,Width,imgSource,TextColor,fit}) => {
 
     return(
         <div>
