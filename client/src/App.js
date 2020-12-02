@@ -1,6 +1,7 @@
 import './App.css';
 import Routes from "./Routes/Routes"
 import {BrowserRouter as Router}  from 'react-router-dom';
+import Store from "./GlobalState"
 
 
 
@@ -8,9 +9,11 @@ import {BrowserRouter as Router}  from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
-      <Routes />
-    </Router>
+
+      <Router>
+        <Routes />
+      </Router>
+    
   );
 }
 

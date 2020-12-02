@@ -11,7 +11,7 @@ import LoginButton from "./LoginButton"
  * 
  */
 
-const CompanyInitials = styled.h1`
+const CompanyInitials = styled.p`
     font-weight: 700;
     font-size: 1.5em;
     color: #479eb9;
@@ -20,10 +20,11 @@ const CompanyInitials = styled.h1`
 `;
 
 const StyledHeader = styled.header`
+    z-index:99999;
     display: flex;
     justify-content:space-between;
     background-color: white;
-    box-shadow: 0px 3px 3px #dbdbdb;
+    border-bottom:solid 1px #e6e6e8;
     height: 50px;
     align-items:center;
 `;
