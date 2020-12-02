@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 
@@ -11,6 +12,7 @@ import connectDatabase from './config/db.js';
 import category from './routes/category.js';
 import administrator from './routes/administrator.js';
 import article from './routes/article.js';
+import authorization from './routes/authorization.js';
 
 
 const app = express();
@@ -20,6 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -29,6 +32,7 @@ app.use(cors({
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/administrators`, administrator);
 app.use(`${process.env.BASEURL}/articles`, article);
+app.use(`${process.env.BASEURL}/`, authorization);
 
 app.use(errorMiddleware);
 

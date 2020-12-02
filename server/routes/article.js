@@ -3,7 +3,7 @@ import { articleController } from '../controllers/index.js';
 
 const router = express.Router();
 
-router.get('/id', articleController.get);
+router.get('/:id', articleController.get);
 router.get('/', articleController.list);
 
 router.post('/', articleController.create);

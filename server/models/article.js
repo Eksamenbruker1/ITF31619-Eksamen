@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const ArticleSchema = new Schema(
   {
-    tittel: {
+    title: {
       type: String,
       required: true,
       trim: true,
@@ -17,11 +17,11 @@ const ArticleSchema = new Schema(
       type: String,
       required: true,
     },
-    innhold: {
+    content: {
       type: String,
       required: true,
     },
-    forfatter: {
+    author: {
       type: String,
       required: true,
     },
@@ -30,9 +30,9 @@ const ArticleSchema = new Schema(
       ref: 'Administrator',
       required: true,
     },
-    kategori: {
+    category: {
       type: mongoose.Schema.ObjectId,
-      ref: 'Kategori',
+      ref: 'Category',
       required: true,
     },
   },
@@ -40,7 +40,7 @@ const ArticleSchema = new Schema(
 );
 
 ArticleSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = slugify(this.title, { lower: true });
   next();
 });
 

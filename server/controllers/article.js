@@ -18,8 +18,6 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
-  req.body.administrator = req.administrator.id;
-  req.body.category = req.category.id;
   const article = await articleService.createArticle(req.body);
   res.status(201).json(article);
 });
