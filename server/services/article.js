@@ -2,7 +2,8 @@ import Article from '../models/article.js';
 
 export const getArticleById = async (id) => Article.findById(id);
 
-export const listArticles = async () => Article.find().populate('administrator','CategoryName');
+//export const listArticles = async () => Article.find().populate('user','email','category','CategoryName');
+export const listArticles = async () => Article.find().populate('category','CategoryName').populate('user','name');
 
 export const createArticle = async (data) => Article.create(data);
 

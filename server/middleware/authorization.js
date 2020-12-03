@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { administratorService } from '../services/index.js';
+import { userService } from '../services/index.js';
 import ErrorHandler from '../utils/errorHandler.js';
 import catchAsyncErrors from './catchAsync.js';
 
@@ -14,18 +14,18 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const administrator = await administratorService.getAdministratorById(decoded.id);
+    const user = await userService.getUserById(decoded.id);
 
-    if(!administrator) {
+    if(!user) {
         return next(new ErrorHandler('Brukeren ble ikke funnet', 404));
     }
 
-    req.administrator = administrator;
+    req.user = user;
     next();
 });
 
-export const isAuthorized = (AUTHORIZATION_KEY) => (req, res, next) => {
-    if(process.env.AUTHORIZATION_KEY != AUTHORIZATION_KEY) {
+export const isAuthorized = () => (req, res, next) => {
+  if (req.user.role !== 'admin') {
         return next(new ErrorHandler('Du feilet autentiseringen og har ikke tilgang', 403));
     }
     next();

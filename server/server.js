@@ -10,7 +10,7 @@ import errorMiddleware from './middleware/errors.js';
 import connectDatabase from './config/db.js';
 
 import category from './routes/category.js';
-import administrator from './routes/administrator.js';
+import user from './routes/user.js';
 import article from './routes/article.js';
 import authorization from './routes/authorization.js';
 
@@ -30,7 +30,7 @@ app.use(cors({
 }))
 
 app.use(`${process.env.BASEURL}/categories`, category);
-app.use(`${process.env.BASEURL}/administrators`, administrator);
+app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/`, authorization);
 

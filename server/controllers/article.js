@@ -6,7 +6,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   const article = await articleService.getArticleById(req.params.id);
   if (!article) {
     return next(
-      new ErrorHandler(`Finner ikke artikkelen med ${req.params.id}`, 404)
+      new ErrorHandler(`Finner ikke artikkelen med id-en ${req.params.id}`, 404)
     );
   }
   res.status(200).json(article);
@@ -37,7 +37,7 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
     return next(
-      new ErrorHandler(`Finner ikke article med ${req.params.id}`, 404)
+      new ErrorHandler(`Finner ikke artikkel med ${req.params.id}`, 404)
     );
   }
   article = await articleService.removeArticle(req.params.id);

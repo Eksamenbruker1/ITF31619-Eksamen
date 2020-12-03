@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 const { Schema } = mongoose;
 
-const AdministratorSchema = new Schema(
+const UserSchema = new Schema(
   {
     email: {
       type: String,
@@ -22,40 +22,48 @@ const AdministratorSchema = new Schema(
     name: {
         type: String,
         required: [true, 'Fyll ut ditt navn'],
+        minLength: [2, 'Tviler på at du har et navn på en bokstav, skriv både fornavn og etternavn'],
+    },
+    role: {
+      type: String,
+      enum: {
+        values: ['user', 'admin'],
+      },
+      default: 'user',
     },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
 /*
-AdministratorSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
   this.password = await argon2.hash(this.password);
   next();
 });*/
 
-AdministratorSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
     this.password = await argon2.hash(this.password);
 });
 
-AdministratorSchema.methods.getJwtToken = function () {
+UserSchema.methods.getJwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
         expiresIn: process.env.JWT_EXPIRES_TIME,
     });
 };
 
-AdministratorSchema.methods.comparePassword = async function (password) {
+UserSchema.methods.comparePassword = async function (password) {
     const result = argon2.verify(this.password, password);
     return result;
 };
 
 
-AdministratorSchema.virtual('articles', {
+UserSchema.virtual('articles', {
   ref: 'Article',
   localField: '_id',
-  foreignField: 'administrator',
+  foreignField: 'user',
   justOne: false,
 });
 
-const Administrator = mongoose.model('Administrator', AdministratorSchema);
+const User = mongoose.model('User', UserSchema);
 
-export default Administrator;
+export default User;

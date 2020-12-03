@@ -1,5 +1,5 @@
-export const sendToken = (administrator, res) => {
-    const token = administrator.getJwtToken();
+export const sendToken = (user, res) => {
+    const token = user.getJwtToken();
   
     const options = {
       expires: new Date(
@@ -19,8 +19,10 @@ export const sendToken = (administrator, res) => {
       .json({
         success: true,
         token,
-        administrator: {
-          email: administrator.email,
+        user: {
+            id: user.id,
+          email: user.email,
+          role: user.role
         },
       });
   };
