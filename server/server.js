@@ -8,6 +8,15 @@ import errorMiddleware from './middleware/errors.js';
 
 import connectDatabase from './config/db.js';
 
+<<<<<<< Updated upstream
+=======
+import category from './routes/category.js';
+import user from './routes/user.js';
+import article from './routes/article.js';
+import authorization from './routes/authorization.js';
+import author from './routes/author.js';
+
+>>>>>>> Stashed changes
 
 const app = express();
 
@@ -18,10 +27,20 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:3000',
-  allowedHeaders: ['Content-Type']
-}))
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Content-Type'],
+  })
+);
 
+<<<<<<< Updated upstream
+=======
+app.use(`${process.env.BASEURL}/categories`, category);
+app.use(`${process.env.BASEURL}/users`, user);
+app.use(`${process.env.BASEURL}/articles`, article);
+app.use(`${process.env.BASEURL}/`, authorization);
+app.use(`${process.env.BASEURL}/authors`, author);
+
+>>>>>>> Stashed changes
 app.use(errorMiddleware);
 
 connectDatabase();
