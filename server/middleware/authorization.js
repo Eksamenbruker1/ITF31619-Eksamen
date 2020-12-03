@@ -26,7 +26,7 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
 
 export const isAuthorized = () => (req, res, next) => {
   if (req.user.role !== 'admin') {
-        return next(new ErrorHandler('Du feilet autentiseringen og har ikke tilgang', 403));
+        return next(new ErrorHandler('Du er ikke autorisert til å utføre handlingen', 403));
     }
     next();
 };

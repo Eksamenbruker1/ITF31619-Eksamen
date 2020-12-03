@@ -9,6 +9,7 @@ const ArticleSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
       min: ['3', 'En tittel må ha flere enn 3 tegn'],
       max: ['50', 'Tittel må være færre enn 50 tegn'],
     },
@@ -28,7 +29,7 @@ const ArticleSchema = new Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: true,
+      required: false,
     },
     category: {
       type: mongoose.Schema.ObjectId,

@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import { articleService } from '../services/index.js';
 import ErrorHandler from '../utils/errorHandler.js';
@@ -18,6 +19,13 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
+    let token;
+    if(req.cookies.token) {
+        token = req.cookies.token;
+    }
+
+    let user = jwt.verify(token, process.env.JWT_SECRET_KEY).id;
+    req.body.user = user;
   const article = await articleService.createArticle(req.body);
   res.status(201).json(article);
 });
