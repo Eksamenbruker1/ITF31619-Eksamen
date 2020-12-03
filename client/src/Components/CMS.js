@@ -1,18 +1,27 @@
 import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {Link}  from 'react-router-dom';
+import Søk from "./Søk"
+import Filter from "./Filter"
 
 
 const Wrapper = styled.section`
-    max-width: 80%;
-    display:flex;
-    justify-content:space-between;
+    max-width: 100%;
+    max-width: 933px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    row-gap:20px;
+    column-gap:20px;
     padding: 5px;
-    margin: 0 auto;
-    margin-top:50px;
-    @media only screen and (max-width: 800px){
+    margin:50px;
+    @media only screen and (max-width: 600px){
+        grid-template-columns:1fr;
         
     }
+    @media only screen and (min-width: 800px){
+        margin: 0 auto;
+    }
+    
 `;
 const Button = styled.button`
     background-color:#f0f0f0;
@@ -49,24 +58,28 @@ const Button2 = styled.button`
 `;
 
 const Splitter = styled.section`
-    display:flex;
+    display:grid;
+    grid-template-columns:1fr 1fr;
     width:30%;
     @media only screen and (max-width: 800px){
-        width:55%;
+        width:30%;
     }
     justify-content:space-between;
+    @media only screen and (max-width: 600px){
+        flex-direction:column;
+    }
 `;
 
 
 
 const CMS = () => {
-
+    
     return(
             <Wrapper>
                 <Link to="/login"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
-                    <Button2>Søk</Button2>
-                    <Button2>Filter</Button2>
+                    <Søk ></Søk>
+                    <Filter kategorier={["porno","johnny"]}></Filter>
                 </Splitter>
             </Wrapper>
         )

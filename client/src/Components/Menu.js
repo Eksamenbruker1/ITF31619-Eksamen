@@ -31,6 +31,7 @@ const Menu = ({ActiveItem,setActive,name}) => {
     
 
     return(
+        
         <Wrapper>
             <MenuItemContainter>
                 <MenuItem Highlight={ActiveItem==="Hjem"?true:false}>

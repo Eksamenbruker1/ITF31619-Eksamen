@@ -2,7 +2,6 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import Menu from "./Menu"
 import LoginButton from "./LoginButton"
-import {Link}  from 'react-router-dom';
 
 /**
  * --ActiveItem--
@@ -44,14 +43,15 @@ const RightInternalWrapper = styled.div`
 
 
 
-const Header = ({ActiveItem,back}) => {
-    
+const Header = ({ActiveItem}) => {
+
     return(
         <StyledHeader>
             <CompanyInitials>FG</CompanyInitials>
             <RightInternalWrapper>
+                
                 <Menu ActiveItem={ActiveItem}></Menu>
-                <Link to={!back?"/login":"/"}><LoginButton back={back}></LoginButton></Link>
+                <LoginButton></LoginButton>
             </RightInternalWrapper>
         </StyledHeader>
         )
