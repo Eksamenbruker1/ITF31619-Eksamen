@@ -10,6 +10,7 @@ import styled from "styled-components"
  */
 
 const Container = styled.section`
+    padding-right:30px;
     height: ${props => props.imgSource==="none"?"20vw":"auto"};
     background-color:${props => props.imgSource==="none"?"blue":"none"};
     width: ${props => props.ContainerWidth};

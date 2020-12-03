@@ -24,7 +24,7 @@ const Login = () => {
 
     return(
         <div>
-            <Header></Header>
+            <Header back={true}></Header>
             <Heading>Login</Heading>
             <LoginForm></LoginForm>
             <Footer></Footer>

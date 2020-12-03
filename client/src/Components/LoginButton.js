@@ -10,10 +10,9 @@ const StyledButton = styled.p`
     padding: 13px;
 `;
 
-const LoginButton = () => {
-
+const LoginButton = (back) => {
     return(
-            <StyledButton><Link to="/login">Log inn</Link></StyledButton>
+        <StyledButton>{back.back!==undefined?"Tilbake":"Log in"}</StyledButton>
         )
 
 }
