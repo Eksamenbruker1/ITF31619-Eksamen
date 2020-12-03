@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 
@@ -22,12 +23,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    allowedHeaders: ['Content-Type'],
-  })
-);
+  origin: 'http://localhost:3000',
+  allowedHeaders: ['Content-Type']
+}))
 
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/users`, user);
