@@ -34,12 +34,17 @@ const Select = styled.select`
 
 
 const Filter = (kategorier) => {
-    const [søk, setState] = useState(false)
+    const [state, setState] = useState(false)
     const kategorierComp = kategorier.kategorier
 
+    const setFunct = (signal)=>{
+        signal&&setState(signal)
+    }
+
+
     return(
-            <Wrapper onClick={()=>setState(!søk?true:true)}>
-                {søk?<SelectBox kategorier={kategorierComp} ></SelectBox>:"Filter"}
+            <Wrapper onClick={()=>setState(true)}>
+                {state?<SelectBox kategorier={kategorierComp} setState={setState}></SelectBox>:"Filter"}
             </Wrapper>
         )
 
