@@ -51,7 +51,7 @@ const Header = ({ActiveItem,back,backAdress}) => {
             <CompanyInitials>FG</CompanyInitials>
             <RightInternalWrapper>
                 <Menu ActiveItem={ActiveItem} backAdress={backAdress}></Menu>
-                <Link to={!backAdress?"/login":!backAdress?"/":"/"+backAdress}><LoginButton back={back} backAdress={backAdress}></LoginButton></Link>
+                <Link to={!backAdress?"/login/hjem":!backAdress?"/":"/"+backAdress}><LoginButton back={back} backAdress={backAdress}></LoginButton></Link>
             </RightInternalWrapper>
         </StyledHeader>
         )

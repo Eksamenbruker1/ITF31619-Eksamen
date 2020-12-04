@@ -63,7 +63,7 @@ const CMS = () => {
 
     return(
             <Wrapper>
-                <Link to="/login"><Button>Ny Artikkel</Button></Link>
+                <Link to="/login/fagartikler"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
                     <Button2>Søk</Button2>
                     <Button2>Filter</Button2>
