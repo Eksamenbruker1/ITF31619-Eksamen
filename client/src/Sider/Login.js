@@ -20,11 +20,12 @@ const Heading = styled.h2`
 `;
 
 
-const Login = () => {
+const Login = ({match}) => {
+    const adress = match.params.adress&&match.params.navn
 
     return(
         <div>
-            <Header back={true}></Header>
+            <Header back={true} backAdress={adress}></Header>
             <Heading>Login</Heading>
             <LoginForm></LoginForm>
             <Footer></Footer>

@@ -27,7 +27,7 @@ const Wrapper = styled.nav`
 `;
 
 const Menu = ({ActiveItem,setActive,name}) => {
-    console.log(ActiveItem)
+
     
 
     return(

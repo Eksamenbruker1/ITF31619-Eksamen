@@ -44,14 +44,14 @@ const RightInternalWrapper = styled.div`
 
 
 
-const Header = ({ActiveItem,back}) => {
-    
+const Header = ({ActiveItem,back,backAdress}) => {
+
     return(
         <StyledHeader>
             <CompanyInitials>FG</CompanyInitials>
             <RightInternalWrapper>
-                <Menu ActiveItem={ActiveItem}></Menu>
-                <Link to={!back?"/login":"/"}><LoginButton back={back}></LoginButton></Link>
+                <Menu ActiveItem={ActiveItem} backAdress={backAdress}></Menu>
+                <Link to={!backAdress?"/login":!backAdress?"/":"/"+backAdress}><LoginButton back={back} backAdress={backAdress}></LoginButton></Link>
             </RightInternalWrapper>
         </StyledHeader>
         )

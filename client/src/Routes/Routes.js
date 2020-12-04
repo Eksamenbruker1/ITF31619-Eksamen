@@ -36,7 +36,7 @@ return(
                     <Route path="/oppdater-fagartikkel" exact component={OppdaterFagartikkel} />
                     <Route path="/opprett-fagartikkel" exact component={OpprettKategori} />
                     <Route path="/kontakt" exact component={Kontakt} />
-                    <Route path="/login" exact component={Login} />
+                    <Route path="/login/:back" exact component={Login} />
                     
                 </Switch>
             </Store>
