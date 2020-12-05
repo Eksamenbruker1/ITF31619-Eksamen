@@ -16,11 +16,12 @@ const Wrapper = styled.section`
     margin:50px;
     @media only screen and (max-width: 600px){
         grid-template-columns:1fr;
-        
+        margin:20px 50px;
     }
     @media only screen and (min-width: 800px){
         margin: 0 auto;
     }
+    
     
 `;
 const Button = styled.button`
@@ -36,6 +37,10 @@ const Button = styled.button`
         background-color:#479eb9;
         color: white;
         border: none;
+        
+    }
+    @media only screen and (max-width: 600px){
+        width:100%;
         
     }
 
@@ -54,15 +59,16 @@ const Button2 = styled.button`
         border: 3px solid #479eb9;
         
     }
+    
 
 `;
 
 const Splitter = styled.section`
     display:grid;
     grid-template-columns:1fr 1fr;
-    width:30%;
+    width:100%;
     @media only screen and (max-width: 800px){
-        width:30%;
+        width:100%;
     }
     justify-content:space-between;
     @media only screen and (max-width: 600px){

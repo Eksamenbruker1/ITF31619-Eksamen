@@ -2,6 +2,7 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import Menu from "./Menu"
 import LoginButton from "./LoginButton"
+import Hamburger from "./Hamburger"
 
 /**
  * --ActiveItem--
@@ -19,13 +20,18 @@ const CompanyInitials = styled.p`
     margin-left: 20px;
 `;
 
+const Div = styled.div`
+    display:flex;
+    flex-direction:column;
+`;
+
 const StyledHeader = styled.header`
     z-index:99999;
+    width: 100%;
     display: flex;
     justify-content:space-between;
     background-color: white;
     border-bottom:solid 1px #e6e6e8;
-    height: 50px;
     align-items:center;
 `;
 
@@ -44,13 +50,21 @@ const RightInternalWrapper = styled.div`
 
 
 const Header = ({ActiveItem}) => {
+    const [state,setState] = useState(false)
 
+    const handleClick = ()=>{
+        
+        !state?setState(true):setState(false)
+
+    }
     return(
         <StyledHeader>
             <CompanyInitials>FG</CompanyInitials>
             <RightInternalWrapper>
-                
-                <Menu ActiveItem={ActiveItem}></Menu>
+                <Div>
+                    <a href="#" onClick={()=>handleClick()}><Hamburger state={state} ></Hamburger></a>
+                    <Menu ActiveItem={ActiveItem}></Menu>
+                </Div>
                 <LoginButton></LoginButton>
             </RightInternalWrapper>
         </StyledHeader>

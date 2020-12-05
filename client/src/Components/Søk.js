@@ -18,11 +18,14 @@ const Wrapper = styled.button`
         border: 3px solid #479eb9;
         
     }
+    @media only screen and (max-width: 600px){
+        width:100%;
+    }
 
 `;
 
 const Input = styled.input`
-    max-width: 100px;
+    max-width: 75px;
 `;
 
 

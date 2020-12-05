@@ -12,9 +12,9 @@ const Fagartikler = () => {
     return(
         <div>
             <Header ActiveItem="Fagartikler"></Header>
-            <ImageCard imgSource={banner} TextColor="black" Content="Fagartikler" Width="Full"></ImageCard>
+            <a href="#main"><ImageCard imgSource={banner} TextColor="black" Content="Fagartikler" Width="Full"></ImageCard></a>
             <CMS></CMS>
-            <ArticleList/>
+            <ArticleList id="main"/>
             <Footer></Footer>
         </div>
         )

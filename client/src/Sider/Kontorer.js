@@ -4,7 +4,7 @@ import GridContainer from "../Components/GridContainer"
 import ImageCard from "../Components/ImageCard"
 import Footer from "../Components/Footer"
 import SimpleCardContainer from "../Components/SimpleCardContainer"
-import banner from "../img/officeBanner.png"
+import banner from "../img/office.gif"
 import styled from "styled-components"
 
 
@@ -15,6 +15,9 @@ const Wrapper = styled.nav`
 const Title = styled.h3`
     margin:20px;
     font-size:170%;
+    @media only screen and (max-width: 500px){
+        font-size:130%;
+    }
     color:#000000;
 `;
 

@@ -7,9 +7,10 @@ import {Link}  from 'react-router-dom';
 
 
 
-const SelectBox = (kategorier,setState) => {
+const SelectBox = (kategorier) => {
+
     return(
-            <select onchange={setState(false)}>
+            <select>
                 {kategorier.kategorier.map((kategori)=><option value={kategori}>{kategori}</option>)}
             </select>
         )

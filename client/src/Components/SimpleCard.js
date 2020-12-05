@@ -6,13 +6,21 @@ import Routes from "../Routes/Routes"
 
 
 const Wrapper = styled.nav`
+    display:flex;
+    align-items:center;
+    flex-direction:column;
     border:solid 1px #cecece;
-    max-width: 80%;
+    @media only screen and (max-width: 500px){
+        max-width: 100%;
+    }
     padding: 5px;
 `;
 
 const Title = styled.h3`
     font-size:135%;
+    @media only screen and (max-width: 500px){
+        font-size:100%;
+    }
 `;
 
 const Tekst = styled.p`

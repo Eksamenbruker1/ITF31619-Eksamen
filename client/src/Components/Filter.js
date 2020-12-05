@@ -19,6 +19,9 @@ const Wrapper = styled.button`
         border: 3px solid #479eb9;
         
     }
+    @media only screen and (max-width: 600px){
+        width:100%;
+    }
 
 `;
 
@@ -37,14 +40,10 @@ const Filter = (kategorier) => {
     const [state, setState] = useState(false)
     const kategorierComp = kategorier.kategorier
 
-    const setFunct = (signal)=>{
-        signal&&setState(signal)
-    }
-
 
     return(
             <Wrapper onClick={()=>setState(true)}>
-                {state?<SelectBox kategorier={kategorierComp} setState={setState}></SelectBox>:"Filter"}
+                {state?<SelectBox kategorier={kategorierComp}></SelectBox>:"Filter"}
             </Wrapper>
         )
 
