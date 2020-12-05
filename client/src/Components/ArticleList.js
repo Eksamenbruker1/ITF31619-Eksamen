@@ -8,6 +8,9 @@ const Wrapper = styled.nav`
     padding: 5px;
     margin: 0 auto;
     margin-top:50px;
+    @media only screen and (max-width: 600px){
+        margin-top:0px;
+    }
 `;
 
 const ArticleList = () => {

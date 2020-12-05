@@ -26,6 +26,10 @@ const Title = styled.h2`
     margin: 0 20px 0 20px;
     text-transform: capitalize;
     color: ${props => props.Color};
+    @media only screen and (max-width: 500px){
+        font-size:100%;
+    
+    }
 `;
 
 

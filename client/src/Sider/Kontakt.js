@@ -20,9 +20,9 @@ const Kontakt= () => {
     return(
         <div>
             <Header back={true} ActiveItem="Kontakt"></Header>
-            <ImageCard imgSource={banner} TextColor="black" Content="Kontakt oss" Width="Full"></ImageCard>
+            <a href="#fkontakt"><ImageCard imgSource={banner} TextColor="black" Content="Kontakt oss" Width="Full"></ImageCard></a>
             <Wrapper>
-            <Form>
+            <Form id="fkontakt">
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="name@example.com" />

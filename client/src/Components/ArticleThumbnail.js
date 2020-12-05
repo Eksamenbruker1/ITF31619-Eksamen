@@ -20,10 +20,18 @@ const Wrapper = styled.nav`
 
 const Title = styled.h2`
     font-size:140%;    
+    @media only screen and (max-width: 600px){
+        font-size:100%;
+    }
 `;
 
 const Text = styled.p`
-    
+color: black;
+text-decoration:none;
+    @media only screen and (max-width: 600px){
+        padding:20px;
+        
+    }
 `;
 
 const Container = styled.section`
@@ -34,6 +42,9 @@ const Container = styled.section`
     padding: 20px;
     @media only screen and (max-width: 800px){
         
+    }
+    @media only screen and (max-width: 600px){
+        flex-direction:column;
     }
 `;
 
@@ -46,6 +57,9 @@ const Kategori = styled.a`
     padding:6px;
     @media only screen and (max-width: 800px){
         margin-left:20px;
+    }
+    @media only screen and (max-width: 600px){
+        margin-left:0px;
     }
 `;
 
@@ -78,7 +92,7 @@ const ArticleThumbnail = ({article}) => {
                             <Title>{thmb.title}</Title>
                             <Kategori>Kategori</Kategori>
                         </Container>
-                        <Text>{thmb.ingress}</Text>
+                        <Text >{thmb.ingress}</Text>
                     </ColumnContainer>
             </Wrapper>
         </Link>
