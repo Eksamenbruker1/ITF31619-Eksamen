@@ -21,15 +21,12 @@ const Img = styled.img`
 
 
 
-const Hamburger = ({state}) => {
-    
-
-    
+const Hamburger = ({visibility,forceShow}) => {
 
     return(
         <Wrapper>
             <Img src={hamburger}></Img>
-            { state ? <Menu forceShow={true}></Menu> : null }
+            { visibility || forceShow ? <Menu forceShow={true}></Menu> : null }
         </Wrapper>
         )
 

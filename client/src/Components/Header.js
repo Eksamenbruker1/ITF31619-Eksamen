@@ -44,6 +44,12 @@ const Login = styled.button`
     background-color: blue;
 `;
 
+const A = styled.a`
+   :hover{
+       cursor:pointer;
+   }
+`;
+
 const RightInternalWrapper = styled.div`
     display: flex;
     height: 100%;
@@ -55,9 +61,11 @@ const RightInternalWrapper = styled.div`
 
 
 const Header = ({adressen,ActiveItem,backAdress,back}) => {
-    const [state,setState] = useState(false)
+    const [visibility,setVisibility] = useState(false)
     const handleClick = ()=>{
-        !state?setState(true):setState(false)
+        !visibility&&setVisibility(true)
+        visibility&&setVisibility(false)
+        console.log(visibility)
     }
     const link = backAdress==="hjem"?"":backAdress;
 
@@ -66,7 +74,7 @@ const Header = ({adressen,ActiveItem,backAdress,back}) => {
             <Link to="/"><CompanyInitials>FG</CompanyInitials></Link>
             <RightInternalWrapper>
                 <Div>
-                    <a href="#" onClick={()=>handleClick()}><Hamburger state={state} ></Hamburger></a>
+                    <A onClick={()=>handleClick()}><Hamburger visibility={visibility} ></Hamburger></A>
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
                 {adressen&&(<Link to={back?"/login/"+adressen:"/"+link}><LoginButton back={back}></LoginButton></Link>)}

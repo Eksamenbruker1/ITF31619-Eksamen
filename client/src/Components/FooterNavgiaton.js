@@ -6,7 +6,7 @@ import "./Styles/styles.css"
 const MenuItemContainter = styled.ul`   
     @media only screen and (max-width: 500px){
         flex-direction:column;
-        display: ${props => props.forceShow?"flex":"none"};
+        padding:0;
     } 
     display: flex;
     list-style-type: none;
@@ -22,7 +22,7 @@ const Text= styled.p`
     transition:1s;
     height:10px;
     font-weight:400;
-    color:${props => props.spreadDown&&"black"};
+    color:${props => props.spreadDown&&"#212121"};
     display: ${props => props.spreadDown ? "flex" : "none"};
 `;
 
@@ -48,21 +48,16 @@ const MenuItem= styled.li`
 `;
 
 
-const  Tiss = styled.p` 
-    color: white;
-`;
-
 const Wrapper = styled.nav` 
     display: flex; 
     @media only screen and (max-width: 500px){
-        display: ${props => props.forceShow?"flex":"none"};
         flex-direction:column;
     }
     justify-content:${props => props.spreadDown?"center":"end"};
     
 `;
 
-const Menu = ({ActiveItem,setActive,name,forceShow,spreadDown,location,patch}) => {
+const FooterNavigation = ({ActiveItem,setActive,name,forceShow,spreadDown,location,patch}) => {
     const [isShown, setIsShown] = useState([false,false,false,false]);
     const [Patch, setPatch] = useState(patch)
     const href = window.location.href.split("/")
@@ -77,7 +72,6 @@ const Menu = ({ActiveItem,setActive,name,forceShow,spreadDown,location,patch}) =
     return(
         <>
         <Wrapper  forceShow={forceShow&&forceShow}>
-        <Tiss>T</Tiss>
             <MenuItemContainter spreadDown={spreadDown} forceShow={forceShow} >
                 <NavLink exact to="/"><MenuItem className={spreadDown?"parent":"none"} onClick={()=>toTop(Location===ActiveItem&&true)} spreadDown={spreadDown} Highlight={ActiveItem==="hjem"?true:false}
                     onMouseEnter={() => setIsShown([true,false,false,false])}
@@ -129,4 +123,4 @@ const Menu = ({ActiveItem,setActive,name,forceShow,spreadDown,location,patch}) =
         )
 }
 
-export default Menu
+export default FooterNavigation

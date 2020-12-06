@@ -2,6 +2,7 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {BrowserRouter as Link}  from 'react-router-dom';
 import Menu from "./Menu"
+import FooterNavigation from "./FooterNavgiaton";
 
 
 const WrapperOuter = styled.div`
@@ -103,7 +104,6 @@ const AboutUs = () => {
     
     }
     const [state, setState] = useState(antallAnsatte);
-    
     return(
         <WrapperOuter>
             <Container>
@@ -113,7 +113,7 @@ const AboutUs = () => {
                     <P>Vi har <Link to="/kontorer"><A href="">{state}</A></Link> rørleggere som gjør alt fra å åpne tette sluk og skifte blandebatterier, til å utføre større oppdrag som reparasjon av rørbrudd og utskifting av gamle fyrkjeler. Drømmer du om å rehabilitere badet, skal bygge hus eller hytte, eller ønsker mer miljøvennlige oppvarmingsmuligheter for boligen, bidrar vi gjerne med tips og inspirasjon til små og store utbedringer.</P>
                     <H5>Navigasjon</H5>
                     <LineSmall/>
-                    <Menu spreadDown={true} ></Menu>
+                    <FooterNavigation spreadDown={true} patch={true}></FooterNavigation>
                 </Wrapper>
             </Container>
         </WrapperOuter>
