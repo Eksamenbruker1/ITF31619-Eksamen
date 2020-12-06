@@ -20,6 +20,9 @@ const CompanyInitials = styled.p`
     color: #479eb9;
     margin: 0;
     margin-left: 20px;
+    :hover{
+        filter: invert(100%)
+    }
 `;
 
 const Div = styled.div`
@@ -51,28 +54,23 @@ const RightInternalWrapper = styled.div`
 
 
 
-const Header = ({ActiveItem,backAdress,back}) => {
+const Header = ({adressen,ActiveItem,backAdress,back}) => {
     const [state,setState] = useState(false)
-
-
     const handleClick = ()=>{
-        
         !state?setState(true):setState(false)
-
-
     }
     const link = backAdress==="hjem"?"":backAdress;
 
     return(
         <StyledHeader>
-            <CompanyInitials>FG</CompanyInitials>
+            <Link to="/"><CompanyInitials>FG</CompanyInitials></Link>
             <RightInternalWrapper>
-
                 <Div>
                     <a href="#" onClick={()=>handleClick()}><Hamburger state={state} ></Hamburger></a>
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
-                <Link to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></Link>
+                {adressen&&(<Link to={back?"/login/"+adressen:"/"+link}><LoginButton back={back}></LoginButton></Link>)}
+                {!adressen&&(<Link to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></Link>)}
             </RightInternalWrapper>
         </StyledHeader>
         )

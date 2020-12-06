@@ -16,6 +16,9 @@ const Wrapper = styled.button`
         color:#ffc107;
         border: 2px solid #ffc107;
         padding:37px;
+        @media only screen and (max-width: 800px){
+        padding:10px 30px;
+        }
     }
     font-weight:500;
     @media only screen and (max-width: 800px){

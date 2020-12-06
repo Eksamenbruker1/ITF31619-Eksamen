@@ -82,6 +82,7 @@ const Line = styled.div`
 `
 
 const LineSmall = styled.div`
+    margin-top:16px;
     width: 50%;
 
     @media only screen and (max-width: 800px){

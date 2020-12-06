@@ -46,8 +46,9 @@
 
 }
 
+
 .kat{
-    width: 90%;
+    width: 80%;
 }
 
 
@@ -55,7 +56,10 @@
     border-radius: 0.1rem!important;
 }
 
-
+.hurpe{
+    padding: 20px !important;
+    background-color: #fffee6!important;
+}
   
  
   

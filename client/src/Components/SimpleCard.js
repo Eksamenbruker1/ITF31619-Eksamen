@@ -22,14 +22,13 @@ const Wrapper = styled.nav`
 `;
 
 const Title = styled.h3`
+    opacity: 1;
     :hover{
-        opacity: 1;
+       
         cursor: pointer;
-    }
-    margin-bottom:25px;
-    :hover{
         color: black;
     }
+    margin-bottom:25px;
     font-size:135%;
     @media only screen and (max-width: 500px){
         font-size:100%;

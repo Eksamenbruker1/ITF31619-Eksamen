@@ -11,10 +11,15 @@ import "../Components/Styles/styles.css"
 import CMS from "../Components/CMS"
 import NyKategori from "../Components/NyKategori"
 import Alert from "../Components/Alert"
+import ModalNewKat from "../Components/ModalNewKat"
 
 
 const Wrapper = styled.div`
-    width: 50%;
+    width: 65%;
+    @media only screen and (max-width: 800px){
+        width: 90%;
+        margin-bottom: 30px;
+    }
     margin: 0 auto;
     margin-top: 40px;
 `;
@@ -36,10 +41,12 @@ const Line = styled.div`
 const Div = styled.div`
     display: flex;
     justify-content:space-between;
+
 `
 
 
 const OpprettFagartikkel = () => {
+    const [modal,setModal] = useState()
 
     return(
             <Outer>
@@ -49,7 +56,8 @@ const OpprettFagartikkel = () => {
                 <CMS />
                 <Line />
                 <Wrapper>
-                    <Form>
+                    <ModalNewKat></ModalNewKat>
+                    <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
                         <Form.Group controlId="formGridAddress1">
                             <Div><Form.Label>Avsnitt 1</Form.Label><Alert alert={true} /></Div>
                             <Form.Control placeholder="Skriv her..." />

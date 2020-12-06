@@ -33,8 +33,7 @@ return(
                     <Route path="/fagartikkel" exact component={Fagartikkel} />
                     <Route path="/registrer" exact component={Registrer} />
                     <Route path="/opprett-fagartikkel" exact component={OpprettFagartikkel} />
-                    <Route path="/oppdater-fagartikkel" exact component={OppdaterFagartikkel} />
-                    <Route path="/opprett-fagartikkel" exact component={OpprettKategori} />
+                    <Route path="/oppdater-fagartikkel/:artikkel" exact component={OppdaterFagartikkel} />
                     <Route path="/kontakt" exact component={Kontakt} />
                     <Route path="/login/:back" exact component={Login} />
                     

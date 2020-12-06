@@ -29,12 +29,9 @@ const SimpleCardContainer = ({data}) => {
     return(
         <Wrapper > 
             {
-            //map var funky, så da ble det gamlemåten igjen. Map skal liksom brått lese flere gjenstander enn det det er plass til i et array
-            
-            
-            city.data.Kontor.map((office)=>(
+            city.Kontor.map((office)=>(
                 <SimpleCard  data={office}></SimpleCard>
-            
+                
             ))}
         </Wrapper>
         )

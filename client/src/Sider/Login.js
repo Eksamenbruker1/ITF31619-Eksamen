@@ -48,7 +48,7 @@ const A = styled.a`
         filter: invert(100%)
     }
     @media only screen and (max-width: 800px){
-        
+        display:none;
     }
     margin:0 auto;
 `;
@@ -57,16 +57,15 @@ const Line = styled.div`
     margin: 50px auto;
     width: 60%;
     @media only screen and (max-width: 800px){
-        width: 80%;
-        margin: 20px auto;
+        display: none
     }
     border-bottom: solid grey 1px;
 `
 
 
 const Login = ({match}) => {
-    const adress = match.params.back&&match.params.back
-
+    let adress = match.params.back&&match.params.back
+    if(adress==="oppdater-fagartikkel")adress+="/default"
 
     return(
         <div>

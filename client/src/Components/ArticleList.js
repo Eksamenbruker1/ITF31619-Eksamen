@@ -8,13 +8,16 @@ const Wrapper = styled.nav`
     padding: 5px;
     margin: 0 auto;
     margin-top:50px;
-   
     @media only screen and (max-width: 800px){
         width: 90%;
         margin-top: 0px;
     }
     @media only screen and (max-width: 500px){
         width: 80%;
+    }
+    @media only screen and (min-width: 1775px){
+        display:grid;
+        grid-template-columns: 1fr 1fr;
     }
 `;
 

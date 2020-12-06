@@ -27,29 +27,37 @@ const Wrapper = styled.section`
     }
 
 `;
+
 const Button = styled.button`
     background-color:#f0f0f0;
+    overflow:hidden;
     font-size:120%;
     color: black;
     border: 0;
     padding:40px;
     font-weight:500;
+    :hover{
+        border: solid darkgrey 3px;
+        @media only screen and (min-width: 800px){
+           padding:37px; 
+        }
+
+    }
     @media only screen and (max-width: 800px){
         padding:10px 30px;
         border-radius:40px;
         background-color:#479eb9;
         color: white;
         border: none;
-        
+        @media only screen and (max-width: 800px){
+            padding:10px 30px;
+        }
     }
     @media only screen and (max-width: 600px){
         width:100%;
         
     }
-    :hover{
-        border: solid darkgrey 3px;
-        padding:37px;
-    }
+
 
 `;
 
@@ -72,17 +80,27 @@ const Splitter = styled.section`
 `;
 
 
+const Input = styled.input`
+    overflow:hidden;
+    width: 175px;
+`;
 
-const CMS = () => {
+
+
+
+const CMS = ({søk}) => {
     
     return(
+        <>
             <Wrapper>
                 <Link to="/login/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
-                    <Søk ></Søk>
+                    {søk&&(<Button><Input value={søk}></Input></Button>)}
+                    {!søk&&(<Søk></Søk>)}
                     <Filter kategorier={["porno","johnny"]}></Filter>
                 </Splitter>
             </Wrapper>
+        </>
         )
 
 }
