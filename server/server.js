@@ -15,7 +15,6 @@ import article from './routes/article.js';
 import authorization from './routes/authorization.js';
 import author from './routes/author.js';
 
-
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
@@ -25,10 +24,12 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  allowedHeaders: ['Content-Type']
-}))
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Content-Type'],
+  })
+);
 
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/users`, user);

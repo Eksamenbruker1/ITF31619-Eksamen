@@ -1,6 +1,5 @@
 import Artikkel from '../models/article.js';
 import User from '../models/user.js';
-import Category from '../models/category.js';
 
 export const createUser = async (data) => User.create(data);
 
@@ -10,7 +9,7 @@ export const getUserById = async (id) => User.findById(id);
 
 export const getUserByEmail = async (email, usePassword) => {
   if (usePassword) {
-    //return (await User.findOne(email)).isSelected('+password');
+    // return (await User.findOne(email)).isSelected('+password');
     return User.findOne(email).select('+password');
   }
   return User.findOne(email);

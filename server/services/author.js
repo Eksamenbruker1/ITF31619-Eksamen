@@ -1,6 +1,6 @@
-//export const listArticles = async () => Article.find().populate('user','email','category','CategoryName');
+// export const listArticles = async () => Article.find().populate('user','email','category','CategoryName');
 export const listAuthors = async () => {
-  let authorList = [
+  const authorList = [
     {
       name: 'Lars Larsen',
     },

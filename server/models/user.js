@@ -20,9 +20,12 @@ const UserSchema = new Schema(
       select: false,
     },
     name: {
-        type: String,
-        required: [true, 'Fyll ut ditt navn'],
-        minLength: [2, 'Tviler på at du har et navn på en bokstav, skriv både fornavn og etternavn'],
+      type: String,
+      required: [true, 'Fyll ut ditt navn'],
+      minLength: [
+        2,
+        'Tviler på at du har et navn på en bokstav, skriv både fornavn og etternavn',
+      ],
     },
     role: {
       type: String,
@@ -39,23 +42,22 @@ const UserSchema = new Schema(
 UserSchema.pre('save', async function (next) {
   this.password = await argon2.hash(this.password);
   next();
-});*/
+}); */
 
-UserSchema.pre('save', async function (next) {
-    this.password = await argon2.hash(this.password);
+UserSchema.pre('save', async function () {
+  this.password = await argon2.hash(this.password);
 });
 
 UserSchema.methods.getJwtToken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRES_TIME,
-    });
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES_TIME,
+  });
 };
 
 UserSchema.methods.comparePassword = async function (password) {
-    const result = argon2.verify(this.password, password);
-    return result;
+  const result = argon2.verify(this.password, password);
+  return result;
 };
-
 
 UserSchema.virtual('articles', {
   ref: 'Article',
