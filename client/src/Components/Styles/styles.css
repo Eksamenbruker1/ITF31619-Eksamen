@@ -1,0 +1,62 @@
+
+.btn-primary:hover {
+    filter: invert(100%)!important;
+}
+
+.btn-primary:active{
+    filter: invert(70%)!important;
+}
+
+.child, .parent{
+    margin-left:100px;
+    margin-left: 5px;
+    transition:5s;
+}
+
+.parent:hover > .child {
+    font-weight: 400;
+    filter:invert(100%);
+    opacity: 1;
+    color:white;
+    margin-left: 15px;
+}
+
+
+.button {
+    margin: 100px auto;
+    width: 280px;
+    height: 45px;
+    background: #2c3dcf;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 36px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-group, select, .form-row{
+    width: 100%;
+    margin: 0px;
+}
+
+
+.katBut{
+    height: 36px;
+    margin-top: 33px;
+
+}
+
+.kat{
+    width: 90%;
+}
+
+
+.form-control,.btn{
+    border-radius: 0.1rem!important;
+}
+
+
+  
+ 
+  
+  

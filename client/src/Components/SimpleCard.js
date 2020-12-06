@@ -7,25 +7,59 @@ import Routes from "../Routes/Routes"
 
 const Wrapper = styled.nav`
     display:flex;
-    align-items:center;
     flex-direction:column;
-    border:solid 1px #cecece;
+    border:solid 2px #cecece;
+    background-color:#f0f0f0;
     @media only screen and (max-width: 500px){
         max-width: 100%;
+        align-items:center;
     }
-    padding: 5px;
+    &:hover {
+        cursor: arrow;
+        border:solid 2px #1e1e1e;
+    }
+    padding: 20px 10px;
 `;
 
 const Title = styled.h3`
+    :hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+    margin-bottom:25px;
+    :hover{
+        color: black;
+    }
     font-size:135%;
     @media only screen and (max-width: 500px){
         font-size:100%;
     }
 `;
-
-const Tekst = styled.p`
+const Tekst = styled.a`
     font-size:75%;
+    margin-bottom: 11px;
+    
 `;
+
+
+const Appear = styled.a`
+    color:#f0f0f0;
+    font-weight:700;
+    font-size:75%;
+    &:hover ~ ${Tekst} {
+    color: red;
+    font-weight: 900;
+    }
+    color: #479eb9;
+`
+
+
+const Div = styled.a`
+    display: flex;
+    
+`
+
+
 
 
 const SimpleCard =  (office,{location}) => {
@@ -41,9 +75,9 @@ const SimpleCard =  (office,{location}) => {
     return(
         <Wrapper> 
             <Link to={'/kontor/'+navn}><Title onClick={()=>funct()}>{office.data.navn}</Title></Link>
-            <Tekst>{office.data.gate}</Tekst>
-            <Tekst>{office.data.nummer}</Tekst>
-            <Tekst>{office.data.epost}</Tekst>
+            <Tekst >{office.data.gate+" "+4}</Tekst>
+            <Div><Appear>Call: </Appear><Tekst href={"tel:"+office.data.nummer}>{office.data.nummer}</Tekst></Div>
+            <Div><Appear>Mail: </Appear><Tekst href={"mailto:"+office.data.epost} >{office.data.epost}</Tekst></Div>
         </Wrapper>
         )
 

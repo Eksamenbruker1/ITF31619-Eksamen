@@ -15,6 +15,16 @@ const AnsatteTittel = styled.h2`
 
 `
 
+const Line = styled.div`
+    margin: 50px auto;
+    width: 60%;
+    @media only screen and (max-width: 800px){
+        width: 80%;
+        margin: 40px auto;
+    }
+    border-bottom: solid grey 1px;
+`
+
 
 
 
@@ -36,12 +46,13 @@ const Kontor = ({match}) => {
 
     return(
         <div>
-            <Header ActiveItem="Kontorer"></Header>
-            <ImageCard imgSource={banner} TextColor="black" Content="Velkommen til FG Rørleggerservice AS" Width="Full"></ImageCard>
+            <Header ActiveItem="kontorer"></Header>
+            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Velkommen til FG Rørleggerservice AS" Width="Full"></ImageCard>
             <Article artikkel={artikkel}></Article>
             <AnsatteTittel></AnsatteTittel>
             <AnsatteContainer ansatte={officeData.ansatte}></AnsatteContainer>
-            <ImageCard fit={true} imgSource={telefon} TextColor="black" Content={"Kontakt oss på "+officeData.nummer} Width="Full"></ImageCard>
+            <Line />
+            <a href={"/tel:"+officeData.nummer}><ImageCard noBottomMargin={true} fit={true} imgSource={telefon} TextColor="black" Content={"Kontakt oss på "+officeData.nummer} Width="Full"></ImageCard></a>
             <Footer></Footer>
         </div>
         )

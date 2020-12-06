@@ -9,8 +9,14 @@ const Wrapper = styled.button`
     width: 150px;
     font-size:120%;
     color: black;
-    border: solid 1px #479eb9;
+    border: 0;
     padding:40px;
+    :hover{
+        background-color:#1e88da;
+        color:#ffc107;
+        border: 2px solid #ffc107;
+        padding:37px;
+    }
     font-weight:500;
     @media only screen and (max-width: 800px){
         padding:10px 30px;
@@ -19,8 +25,13 @@ const Wrapper = styled.button`
         border: 3px solid #479eb9;
         
     }
+    :focus, :active{
+        background-color:#1e88da;
+        color:#ffc107;
+    }
     @media only screen and (max-width: 600px){
         width:100%;
+        margin-top: 10px;
     }
 
 `;

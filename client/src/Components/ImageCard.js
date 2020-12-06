@@ -10,14 +10,35 @@ import styled from "styled-components"
  */
 
 const Container = styled.section`
-    
+    border-top-left-radius:2px;
+    border-top-right-radius:2px;
+    border-bottom-left-radius:2px;
+    border-bottom-right-radius:2px;
+    border-top: 1px solid #cecece;
+    border-bottom: 2px solid #36363c;
+    border-right: ${props => props.center&&"2px solid #1e1e1e"};
+    border-left: ${props => props.center&&"2px solid #1e1e1e"};
     height: ${props => props.imgSource==="none"?"20vw":"auto"};
     background-color:${props => props.imgSource==="none"?"blue":"none"};
     width: ${props => props.ContainerWidth};
+    @media only screen and (max-width: 800px){
+        width: 100%;
+        border-right: ${props => props.center&&"none"};
+        border-left: ${props => props.center&&"none"};
+    }
     position: relative;
     text-align: center;
     margin-bottom:${props => props.fit?"20px":"0px"};
     color: white;
+    margin-bottom: ${props => props.bottomMargin};
+    @media only screen and (max-width: 600px){
+        margin-bottom:30px;
+    }
+    @media only screen and (max-width: 800px){
+        margin-bottom: ${props => props.bottomMargin&&"0"};
+    }
+    margin: ${props => props.center&&"0 auto"};
+    
 `;
 
 const Title = styled.h1`
@@ -55,12 +76,17 @@ const Image = styled.img`
 
 
 
-const ImageCard = ({Content,Width,imgSource,TextColor,fit}) => {
+const ImageCard = ({Content,Width,imgSource,TextColor,fit,noBottomMargin}) => {
+    const width = Width;
+    const center = Width!=="Full"&&true
 
     return(
         <div>
-            <Container ContainerWidth={Width==="Full"?"100%":Width}>
-                <Title Color={!TextColor?"black":TextColor}>{Content}</Title>
+            <Container bottomMargin={noBottomMargin?"-50px":"75px"} center={center} ContainerWidth={width==="Full"?"100%":width}>
+                {Content!==undefined && (
+                        <Title className="imageCardTitle" Color={!TextColor?"#1e1e1e":TextColor}>{Content}</Title>
+                    )}
+                
                 {imgSource === "none"?"none":<Image src={imgSource} ></Image>}
             </Container>
         </div>

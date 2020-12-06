@@ -6,11 +6,14 @@ import Form from "react-bootstrap/Form"
 import styled from "styled-components"
 import Footer from "../Components/Footer"
 import Button from "react-bootstrap/Button"
+import AboutUs from "../Components/AboutUs"
+
 
 const Wrapper = styled.div`
     width:50%;
     margin:0 auto;
-    margin-top: 70px;
+    margin-top: 65px;
+    margin-bottom: 80px;
 `
 
 
@@ -19,8 +22,8 @@ const Kontakt= () => {
 
     return(
         <div>
-            <Header back={true} ActiveItem="Kontakt"></Header>
-            <a href="#fkontakt"><ImageCard imgSource={banner} TextColor="black" Content="Kontakt oss" Width="Full"></ImageCard></a>
+            <Header back={false} ActiveItem="kontakt"></Header>
+            <a href="#fkontakt"><ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Kontakt oss" Width="Full"></ImageCard></a>
             <Wrapper>
             <Form id="fkontakt">
                 <Form.Group controlId="exampleForm.ControlInput1">
@@ -36,6 +39,7 @@ const Kontakt= () => {
                 </Button>
             </Form> 
             </Wrapper>
+
             <Footer></Footer>
         </div>
         )

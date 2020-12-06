@@ -7,13 +7,19 @@ const Wrapper = styled.nav`
     *{
         text-decoration:none;
     }    
+    margin: 10px;
     display:flex;
     border-radius:5px;
-    border: solid 7px #e2e2e5;
+    border: solid 2px #e2e2e5;
     @media only screen and (max-width: 800px){
         flex-direction:column;
-        margin: 10 0;
-        border: solid 7px #f0f0f0;
+        margin: 10px 0px;
+        border: solid 2px #f0f0f0;
+    }
+    @media only screen and (max-width: 500px){
+        flex-direction:column;
+        margin: 0px;
+        border: solid 2px #f0f0f0;
     }
 
 `;
@@ -52,11 +58,13 @@ const Kategori = styled.a`
     background-color:#479eb9;
     color:white;
     height:100%;
+    border-radius:2px;
     margin-left:20px;
     font-weight:700;
     padding:6px;
     @media only screen and (max-width: 800px){
         margin-left:20px;
+        height: 10%;
     }
     @media only screen and (max-width: 600px){
         margin-left:0px;
@@ -85,7 +93,7 @@ const ArticleThumbnail = ({article}) => {
     const thmb = article;
     return(
         <Link to={"/fagartikkel/"+article.title.replace(/ /g,'')}>
-            <Wrapper> 
+            <Wrapper className="her"> 
                     <Img src={toilet}></Img>
                     <ColumnContainer>
                         <Container>

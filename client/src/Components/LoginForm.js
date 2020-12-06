@@ -1,24 +1,21 @@
 import React, { useEffect ,useState} from "react"
-import styled from "styled-components"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import styled from "styled-components"
+import "./Styles/styles.css"
 
 const Wrapper = styled.section`
-    max-width: 80%;
     display:flex;
     justify-content:space-around;
     padding: 5px;
     margin: 0 auto;
     margin-top:50px;
-    margin-bottom:200px;
     @media only screen and (max-width: 800px){
         
     }
 `;
 
-
-const LoginForm = () => {
+const LoginForm = ({adress}) => {
             const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
 
@@ -26,12 +23,17 @@ const LoginForm = () => {
             return email.length > 0 && password.length > 0;
         }
 
-        function handleSubmit(event) {
-            event.preventDefault();
+        function handleSubmit() {
+            window.location.href = "/"+adress
         }
+        
 
     return(
-        <Wrapper>
+        <>
+        <styles  type="text/css">
+            
+        </styles>
+        <Wrapper >
             <Form onSubmit={handleSubmit}>
             <Form.Group size="mid" controlId="email">
                 <Form.Label>Email</Form.Label>
@@ -50,11 +52,13 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
-            <Button block size="lg" type="submit" disabled={!validateForm()}>
+            <Button  
+            className="invert" block size="lg" type="submit" disabled={!validateForm()}>
                 Login
             </Button>
             </Form>
         </Wrapper>
+        </>
         )
 
 }

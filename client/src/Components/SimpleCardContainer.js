@@ -17,13 +17,24 @@ const Wrapper = styled.nav`
     }
 `;
 
-const SimpleCardContainer = (data) => {
+const SimpleCardContainer = ({data}) => {
     const [city,setCity] = useState(data)
-   
+
+    for(let j = 0;j < data.Kontor.length;j++){
+        for(let k = 0; k < data.Kontor[j].ansatte.length;k++){
+            
+        }
+    }
+    
     return(
         <Wrapper > 
-            {city.data.Kontor.map((office)=>(
-                <SimpleCard data={office}></SimpleCard>
+            {
+            //map var funky, så da ble det gamlemåten igjen. Map skal liksom brått lese flere gjenstander enn det det er plass til i et array
+            
+            
+            city.data.Kontor.map((office)=>(
+                <SimpleCard  data={office}></SimpleCard>
+            
             ))}
         </Wrapper>
         )

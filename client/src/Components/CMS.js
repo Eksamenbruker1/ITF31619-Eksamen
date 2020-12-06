@@ -16,19 +16,22 @@ const Wrapper = styled.section`
     margin:50px;
     @media only screen and (max-width: 600px){
         grid-template-columns:1fr;
+        width:80%;
         margin:20px 50px;
+        margin: 0 auto;
     }
     @media only screen and (min-width: 800px){
         margin: 0 auto;
+        width: 75%;
+        margin-top: 40px;
     }
-    
-    
+
 `;
 const Button = styled.button`
     background-color:#f0f0f0;
     font-size:120%;
     color: black;
-    border: solid 1px #c7c7c7;
+    border: 0;
     padding:40px;
     font-weight:500;
     @media only screen and (max-width: 800px){
@@ -43,36 +46,28 @@ const Button = styled.button`
         width:100%;
         
     }
-
-`;
-const Button2 = styled.button`
-    background-color:#f0f0f0;
-    font-size:120%;
-    color: black;
-    border: solid 1px #479eb9;
-    padding:40px;
-    font-weight:500;
-    @media only screen and (max-width: 800px){
-        padding:10px 30px;
-        border-radius:40px;
-        color: #479eb9;
-        border: 3px solid #479eb9;
-        
+    :hover{
+        border: solid darkgrey 3px;
+        padding:37px;
     }
-    
 
 `;
+
 
 const Splitter = styled.section`
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
+    justify-content:space-between;
     width:100%;
+    @media only screen and (max-width: 500px){
+        margin-top: 15px;
+    }
     @media only screen and (max-width: 800px){
         width:100%;
     }
     justify-content:space-between;
     @media only screen and (max-width: 600px){
         flex-direction:column;
+
     }
 `;
 
@@ -82,7 +77,7 @@ const CMS = () => {
     
     return(
             <Wrapper>
-                <Link to="/login/fagartikler"><Button>Ny Artikkel</Button></Link>
+                <Link to="/login/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
                     <Søk ></Søk>
                     <Filter kategorier={["porno","johnny"]}></Filter>

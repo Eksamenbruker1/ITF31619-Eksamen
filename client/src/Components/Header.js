@@ -3,6 +3,8 @@ import styled from "styled-components"
 import Menu from "./Menu"
 import LoginButton from "./LoginButton"
 import Hamburger from "./Hamburger"
+import { Router, Link, useHistory, useLocation} from 'react-router-dom';
+
 
 /**
  * --ActiveItem--
@@ -31,7 +33,6 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content:space-between;
     background-color: white;
-    border-bottom:solid 1px #e6e6e8;
     align-items:center;
 `;
 
@@ -50,14 +51,17 @@ const RightInternalWrapper = styled.div`
 
 
 
-const Header = ({ActiveItem}) => {
+const Header = ({ActiveItem,backAdress,back}) => {
     const [state,setState] = useState(false)
+
 
     const handleClick = ()=>{
         
         !state?setState(true):setState(false)
 
+
     }
+    const link = backAdress==="hjem"?"":backAdress;
 
     return(
         <StyledHeader>
@@ -68,8 +72,7 @@ const Header = ({ActiveItem}) => {
                     <a href="#" onClick={()=>handleClick()}><Hamburger state={state} ></Hamburger></a>
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
-                <LoginButton></LoginButton>
-
+                <Link to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></Link>
             </RightInternalWrapper>
         </StyledHeader>
         )

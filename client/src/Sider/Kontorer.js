@@ -26,19 +26,23 @@ const Tekst = styled.nav`
 `;
 
 const Kontorer = () => {
-    
-    const data = require('../data/dataKontor.json');
+    const data = require('../data/dataKontor.json'));
     const [state,setState] = useState(data)
+    const [activeCity,setActiveCity] = useState()
+
+    const hoverTrigger = (city)=>{
+        setActiveCity(city)
+    }
+
     
     return(
-       
             <Wrapper>
-                <Header ActiveItem="Kontorer"></Header>
-                <ImageCard imgSource={banner} TextColor="black" Content="Våre Kontorer" Width="Full"></ImageCard>
+                <Header ActiveItem="kontorer"></Header>
+                <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Våre Kontorer" Width="Full"></ImageCard>
                 {state.map((city)=>(
-                    <>
+                    <>  {}
                         <Title>{city.By+" ("+city.Kontor.length+" kontorer)"}</Title>
-                        <SimpleCardContainer data={city}></SimpleCardContainer>
+                        <SimpleCardContainer setActiveCity={setActiveCity} data={city}></SimpleCardContainer>
                     </>
                 ))}
                 

@@ -4,11 +4,20 @@ import Card from "./Card"
 import { NavLink } from 'react-router-dom';
 
 const Wrapper = styled.main`
+    max-width: 1000px;
     margin: 40px;
     display:grid;
     column-gap: 20px;
     row-gap: 20px;
     grid-template-columns: 1fr 3fr;
+    margin: 10px;
+    margin: 0 auto;
+    margin-top: 2px;
+    @media only screen and (max-width: 800px){
+        margin: 10px;
+        margin-top: 10px;
+    }
+    
 `;
 
 const GridContainer = () => {
