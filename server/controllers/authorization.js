@@ -13,7 +13,7 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const registerAdmin = catchAsyncErrors(async (req, res, next) => {
-    if(req.params.AUTHORIZATION_KEY != process.env.AUTHORIZATION_KEY) {
+    if(req.params.AUTHORIZATION_KEY !== process.env.AUTHORIZATION_KEY) {
         return next(new ErrorHandler('Du feilet autoriseringen'));
     }
     const user = await userService.createAdmin(req.body);
