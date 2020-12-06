@@ -10,6 +10,7 @@ const ArticleSchema = new Schema(
       required: true,
       trim: true,
       unique: true,
+      index: true,
       min: ['3', 'En tittel må ha flere enn 3 tegn'],
       max: ['50', 'Tittel må være færre enn 50 tegn'],
     },
@@ -26,6 +27,11 @@ const ArticleSchema = new Schema(
       type: String,
       required: true,
     },
+    secret: {
+      type: Boolean,
+      default: true,
+      required: true,
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
@@ -39,6 +45,10 @@ const ArticleSchema = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+ArticleSchema.index({
+  title: 'text',
+});
 
 ArticleSchema.pre('save', function (next) {
   this.slug = slugify(this.title, { lower: true });

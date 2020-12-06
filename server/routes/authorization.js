@@ -5,9 +5,13 @@ import { isAuthenticated } from '../middleware/authorization.js';
 const router = express.Router();
 
 router.post('/registeruser', authorizationController.registerUser);
-router.post('/registeradmin/:AUTHORIZATION_KEY', authorizationController.registerAdmin);
+router.post(
+  '/registeradmin/:AUTHORIZATION_KEY',
+  authorizationController.registerAdmin
+);
 router.post('/login', authorizationController.login);
 router.post('/logout', authorizationController.logout);
 router.get('/me', isAuthenticated, authorizationController.currentUser);
+// router.get('/articlelist', isAuthenticated, authorizationController.articleList);
 
 export default router;

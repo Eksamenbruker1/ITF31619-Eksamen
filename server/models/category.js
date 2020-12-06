@@ -16,7 +16,7 @@ const CategorySchema = new Schema(
     slug: String,
     Description: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
