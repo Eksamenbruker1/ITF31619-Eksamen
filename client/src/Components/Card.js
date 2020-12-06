@@ -10,8 +10,8 @@ import styled from "styled-components"
  */
 
 const Container = styled.a`
-    border: 1px solid #1e1e1e;
-    border-bottom: 8px solid #1e1e1e;
+    border: 2px solid #18273f;
+    border-bottom: 8px solid #18273f;
     height: 20vh;
     display: flex;
     flex-direction:column;
@@ -41,12 +41,12 @@ const Container = styled.a`
 `;
 
 const Title = styled.h2`
+    font-weight: 300;
     :hover {
         animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
         transform: translate3d(0, 0, 0);
         perspective: 1000px;
     }
-    font-weight: 600;
     margin: 0 20px 0 20px;
     text-transform: capitalize;
     color: ${props => props.Color};

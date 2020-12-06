@@ -7,7 +7,7 @@ const Container = styled.footer`
     justify-content: space-around;
     flex-direction:column;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 115px;
     @media only screen and (max-width: 800px){
         width: 100%;
         margin: 0 auto;
