@@ -110,7 +110,7 @@ const AboutUs = () => {
                 <Wrapper>
                     <Line />
                     <H4>Om oss</H4>
-                    <P>Vi har <Link to="/kontorer"><A href="">{state}</A></Link> rørleggere som gjør alt fra å åpne tette sluk og skifte blandebatterier, til å utføre større oppdrag som reparasjon av rørbrudd og utskifting av gamle fyrkjeler. Drømmer du om å rehabilitere badet, skal bygge hus eller hytte, eller ønsker mer miljøvennlige oppvarmingsmuligheter for boligen, bidrar vi gjerne med tips og inspirasjon til små og store utbedringer.</P>
+                    <P>Vi har  <Link to="/kontorer"><A href="">{state}</A></Link> rørleggere som gjør alt fra å åpne tette sluk og skifte blandebatterier, til å utføre større oppdrag som reparasjon av rørbrudd og utskifting av gamle fyrkjeler. Drømmer du om å rehabilitere badet, skal bygge hus eller hytte, eller ønsker mer miljøvennlige oppvarmingsmuligheter for boligen, bidrar vi gjerne med tips og inspirasjon til små og store utbedringer.</P>
                     <H5>Navigasjon</H5>
                     <LineSmall/>
                     <FooterNavigation spreadDown={true} patch={true}></FooterNavigation>

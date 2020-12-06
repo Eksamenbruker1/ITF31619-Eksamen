@@ -5,7 +5,7 @@ import {Link}  from 'react-router-dom';
 
 const Wrapper = styled.button`
     background-color:#f0f0f0;
-    width: 150px;
+    width: 250px;
     font-size:120%;
     color: black;
     border: 0;

@@ -50,7 +50,7 @@ const OpprettFagartikkel = () => {
 
     return(
             <Outer>
-                <Header back={true} ActiveItem="fagartikler"></Header>
+                <Header back={true} adressen={"opprett-fagartikkel"} ActiveItem="fagartikler"></Header>
                 <ImageCard imgSource={banner}TextColor="#1e1e1e" Content="Ny Artikkel" Width="Full"></ImageCard>
                 <Line />
                 <CMS />

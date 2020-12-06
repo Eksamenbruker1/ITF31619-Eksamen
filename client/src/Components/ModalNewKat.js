@@ -6,15 +6,21 @@ import {BrowserRouter as Link}  from 'react-router-dom';
 const Wrapper = styled.div`
     margin:0 auto;
 `
-const Input = styled.div`
-    margin:0 auto;
+const Input = styled.input`
+    
 `
 
-const ModalNewKat = () => {
+const Tag = styled.p`
+    color: black;
+    
+`
+
+const ModalNewKat = () => { 
+    
 
     return(
         <Wrapper>
-            <Input></Input>
+            <Tag>NY KATEGORI</Tag><Input></Input>
         </Wrapper>
         )
 

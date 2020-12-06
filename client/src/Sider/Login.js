@@ -25,6 +25,7 @@ const Div = styled.div`
 `;
 
 const Con = styled.div`
+    display: flex;
     width: 60%;
     @media only screen and (max-width: 800px){
         width: 80%;
@@ -37,7 +38,7 @@ const Con = styled.div`
 `;
 
 const A = styled.a`
-    margin-bottom: 200px;
+    margin-left:90%;
     :active {
         opacity: 1;
         filter: invert(70%)
@@ -50,7 +51,7 @@ const A = styled.a`
     @media only screen and (max-width: 800px){
         display:none;
     }
-    margin:0 auto;
+    
 `;
 
 const Line = styled.div`

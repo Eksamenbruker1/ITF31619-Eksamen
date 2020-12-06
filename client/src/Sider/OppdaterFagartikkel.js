@@ -42,6 +42,11 @@ const Div = styled.div`
 `
 
 const OppdaterFagartikkel = ({match}) => {
+    const [visibility, setVisibility] = useState(false);
+    const nyKategori = (state)=>{
+        setVisibility(state)
+    }
+
     const artikkelNavn = match.params.artikkel&&match.params.artikkel
     
     return(
@@ -78,7 +83,7 @@ const OppdaterFagartikkel = ({match}) => {
                             <Form.Control placeholder="Apartment, studio, or floor" />
                         </Form.Group>
 
-                        <NyKategori>
+                        <NyKategori nyKategori={nyKategori}>
 
                         </NyKategori>
 
