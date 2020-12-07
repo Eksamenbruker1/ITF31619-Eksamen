@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/:id', categoryController.get);
 router.get('/', categoryController.list);
 
-router.post('/', isAuthenticated, isAuthorized(), categoryController.create);
+router.post('/', categoryController.create);
+//router.post('/', isAuthenticated, isAuthorized(), categoryController.create);
 
 export default router;

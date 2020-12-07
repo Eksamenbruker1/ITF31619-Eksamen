@@ -7,9 +7,13 @@ const router = express.Router();
 router.get('/:id', articleController.get);
 router.get('/', articleController.list);
 
-router.post('/', [isAuthenticated, isAuthorized()], articleController.create);
+router.post('/', articleController.create);
 
-router.put('/:id', [isAuthenticated, isAuthorized()], articleController.update);
+router.put('/:id', articleController.update);
+
+//router.post('/', [isAuthenticated, isAuthorized()], articleController.create);
+
+//router.put('/:id', [isAuthenticated, isAuthorized()], articleController.update);
 
 router.delete(
   '/:id',
