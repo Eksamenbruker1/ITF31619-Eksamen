@@ -92,7 +92,6 @@ const Input = styled.input`
 
 
 const Valg = ({søk}) => {
-    
     const [data, setData] = useState();
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -102,7 +101,8 @@ const Valg = ({søk}) => {
         async function fetchData() {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/categories/`);
-            console.log(res)
+            //siste som ble gjort
+            console.log(res.data)
           } catch (error) {
             alert("this poll does not exist");
           } finally {
@@ -111,10 +111,9 @@ const Valg = ({søk}) => {
         }
         fetchData();
       }, []); 
+        
+        
 
-      
-    
-      
 
     return(
         <>
