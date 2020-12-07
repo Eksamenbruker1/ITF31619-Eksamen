@@ -14,6 +14,7 @@ import user from './routes/user.js';
 import article from './routes/article.js';
 import authorization from './routes/authorization.js';
 import author from './routes/author.js';
+import reference from './routes/reference.js';
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/`, authorization);
 app.use(`${process.env.BASEURL}/authors`, author);
+app.use(`${process.env.BASEURL}/references`, reference);
 
 app.use(errorMiddleware);
 

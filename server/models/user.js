@@ -66,6 +66,13 @@ UserSchema.virtual('articles', {
   justOne: false,
 });
 
+UserSchema.virtual('reference', {
+  ref: 'Reference',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+});
+
 const User = mongoose.model('User', UserSchema);
 
 export default User;
