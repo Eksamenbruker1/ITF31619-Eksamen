@@ -5,7 +5,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon --watch *.js -x server.js"
   },
   "keywords": [],
   "author": "",
@@ -27,10 +27,11 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "husky": "^4.3.4",
+    "env": "^0.0.2",
     "express": "^4.17.1",
+    "husky": "^4.3.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.10",
+    "mongoose": "^5.10.14",
     "morgan": "^1.10.0",
     "slugify": "^1.4.5",
     "validator": "^13.1.17"

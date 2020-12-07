@@ -14,7 +14,8 @@ const Wrapper = styled.div`
 `
 
 
-const NyKategori = () => {
+const NyKategori = ({setModal,modal}) => {
+    console.log(modal)
 
     return(
         <Wrapper>
@@ -27,7 +28,7 @@ const NyKategori = () => {
                 </Form.Control>
                 </Form.Group>
             </Form.Row>
-            <Button className="katBut">Ny</Button>
+            <Button className="katBut" onClick={()=>setModal(!modal?true:false)}>Ny</Button>
         </Wrapper>
         )
 
