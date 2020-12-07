@@ -1,6 +1,7 @@
 import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {BrowserRouter as Link}  from 'react-router-dom';
+import axios from "axios"
 
 
 const Wrapper = styled.div`
@@ -42,6 +43,24 @@ const TagClick = styled.p`
 
 const ModalNewKat = ({setModal,modal}) => { 
     
+    const [data, setData] = useState();
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const categories = []
+
+    useEffect(() => {
+        async function fetchData() {
+          try {
+            const res = await axios.post(`http://localhost:5000/api/v1/categories/`);
+            !data&&setData(res.data)
+          } catch (error) {
+            alert("this poll does not exist");
+          } finally {
+            setIsLoading(false);
+          }
+        }
+        fetchData();
+      }, []); 
 
     return(
         <Background>
