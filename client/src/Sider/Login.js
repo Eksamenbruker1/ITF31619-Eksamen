@@ -7,6 +7,8 @@ import LoginForm  from "../Components/LoginForm"
 import styled from "styled-components"
 import AboutUs from "../Components/AboutUs"
 import banner from "../img/login.gif"
+import { NavLink } from 'react-router-dom';
+
 
 
 const Heading = styled.h2`
@@ -54,6 +56,20 @@ const A = styled.a`
     
 `;
 
+const Reg = styled.div`
+    display: flex;
+    width: 60%;
+    @media only screen and (max-width: 800px){
+        width: 80%;
+        margin: 20px auto;
+    }
+    @media only screen and (min-width: 800px){
+        width: 60%;
+        margin: 20px auto;
+    }
+    
+`;
+
 const Line = styled.div`
     margin: 50px auto;
     width: 60%;
@@ -63,26 +79,63 @@ const Line = styled.div`
     border-bottom: solid grey 1px;
 `
 
+const Invert = styled.div`
+  
+`
 
-const Login = ({match}) => {
+const Login = ({match},key) => {
+    //Nutty webhack 3:)
+    const path = window.location.pathname.split("/")
+    const href = window.location.href.split("/")
+    const [page,setPage] = useState(path[1])
+    console.log(page)
+    console.log(key)
+
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
 
+
     return(
-        <div>
+        <Invert>
             <Header id="top" back={true} backAdress={adress}></Header>
 
             <a href="#login"><ImageCard imgSource={banner} TextColor="#1e1e1e" Width="Full"></ImageCard></a>
             <Line></Line>
             <Con><A href="#top">Up</A></Con>
             <Div>
-                <Heading id="login">Login</Heading>
-                <LoginForm adress={adress}></LoginForm>
+            {
+            page==="login"&&
+            (
+                <>
+                    <Heading id="login">Logg inn</Heading>
+                </>
+            )}
+            {page==="registrer"&&
+            (
+                <>
+                    <Heading id="login">Registrer</Heading>
+                </>
+            )}
+                
+                <LoginForm page={page}></LoginForm>
             </Div>
-            <Line ></Line>
-            <Footer></Footer>
-        </div>
+            {
+            page==="login"&&
+            (
+                <>
+                    <NavLink to="/registrer/login"><Reg><A href="">Registrer</A></Reg></NavLink>
+                </>
+            )}
+            {page==="registrer"&&
+            (
+                <>
+                    <NavLink to="/login/registrer"><Reg><A href="">Logg inn</A></Reg></NavLink>
+                </>
+            )} 
+        <Footer></Footer>
+        </Invert>
         )
+        
 
 }
 

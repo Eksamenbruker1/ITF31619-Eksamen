@@ -9,14 +9,15 @@ import Fagartikler from "../Sider/Fagartikler";
 import Fagartikkel from "../Sider/Fagartikkel";
 import OpprettFagartikkel from "../Sider/OpprettFagartikkel";
 import OppdaterFagartikkel from "../Sider/OppdaterFagartikkel";
-import OpprettKategori from "../Sider/OpprettFagartikkel";
 import Kontakt from "../Sider/Kontakt";
-import Registrer from "../Sider/Registrer";
 import Login from "../Sider/Login";
+import Registrer from "../Sider/Registrer";
 import Store from "../GlobalState"
 
 const Routes = ({location}) => {
-    
+    const login = "login"
+    const register = "register"
+
     const exlcudedPaths = [
         '/registrer',
         '/Create-poll'
@@ -31,12 +32,11 @@ return(
                     <Route path="/kontor/:navn" exact component={Kontor} />
                     <Route path="/fagartikler" exact component={Fagartikler} />
                     <Route path="/fagartikkel" exact component={Fagartikkel} />
-                    <Route path="/registrer" exact component={Registrer} />
                     <Route path="/opprett-fagartikkel" exact component={OpprettFagartikkel} />
                     <Route path="/oppdater-fagartikkel/:artikkel" exact component={OppdaterFagartikkel} />
                     <Route path="/kontakt" exact component={Kontakt} />
-                    <Route path="/login/:back" exact component={Login} />
-                    
+                    <Route key="login" path="/login/:back" exact component={Login} />
+                    <Route key="registrer" path="/registrer/:back" exact component={Registrer} />
                 </Switch>
             </Store>
         </div>

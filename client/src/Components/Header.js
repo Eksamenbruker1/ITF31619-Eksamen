@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Menu from "./Menu"
 import LoginButton from "./LoginButton"
 import Hamburger from "./Hamburger"
-import { Router, Link, useHistory, useLocation} from 'react-router-dom';
+import { Router, NavLink, useHistory, useLocation} from 'react-router-dom';
 
 
 /**
@@ -71,14 +71,14 @@ const Header = ({adressen,ActiveItem,backAdress,back}) => {
 
     return(
         <StyledHeader>
-            <Link to="/"><CompanyInitials>FG</CompanyInitials></Link>
+            <NavLink to="/"><CompanyInitials>FG</CompanyInitials></NavLink>
             <RightInternalWrapper>
                 <Div>
                     <A onClick={()=>handleClick()}><Hamburger visibility={visibility} ></Hamburger></A>
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
-                {adressen&&(<Link to={back?"/login/"+adressen:"/"+link}><LoginButton back={back}></LoginButton></Link>)}
-                {!adressen&&(<Link to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></Link>)}
+                {adressen&&(<NavLink to={back?"/login/"+adressen:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
+                {!adressen&&(<NavLink to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
             </RightInternalWrapper>
         </StyledHeader>
         )

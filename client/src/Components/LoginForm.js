@@ -15,16 +15,27 @@ const Wrapper = styled.section`
     }
 `;
 
-const LoginForm = ({adress}) => {
-            const [email, setEmail] = useState("");
+const LoginForm = (page) => {
+        const [email, setEmail] = useState("");
         const [password, setPassword] = useState("");
+        const [password2, setPassword2] = useState("");
 
+        console.log(page)
+        
         function validateForm() {
-            return email.length > 0 && password.length > 0;
+            if(email.length > 0 && password.length > 0){
+                alert("Du har ikke fylt ut feltene")
+                return
+            }
+            if(password2 !== password){
+                alert("Passordene er ikke like")
+                return
+            }
+            
         }
 
         function handleSubmit() {
-            window.location.href = "/"+adress
+            window.location.href = "/"
         }
         
 
@@ -45,13 +56,23 @@ const LoginForm = ({adress}) => {
                 />
             </Form.Group>
             <Form.Group size="lg" controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Passord</Form.Label>
                 <Form.Control
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
+            {page.page==="registrer" &&(   
+                    <Form.Group size="lg" controlId="password">
+                        <Form.Label>Gjenta Passord</Form.Label>
+                        <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Form.Group>
+            )}
             <Button  
             className="invert" block size="lg" type="submit" disabled={!validateForm()}>
                 Login
