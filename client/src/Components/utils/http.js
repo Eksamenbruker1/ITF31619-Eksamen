@@ -1,6 +1,6 @@
-import Axios from 'axios';
+import axios from 'axios';
 
-const http = Axios.create({
+const http = axios.create({
   baseURL: `${process.env.BASE_URL}${process.env.API_VERSION}`,
 });
 

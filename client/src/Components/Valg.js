@@ -3,7 +3,9 @@ import styled from "styled-components"
 import {Link}  from 'react-router-dom';
 import Søk from "./Søk"
 import Filter from "./Filter"
-import list from "./utils/kategoriService"
+import axios from "axios"
+import list from "./utils/articleService"
+import { ResponsiveEmbed } from "react-bootstrap";
 
 
 const Wrapper = styled.section`
@@ -92,23 +94,28 @@ const Input = styled.input`
 const Valg = ({søk}) => {
     
     const [data, setData] = useState();
-
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const categories = []
 
     useEffect(() => {
-        const fetchData = async () => {
-          const { data, error } = await list();
-          if (error) {
-            setError(error);
-          } else {
-            setData(data);
+        async function fetchData() {
+          try {
+            const res = await axios.get(`http://localhost:5000/api/v1/categories/`);
+            console.log(res)
+          } catch (error) {
+            alert("this poll does not exist");
+          } finally {
+            setIsLoading(false);
           }
-        };
+        }
         fetchData();
-      }, []);
+      }, []); 
+
       
-     
     
+      
+
     return(
         <>
             <Wrapper>
