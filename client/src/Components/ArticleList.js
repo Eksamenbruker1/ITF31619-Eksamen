@@ -2,6 +2,8 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import ArticleThumbnail from "./ArticleThumbnail"
 
+import list from "./utils/articleService"
+
 
 const Wrapper = styled.nav`
     max-width: 80%;
@@ -22,11 +24,29 @@ const Wrapper = styled.nav`
 `;
 
 const ArticleList = () => {
-    const data = require('../data/artikler.json');
-    const dummyThumbnailArticle = [...data]
+    //const data = require('../data/artikler.json');
+    
+    const [data, setData] = useState();
+
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        const { data, error } = await list();
+        if (error) {
+            setError(error);
+        } else {
+            setData(data);
+        }
+        };
+        fetchData();
+    }, []);
+
+
+
     return(
         <Wrapper> 
-                {dummyThumbnailArticle.map((thumbnail)=><ArticleThumbnail article={thumbnail}/>)}
+                {data.map((thumbnail)=><ArticleThumbnail article={thumbnail}/>)}
         </Wrapper>
         )
 

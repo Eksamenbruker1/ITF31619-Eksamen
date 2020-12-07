@@ -3,7 +3,7 @@ import ArticleList from "../Components/ArticleList"
 import Header from "../Components/Header"
 import ImageCard from "../Components/ImageCard"
 import Footer from "../Components/Footer"
-import CMS from "../Components/CMS"
+import Valg from "../Components/Valg"
 import banner from "../img/artikler.gif"
 import styled from "styled-components"
 
@@ -25,7 +25,7 @@ const Fagartikler = () => {
             <Header ActiveItem="fagartikler"></Header>
             <a href="#main"><ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Fagartikler" Width="Full"></ImageCard></a>
             <Line />
-            <CMS></CMS>
+            <Valg></Valg>
             <Line />
             <ArticleList id="main"/>
             <Footer></Footer>
