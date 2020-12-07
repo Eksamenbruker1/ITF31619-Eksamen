@@ -32,15 +32,15 @@ const ArticleList = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-        const { data, error } = await list();
-        if (error) {
+          const { data, error } = await list();
+          if (error) {
             setError(error);
-        } else {
+          } else {
             setData(data);
-        }
+          }
         };
         fetchData();
-    }, []);
+      }, []);
 
 
 
