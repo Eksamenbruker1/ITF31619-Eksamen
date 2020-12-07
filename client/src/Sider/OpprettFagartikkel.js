@@ -46,7 +46,7 @@ const Div = styled.div`
 
 
 const OpprettFagartikkel = () => {
-    const [modal,setModal] = useState()
+    const [modal,setModal] = useState(false)
 
     return(
             <Outer>
@@ -56,7 +56,7 @@ const OpprettFagartikkel = () => {
                 <CMS />
                 <Line />
                 <Wrapper>
-                    <ModalNewKat></ModalNewKat>
+                {modal&& (<ModalNewKat setModal={setModal}></ModalNewKat>)}
                     <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
                         <Form.Group controlId="formGridAddress1">
                             <Div><Form.Label>Avsnitt 1</Form.Label><Alert alert={true} /></Div>
@@ -83,7 +83,7 @@ const OpprettFagartikkel = () => {
                             <Form.Control placeholder="Apartment, studio, or floor" />
                         </Form.Group>
 
-                        <NyKategori>
+                        <NyKategori setModal={setModal} modal={modal}>
 
                         </NyKategori>
 
