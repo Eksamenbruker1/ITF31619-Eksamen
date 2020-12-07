@@ -56,7 +56,7 @@ const OpprettFagartikkel = () => {
                 <CMS />
                 <Line />
                 <Wrapper>
-                    <ModalNewKat></ModalNewKat>
+                    <ModalNewKat modal={modal}></ModalNewKat>
                     <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
                         <Form.Group controlId="formGridAddress1">
                             <Div><Form.Label>Avsnitt 1</Form.Label><Alert alert={true} /></Div>

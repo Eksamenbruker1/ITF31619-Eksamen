@@ -24,11 +24,33 @@ const Wrapper = styled.nav`
 `;
 
 const ArticleList = (data) => {
-    const [state,setState] = useState(data.data)
+    const [artikler, setArtikler] = useState();
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const categories = []
+
+    useEffect(() => {
+        async function fetchData() {
+          try {
+            const res = await axios.get(`http://localhost:5000/api/v1/articles/`)
+            res.data&&setArtikler(res.data.data)
+          } catch (error) {
+          } finally {
+            setIsLoading(false);
+          }
+        }
+        fetchData();
+    }, []); 
+    
     
     return(
         <Wrapper> 
-               
+                {artikler&&artikler.map((thumbnail)=>(
+                    <>
+                        <ArticleThumbnail article={thumbnail}/>
+                    </>
+                ))}
+
         </Wrapper>
     )
 }

@@ -101,8 +101,7 @@ const Valg = ({søk}) => {
         async function fetchData() {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/categories/`);
-            //siste som ble gjort
-            console.log(res.data)
+            !data&&setData(res.data)
           } catch (error) {
             alert("this poll does not exist");
           } finally {
@@ -111,9 +110,9 @@ const Valg = ({søk}) => {
         }
         fetchData();
       }, []); 
-        
-        
 
+      data&&data.map((kategori)=>categories.push(kategori.CategoryName))
+      console.log(categories)
 
     return(
         <>
@@ -122,7 +121,7 @@ const Valg = ({søk}) => {
                 <Splitter>
                     {søk&&(<Button><Input value={søk}></Input></Button>)}
                     {!søk&&(<Søk></Søk>)}
-                    <Filter kategorier={[]}></Filter>
+                    <Filter kategorier={categories}></Filter>
                 </Splitter>
             </Wrapper>
         </>

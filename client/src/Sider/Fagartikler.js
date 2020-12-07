@@ -39,6 +39,8 @@ const Fagartikler = () => {
         fetchData();
       }, []); 
 
+      
+
     return(
         <div>
             <Header ActiveItem="fagartikler"></Header>
