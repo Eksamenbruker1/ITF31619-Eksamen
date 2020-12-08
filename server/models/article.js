@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import slugify from 'slugify';
+import mongoose from "mongoose";
+import slugify from "slugify";
 
 const { Schema } = mongoose;
 
@@ -11,8 +11,8 @@ const ArticleSchema = new Schema(
       trim: true,
       unique: true,
       index: true,
-      min: ['3', 'En tittel må ha flere enn 3 tegn'],
-      max: ['50', 'Tittel må være færre enn 50 tegn'],
+      min: ["3", "En tittel må ha flere enn 3 tegn"],
+      max: ["50", "Tittel må være færre enn 50 tegn"],
     },
     slug: String,
     ingress: {
@@ -34,12 +34,12 @@ const ArticleSchema = new Schema(
     },
     user: {
       type: mongoose.Schema.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: false,
     },
     category: {
       type: mongoose.Schema.ObjectId,
-      ref: 'Category',
+      ref: "Category",
       required: true,
     },
   },
@@ -47,12 +47,12 @@ const ArticleSchema = new Schema(
 );
 
 ArticleSchema.index({
-  title: 'text',
+  title: "text",
 });
 
-ArticleSchema.pre('save', function (next) {
+ArticleSchema.pre("save", function (next) {
   this.slug = slugify(this.title, { lower: true });
   next();
 });
 
-export default mongoose.model('Article', ArticleSchema);
+export default mongoose.model("Article", ArticleSchema);

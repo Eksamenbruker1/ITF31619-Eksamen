@@ -1,18 +1,22 @@
-import express from 'express';
-import { referenceController } from '../controllers/index.js';
-import { isAuthenticated, isAuthorized } from '../middleware/authorization.js';
+import express from "express";
+import { referenceController } from "../controllers/index.js";
+import { isAuthenticated, isAuthorized } from "../middleware/authorization.js";
 
 const router = express.Router();
 
-router.get('/:id', referenceController.get);
-router.get('/', referenceController.list);
+router.get("/:id", referenceController.get);
+router.get("/", referenceController.list);
 
-router.post('/', referenceController.create);
+router.post("/", referenceController.create);
 
-router.put('/:id', [isAuthenticated, isAuthorized()], referenceController.update);
+router.put(
+  "/:id",
+  [isAuthenticated, isAuthorized()],
+  referenceController.update
+);
 
 router.delete(
-  '/:id',
+  "/:id",
   [isAuthenticated, isAuthorized()],
   referenceController.remove
 );

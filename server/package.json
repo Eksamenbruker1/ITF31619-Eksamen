@@ -5,7 +5,10 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "prettier": "prettier \"**/*.{js,jsx,css,json}\"",
+    "format": "npm run prettier -- --write",
+    "validate": "npm run prettier -- --list-different"
   },
   "keywords": [],
   "author": "",
@@ -38,7 +41,9 @@
   },
   "husky": {
     "hooks": {
-      "hooks":{ "pre-commit": "npx lint-staged"}
+      "hooks": {
+        "pre-commit": "npx lint-staged"
+      }
     }
   },
   "lint-staged": {

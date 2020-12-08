@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-import catchAsyncErrors from '../middleware/catchAsync.js';
-import { referenceService, userService } from '../services/index.js';
-import ErrorHandler from '../utils/errorHandler.js';
-import { sendMail } from '../utils/sendEmail.js';
+import jwt from "jsonwebtoken";
+import catchAsyncErrors from "../middleware/catchAsync.js";
+import { referenceService, userService } from "../services/index.js";
+import ErrorHandler from "../utils/errorHandler.js";
+import { sendMail } from "../utils/sendEmail.js";
 
 export const get = catchAsyncErrors(async (req, res, next) => {
   const reference = await referenceService.getReferenceById(req.params.id);
@@ -45,7 +45,7 @@ export const create = catchAsyncErrors(async (req, res, next) => {
             \n \n Vennligst vent til vi kan svare på din henvendelse. Din refereranse ID er ${reference.id}`,
     });
   } catch (error) {
-    console.log('Feil med epost håndteringen');
+    console.log("Feil med epost håndteringen");
   }
 
   res.status(201).json(reference);

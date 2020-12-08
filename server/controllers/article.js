@@ -1,14 +1,14 @@
-import jwt from 'jsonwebtoken';
-import catchAsyncErrors from '../middleware/catchAsync.js';
-import { articleService, userService } from '../services/index.js';
-import ErrorHandler from '../utils/errorHandler.js';
-import { isAuthenticated, isAuthorized } from '../middleware/authorization.js';
+import jwt from "jsonwebtoken";
+import catchAsyncErrors from "../middleware/catchAsync.js";
+import { articleService, userService } from "../services/index.js";
+import ErrorHandler from "../utils/errorHandler.js";
+import { isAuthenticated, isAuthorized } from "../middleware/authorization.js";
 
 export const get = catchAsyncErrors(async (req, res, next) => {
-  const article = await articleService.getArticleById(req.params.id);
+  const article = await articleService.getArticleById(req.params.slug);
   if (!article) {
     return next(
-      new ErrorHandler(`Finner ikke artikkelen med id-en ${req.params.id}`, 404)
+      new ErrorHandler(`Finner ikke artikkelen med sluggen ${req.params.slug}`, 404)
     );
   }
   res.status(200).json(article);

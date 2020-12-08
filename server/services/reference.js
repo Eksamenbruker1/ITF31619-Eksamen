@@ -1,5 +1,5 @@
-import Reference from '../models/reference.js';
-import User from '../models/user.js';
+import Reference from "../models/reference.js";
+import User from "../models/user.js";
 
 export const createReference = async (data) => Reference.create(data);
 
