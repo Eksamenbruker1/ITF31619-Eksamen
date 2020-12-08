@@ -13,12 +13,21 @@ import axios from "axios"
 
 
 const Main = styled.main`
+@media only screen and (max-width: 800px){
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    @media only screen and (max-width: 500px){
+        width: 90%;
+        margin-bottom: 30px;
+    }
     margin: 30px auto;
     width: 70%;
 `
 
 const Ingress = styled.p`
     margin-top:15px;
+    color: #454545;
     font-size:115%;
     font-weight:500;
     width:90%;
