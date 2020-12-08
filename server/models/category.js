@@ -11,7 +11,7 @@ const CategorySchema = new Schema(
       trim: true,
       unique: true,
       min: ["3", "Navnet på en kategori må være mellom 2 og 20 tegn"],
-      max: ["20", "Navnet på en kategori må være under 20 tegn"],
+      max: ["30", "Navnet på en kategori må være under 30 tegn"],
     },
     slug: String,
     Description: {
@@ -24,7 +24,7 @@ const CategorySchema = new Schema(
 
 CategorySchema.virtual("articles", {
   ref: "Article",
-  localField: "_id",
+  localField: "CategoryName",
   foreignField: "category",
   justOne: false,
 });

@@ -21,6 +21,8 @@ export const listArticles = async (queryStr) => {
     .query.populate("category", "CategoryName")
     .populate("user", "name");
 
+    
+
   // const articles = await filters.query.populate('category','CategoryName').populate('user','name')
   return {
     results: articles.length,

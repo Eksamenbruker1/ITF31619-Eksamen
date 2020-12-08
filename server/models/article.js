@@ -42,6 +42,10 @@ const ArticleSchema = new Schema(
       ref: "Category",
       required: true,
     },
+    categoryname: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
