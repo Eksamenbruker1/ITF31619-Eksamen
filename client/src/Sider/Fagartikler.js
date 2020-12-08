@@ -29,17 +29,17 @@ const Fagartikler = () => {
         async function fetchData() {
           try {
             const result = await axios.get(`http://localhost:5000/api/v1/articles/`);
-            setData(result.data.data);
+            console.log(data.data.data)
+            !data&&setData(result.data.data);
           } catch (error) {
-            alert("this poll does not exist");
           } finally {
             setIsLoading(false);
           }
         }
         fetchData();
       }, []); 
-
-      
+        
+      console.log(data)
 
     return(
         <div>

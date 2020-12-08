@@ -6,8 +6,10 @@ import list from "./utils/articleService"
 
 
 const Wrapper = styled.nav`
+    background-color:#f7fbff;
+    border: 1px solid #f0f0f0;
     max-width: 80%;
-    padding: 5px;
+    padding: 15px;
     margin: 0 auto;
     margin-top:50px;
     @media only screen and (max-width: 800px){

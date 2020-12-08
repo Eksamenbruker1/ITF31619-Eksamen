@@ -17,7 +17,6 @@ const MenuItem= styled.li`
     list-style-type: none;
     font-weight: 700;
     margin:0;
-    
     margin-right: 10px;
     margin-top: 13px;
     & > a {

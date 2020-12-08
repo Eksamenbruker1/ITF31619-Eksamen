@@ -18,6 +18,7 @@ const Heading = styled.h2`
     padding: 5px;
     margin: 0 auto;
     padding-top:150px;
+    color:${props => props.page&&"white"};
     @media only screen and (max-width: 800px){
         
     }
@@ -82,7 +83,7 @@ const Line = styled.div`
 `
 
 const Invert = styled.div`
-  
+    filter:${props => props.page&&"Invert(100%)"};
 `
 
 const Register = ({match},key) => {
@@ -94,47 +95,55 @@ const Register = ({match},key) => {
 
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
+    
+    console.log(page)
+    console.log("----------------------")
+    console.log("kjkldfhgl")
+    console.log(path[path.length-1])
 
 
     return(
-        <Invert>
-            <Header id="top" back={true} backAdress={adress}></Header>
+        <>
+            <Header id="top" back={true} backAdress={adress+"/"+path[path.length-1]}></Header>
 
             <a href="#login"><ImageCard imgSource={banner} TextColor="#1e1e1e" Width="Full"></ImageCard></a>
-            <Line></Line>
-            <Con><A href="#top">Up</A></Con>
-            <Div>
-            {
-            page==="login"&&
-            (
-                <>
-                    <Heading id="login">Logg inn</Heading>
-                </>
-            )}
-            {page==="registrer"&&
-            (
-                <>
-                    <Heading id="login">Registrer</Heading>
-                </>
-            )}
-                
-                <LoginForm page={page}></LoginForm>
-            </Div>
-            {
-            page==="login"&&
-            (
-                <>
-                    <NavLink to="/registrer/login"><Reg><A href="">Registrer</A></Reg></NavLink>
-                </>
-            )}
-            {page==="registrer"&&
-            (
-                <>
-                    <NavLink to="/login/registrer"><Reg className="up200"><A href="">Logg inn</A></Reg></NavLink>
-                </>
-            )} 
-        <Footer></Footer>
-        </Invert>
+            <Line></Line> 
+            <Invert page={page==="registrer"&&true}>
+                <Con><A href="#top">Up</A></Con>
+            
+                <Div>
+                {
+                page==="login"&&
+                (
+                    <>
+                        <Heading id="login">Logg inn</Heading>
+                    </>
+                )}
+                {page==="registrer"&&
+                (
+                    <>
+                        <Heading id="register" >Registrer</Heading>
+                    </>
+                )}
+                    
+                    <LoginForm page={page}></LoginForm>
+                </Div>
+                {
+                page==="login"&&
+                (
+                    <>
+                        <NavLink to="/registrer/login"><Reg><A href="">Registrer</A></Reg></NavLink>
+                    </>
+                )}
+                {page==="registrer"&&
+                (
+                    <>
+                        <NavLink to="/login/registrer"><Reg className="up200"><A href="">Logg inn</A></Reg></NavLink>
+                    </>
+                )} 
+            </Invert>
+            <Footer></Footer>
+        </>
         )
         
 

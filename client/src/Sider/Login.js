@@ -88,12 +88,10 @@ const Login = ({match},key) => {
     const path = window.location.pathname.split("/")
     const href = window.location.href.split("/")
     const [page,setPage] = useState(path[1])
-    console.log(page)
-    console.log(key)
 
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
-
+    
 
     return(
         <Invert>

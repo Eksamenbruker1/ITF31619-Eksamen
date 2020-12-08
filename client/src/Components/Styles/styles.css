@@ -67,4 +67,15 @@
 }
  
   
-  
+.registerInput{
+    background-color: black!important;
+    color: white!important;
+}
+ 
+#register{
+    color: #1e88da!important;
+}
+
+#katbtn{
+    filter:invert(100%);
+}
