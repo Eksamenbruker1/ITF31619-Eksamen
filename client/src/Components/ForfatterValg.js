@@ -14,32 +14,31 @@ const Wrapper = styled.div`
 `
 
 
-const NyKategori = ({setModal,modal,categoryList,setValgtKategori}) => {
-    let kategorier = []
-    kategorier = categoryList&&categoryList
+const ForfatterValg = ({authorList,setValgtForfatter}) => {
+    let forfattere = []
+    forfattere = authorList&&authorList
     const [state, setState] = useState(false)
-
+    console.log(forfattere)
 
     return(
         <Wrapper onClick={()=>setState(true)}>
             <Form.Row className="kat">
                 <Form.Group controlId="formGridState">
-                <Form.Label>Kategori</Form.Label>
-                <Form.Control onChange={(e) => { setValgtKategori(e.target.value)}} as="select" defaultValue="Choose...">
-                {state && kategorier!==[]&&kategorier.map(
-                    (category)=>(<option value={category}>{category}</option>)
-                )}
+                <Form.Label>Forfatter</Form.Label>
+                <Form.Control onChange={(e) => { setValgtForfatter(e.target.value)}} as="select" defaultValue="Choose...">
+                {state && forfattere.length===1&&(
+                    <option value={forfattere}>{forfattere}</option>)
+                }
                 </Form.Control>
                 </Form.Group>
             </Form.Row>
-            <Button id={modal&&"katbtn"} className="katBut" onClick={()=>setModal(!modal?true:false)}>{modal?"Lukk":"Ny"}</Button>
         </Wrapper>
         )
 
 }
 
 
-export default NyKategori
+export default ForfatterValg
 
 
                             
