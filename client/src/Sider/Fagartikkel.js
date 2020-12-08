@@ -18,7 +18,7 @@ const Main = styled.main`
 `
 
 const Ingress = styled.p`
-    margin-top:8px;
+    margin-top:15px;
     font-size:115%;
     font-weight:500;
     width:90%;

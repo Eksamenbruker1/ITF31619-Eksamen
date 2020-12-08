@@ -11,6 +11,7 @@ import CMS from "../Components/CMS"
 import NyKategori from "../Components/NyKategori"
 import Alert from "../Components/Alert"
 import "../Components/Styles/styles.css"
+import axios from "axios"
 
 const Wrapper = styled.div`
     width: 65%;
@@ -46,8 +47,31 @@ const OppdaterFagartikkel = ({match}) => {
     const nyKategori = (state)=>{
         setVisibility(state)
     }
-
+    const [artikler, setArtikler] = useState(false);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {
+        async function fetchData() {
+          try {
+            const res = await axios.get(`http://localhost:5000/api/v1/articles/`+match.params.artikkel)
+            res.data && !artikler &&setArtikler(res.data)
+            
+          } catch (error) {
+          } finally {
+            setIsLoading(false);
+          }
+        }
+        fetchData();
+    }, []); 
+    //her skal du splitte opp content på ":" også skal du legge det inn i crud/edit og opprett :)
+    //her skal du splitte opp content på ":" også skal du legge det inn i crud/edit og opprett :)
+    //her skal du splitte opp content på ":" også skal du legge det inn i crud/edit og opprett :)
+    //her skal du splitte opp content på ":" også skal du legge det inn i crud/edit og opprett :)
+    console.log(artikler.content)
+    const [avsnitt,setAvsnitt] = useState()
     const artikkelNavn = match.params.artikkel&&match.params.artikkel
+    
     
     return(
             <Outer>

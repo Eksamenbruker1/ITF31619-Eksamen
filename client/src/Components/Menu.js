@@ -33,6 +33,7 @@ const MenuItem= styled.li`
         filter:invert(100%);
         opacity: 1;
         margin-right: 16px;
+        font-weight:${props => props.Highlight&&"700"};
 
     }
     transition:0.5s;
@@ -45,6 +46,7 @@ const MenuItem= styled.li`
     color:${props => props.spreadDown&&"white"};
     color: ${props => props.Highlight || props.spreadDown ? "#ffc107" : "#1e1e1e"};
     color: ${props => props.Highlight || props.spreadDown ? "#488ac4" : "#1e1e1e"};
+    font-weight: ${props => props.Highlight&&"700"};
 `;
 
 
