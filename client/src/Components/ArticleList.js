@@ -36,6 +36,7 @@ const ArticleList = (data) => {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/articles/`)
             res.data&&setArtikler(res.data.data)
+            
           } catch (error) {
           } finally {
             setIsLoading(false);
@@ -44,7 +45,7 @@ const ArticleList = (data) => {
         fetchData();
     }, []); 
     
-    
+    console.log(artikler)
     return(
         <Wrapper> 
                 {artikler&&artikler.map((thumbnail)=>(
