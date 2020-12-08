@@ -40,30 +40,24 @@ const Fagartikkel = ({match}) => {
         async function fetchData() {
           try {
             const result = await axios.get(`http://localhost:5000/api/v1/articles/`+match.params.artikkel);
-            setData(result.data.data);
+            !data&&setData(result.data.data);
           } catch (error) {
-            alert("this poll does not exist");
           } finally {
             setIsLoading(false);
           }
         }
         fetchData();
       }, []); 
-    
+    console.log(data)
     let officeData = "empty"
-    for(let i=0;i<data.length;i++){
-        for(let j=0;j<data[i].Kontor.length;j++){
-            if(data[i].Kontor[j].navn.replace(/ /g,'') === match.params.artikkel)officeData=data[i].Kontor[j]
-        }
-
-    }
+    
     const [artikkel,setArtikkel] = useState({
         tittel:"Velkommen til Rørlegger"+officeData.navn,
         innhold:officeData.om
     })
 
-    
-    
+    console.log(data)
+    console.log(match.params.artikkel)
 
     return(
         <div>
