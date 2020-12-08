@@ -12,6 +12,16 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json(user);
 });
 
+export const getAllAdminsList = catchAsyncErrors(async (req, res, next) => {
+  const admins = await userService.getAllAdmins();
+  if(!admins) {
+    return next(
+      new ErrorHandler('Det finnes ingen admins i databasen', 404)
+    );
+  }
+  res.status(200).json(admins);
+});
+
 export const create = catchAsyncErrors(async (req, res) => {
   const user = await userService.createUser(req.body);
   res.status(201).json(user);

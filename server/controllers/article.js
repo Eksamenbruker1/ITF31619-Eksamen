@@ -5,7 +5,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 import { isAuthenticated, isAuthorized } from "../middleware/authorization.js";
 
 export const get = catchAsyncErrors(async (req, res, next) => {
-  const article = await articleService.getArticleById(req.params.slug);
+  const article = await articleService.getArticleBySlug(req.params.slug);
   if (!article) {
     return next(
       new ErrorHandler(`Finner ikke artikkelen med sluggen ${req.params.slug}`, 404)

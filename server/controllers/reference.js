@@ -48,6 +48,22 @@ export const create = catchAsyncErrors(async (req, res, next) => {
     console.log("Feil med epost håndteringen");
   }
 
+  const admins = await userService.getAllAdmins();
+
+  for(let i = 0; i < admins.length; i++) {
+    try {
+            await sendMail({
+                email: admins[i].email,
+                subject: `LG Rørleggerservice AS: ny henvendelse registrert med id ${reference.id}`,
+                message: `Det har blitt registrert en ny henvendelse. Henvendelsen har innholdet: \n "${reference.content}"
+                    \n Kontakt eposten til brukeren er: ${reference.email} og temaet er "${reference.subject}"`,
+            });
+            } catch (error) {
+            console.log("Feil med epost håndteringen");
+            } 
+    }
+    
+
   res.status(201).json(reference);
 });
 

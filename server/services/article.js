@@ -1,7 +1,7 @@
 import Article from "../models/article.js";
 import { ApiFilters } from "../utils/apiFilters.js";
 
-export const getArticleById = async (slug) =>
+export const getArticleBySlug = async (slug) =>
   Article.findOne({ slug: `${slug}` }).exec();
 
 // export const listArticles = async () => Article.find().populate('user','email','category','CategoryName');
