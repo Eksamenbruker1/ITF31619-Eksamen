@@ -26,6 +26,21 @@ export default (err, req, res, next) => {
       error = new ErrorHandler(message, 400);
     }
 
+    if (err.code === 6) {
+      const message = 'MongoDB verten ble funnet men kunne ikke oppnå forbindelse. Beklager, prøv igjen senere.';
+      error = new ErrorHandler(message, 400);
+    }
+
+    if (err.code === 7) {
+      const message = 'MongoDB verten ble ikke funnet, muligens så har MongoDB serveren tatt kvelden. Vennligst vent til vi slukker brannen';
+      error = new ErrorHandler(message, 404);
+    }
+
+    if (err.code === 89) {
+      const message = 'MongoDB serveren klarte ikke å respondere til forespørselen, prøv igjen senere';
+      error = new ErrorHandler(message, 400);
+    }
+
     if (err.code === 11000) {
       const message = `Duplikat av ${Object.keys(err.keyValue)}`;
       error = new ErrorHandler(message, 400);

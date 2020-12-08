@@ -8,4 +8,6 @@ router.get("/:id", userController.get);
 // router.get('/:email', userController.get);
 router.post("/", userController.create);
 
+// router.get("/", userController.getAllAdminsList);
+
 export default router;
