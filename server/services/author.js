@@ -2,13 +2,13 @@
 export const listAuthors = async () => {
   const authorList = [
     {
-      name: 'Lars Larsen',
+      name: "Lars Larsen",
     },
     {
-      name: 'Gunn Gundersen',
+      name: "Gunn Gundersen",
     },
     {
-      name: 'Simen Simensen',
+      name: "Simen Simensen",
     },
   ];
 

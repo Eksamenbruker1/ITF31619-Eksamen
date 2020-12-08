@@ -1,6 +1,6 @@
-import catchAsyncErrors from '../middleware/catchAsync.js';
-import { userService } from '../services/index.js';
-import ErrorHandler from '../utils/errorHandler.js';
+import catchAsyncErrors from "../middleware/catchAsync.js";
+import { userService } from "../services/index.js";
+import ErrorHandler from "../utils/errorHandler.js";
 
 export const get = catchAsyncErrors(async (req, res, next) => {
   const user = await userService.getUserById(req.params.id);

@@ -1,5 +1,4 @@
-
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const connectDatabase = async () => {
   let dbCon;
@@ -17,4 +16,3 @@ const connectDatabase = async () => {
 };
 
 export default connectDatabase;
-
