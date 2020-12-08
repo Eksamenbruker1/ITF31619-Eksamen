@@ -2,7 +2,7 @@ import React, { useEffect ,useState} from "react"
 import Header from "../Components/Header"
 import ImageCard from "../Components/ImageCard"
 import Footer from "../Components/Footer"
-import banner from "../img/bannerRørlegger.gif"
+import banner from "../img/jobb.jpg"
 import telefon from "../img/telefon.gif"
 import props from 'prop-types';
 import { Router, Link, useHistory,useParams} from 'react-router-dom';
@@ -12,8 +12,34 @@ import styled from "styled-components"
 import axios from "axios"
 
 
-const AnsatteTittel = styled.h2`
+const Main = styled.main`
+@media only screen and (max-width: 800px){
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    @media only screen and (max-width: 500px){
+        width: 90%;
+        margin-bottom: 30px;
+    }
+    margin: 30px auto;
+    width: 70%;
+`
 
+const Ingress = styled.p`
+    margin-top:15px;
+    color: #454545;
+    font-size:115%;
+    font-weight:500;
+    width:90%;
+    margin-bottom:40px;
+`
+
+const Avsnitt = styled.p`
+    font-size:135%;
+`
+
+const Title = styled.h1`
+    font-size:230%;
 `
 
 const Line = styled.div`
@@ -30,44 +56,40 @@ const Line = styled.div`
 
 
 const Fagartikkel = ({match}) => {
-    const [data, setData] = useState();
+
+    const [artikler, setArtikler] = useState(false);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
-
-    
+    console.log(`http://localhost:5000/api/v1/articles/`+match.params.artikkel)
+  
     useEffect(() => {
         async function fetchData() {
           try {
-            const result = await axios.get(`http://localhost:5000/api/v1/articles/`+match.params.artikkel);
-            !data&&setData(result.data.data);
+            const res = await axios.get(`http://localhost:5000/api/v1/articles/`+match.params.artikkel)
+            res.data && !artikler &&setArtikler(res.data)
+            
           } catch (error) {
           } finally {
             setIsLoading(false);
           }
         }
         fetchData();
-      }, []); 
-    console.log(data)
-    let officeData = "empty"
-    
-    const [artikkel,setArtikkel] = useState({
-        tittel:"Velkommen til Rørlegger"+officeData.navn,
-        innhold:officeData.om
-    })
+    }, []); 
 
-    console.log(data)
-    console.log(match.params.artikkel)
 
     return(
         <div>
             <Header ActiveItem="kontorer"></Header>
-            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Velkommen til FG Rørleggerservice AS" Width="Full"></ImageCard>
-            <Article artikkel={artikkel}></Article>
-            <AnsatteTittel></AnsatteTittel>
-            
+            <ImageCard imgSource={banner} TextColor="#1e1e1e"  Width="80%"></ImageCard>
+            <Main>
+                <article>
+                    <Title>{artikler.title}</Title>
+                    <Ingress>{artikler.ingress}</Ingress>
+                    <Avsnitt>{artikler.content}</Avsnitt>
+                </article>
+            </Main>
+
             <Line />
-            <a href={"/tel:"+officeData.nummer}><ImageCard noBottomMargin={true} fit={true} imgSource={telefon} TextColor="black" Content={"Kontakt oss på "+officeData.nummer} Width="Full"></ImageCard></a>
             <Footer></Footer>
         </div>
         )

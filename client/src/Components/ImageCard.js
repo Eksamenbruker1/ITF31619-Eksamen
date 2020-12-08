@@ -79,9 +79,10 @@ const Image = styled.img`
 
 
 
-const ImageCard = ({Content,Width,imgSource,TextColor,fit,noBottomMargin}) => {
+const ImageCard = ({Content,Width,imgSource,TextColor,fit,noBottomMargin,data}) => {
     const width = Width;
     const center = Width!=="Full"&&true
+    console.log(data)
 
     return(
         <div>

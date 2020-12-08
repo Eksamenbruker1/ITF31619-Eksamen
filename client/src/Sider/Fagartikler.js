@@ -29,7 +29,6 @@ const Fagartikler = () => {
         async function fetchData() {
           try {
             const result = await axios.get(`http://localhost:5000/api/v1/articles/`);
-            console.log(data.data.data)
             !data&&setData(result.data.data);
           } catch (error) {
           } finally {
@@ -38,8 +37,7 @@ const Fagartikler = () => {
         }
         fetchData();
       }, []); 
-        
-      console.log(data)
+
 
     return(
         <div>
