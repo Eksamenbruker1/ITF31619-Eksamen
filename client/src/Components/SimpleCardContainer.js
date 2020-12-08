@@ -4,6 +4,9 @@ import SimpleCard from "./SimpleCard"
 
 
 const Wrapper = styled.nav`
+    padding: 25px;
+    border: 1px solid #f0f0f0;
+    background-color: #f7fbff;
     display:grid;
     margin:40px;
     column-gap: 20px;
@@ -14,6 +17,7 @@ const Wrapper = styled.nav`
     }
     @media only screen and (max-width: 500px){
         grid-template-columns: 1fr; 
+        background-color: #ffffff;
     }
 `;
 

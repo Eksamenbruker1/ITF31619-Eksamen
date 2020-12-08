@@ -37,6 +37,16 @@ const Tekst = styled.nav`
 
 `;
 
+const BigHeading = styled.h2`
+    font-size:250%;
+    margin:5px 15px 10px 10px;
+`;
+
+const Enlarge = styled.span`
+    font-size: 90%;
+    
+`;
+
 const Kontorer = () => {
     const data = require('../data/dataKontor.json');
     const [state,setState] = useState(data)
@@ -52,8 +62,10 @@ const Kontorer = () => {
                 <Header ActiveItem="kontorer"></Header>
                 <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Våre Kontorer" Width="Full"></ImageCard>
                 <Line />
+                
                 {state.map((city)=>(
                     <> 
+                        <BigHeading>Velg et kontor <Enlarge>⤵</Enlarge></BigHeading>
                         <Title>{city.By+" ("+city.Kontor.length+" kontorer)"}</Title>
                         <SimpleCardContainer setActiveCity={setActiveCity} data={city}></SimpleCardContainer>
                         <Line />

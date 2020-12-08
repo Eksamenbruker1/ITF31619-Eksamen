@@ -1,14 +1,15 @@
 import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import toilet from "../img/toilet_1.jpg"
-import { Router, Link, useHistory,useParams} from 'react-router-dom';
+import { Router, NavLink, useHistory,useParams} from 'react-router-dom';
 
 const Wrapper = styled.nav`
     margin: 20px;
+    background-color:#f0f0f0;
     display:flex;
     border-bottom-right-radius:5px;
     border-top-right-radius:5px;
-    border: solid 1px #454545;
+    border: solid 2px #cecece;
     @media only screen and (max-width: 800px){
         flex-direction:column;
         border-top-right-radius:0px;
@@ -16,16 +17,18 @@ const Wrapper = styled.nav`
         border: solid 1px #cecece;
         margin-bottom: 40px;
     }
-    @media only screen and (max-width: 500px){
-        flex-direction:column;
-        margin: 0;
-        border: solid 1px #cecece;
-    }
     width:100%;
     max-width: 677px;
     @media only screen and (min-width: 800px){
         margin: 20 auto;
     }
+    @media only screen and (max-width: 500px){
+        flex-direction:column;
+        margin: 0;
+        border: solid 1px #cecece;
+        margin-bottom: 40px;
+    }
+    
 `;
 
 const Title = styled.h2`
@@ -101,10 +104,13 @@ const ColumnContainer = styled.section`
 
 const ArticleThumbnail = ({article}) => {
     const thmb = article;
+    let slug = ""
+    article.title.split(" ").map((word)=>slug+=word+"-")
+    
     return(
             <Wrapper className="her"> 
                     <Img src={toilet}></Img>
-                    <Link to={"/fagartikkel/"+article.title.replace(/ /g,'')}>
+                    <NavLink to={"/fagartikkel/"+slug.toLowerCase().substring(0, slug.length - 1)}>
                     <ColumnContainer>
                         <TContainer>
                             <Title>{thmb.title}</Title>
@@ -112,7 +118,7 @@ const ArticleThumbnail = ({article}) => {
                         </TContainer>
                         <Text >{thmb.ingress}</Text>
                     </ColumnContainer>
-                    </Link>
+                    </NavLink>
             </Wrapper>
         )
 

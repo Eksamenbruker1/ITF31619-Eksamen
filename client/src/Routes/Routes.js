@@ -31,7 +31,7 @@ return(
                     <Route path="/kontorer" exact component={Kontorer} />
                     <Route path="/kontor/:navn" exact component={Kontor} />
                     <Route path="/fagartikler" exact component={Fagartikler} />
-                    <Route path="/fagartikkel" exact component={Fagartikkel} />
+                    <Route path="/fagartikkel/:artikkel" exact component={Fagartikkel} />
                     <Route path="/opprett-fagartikkel" exact component={OpprettFagartikkel} />
                     <Route path="/oppdater-fagartikkel/:artikkel" exact component={OppdaterFagartikkel} />
                     <Route path="/kontakt" exact component={Kontakt} />

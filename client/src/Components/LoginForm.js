@@ -20,7 +20,8 @@ const LoginForm = (page) => {
         const [password, setPassword] = useState("");
         const [password2, setPassword2] = useState("");
 
-        console.log(page)
+        console.log(page.page)
+        console.log("lllllllllllllllllllllllllll")
         
         function validateForm() {
             if(email.length > 0 && password.length > 0){
@@ -38,6 +39,7 @@ const LoginForm = (page) => {
             window.location.href = "/"
         }
         
+        
 
     return(
         <>
@@ -47,17 +49,19 @@ const LoginForm = (page) => {
         <Wrapper >
             <Form onSubmit={handleSubmit}>
             <Form.Group size="mid" controlId="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className={page.page==="registrer"&&"registerInput"}>Email</Form.Label>
                 <Form.Control
                 autoFocus
+                className={page.page==="registrer"&&"registerInput"}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 />
             </Form.Group>
             <Form.Group size="lg" controlId="password">
-                <Form.Label>Passord</Form.Label>
+                <Form.Label className={page.page==="registrer"&&"registerInput"}>Passord</Form.Label>
                 <Form.Control
+                 className={page.page==="registrer"&&"registerInput"}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -65,8 +69,9 @@ const LoginForm = (page) => {
             </Form.Group>
             {page.page==="registrer" &&(   
                     <Form.Group size="lg" controlId="password">
-                        <Form.Label>Gjenta Passord</Form.Label>
+                        <Form.Label className={page.page==="registrer"&&"registerInput"}>Gjenta Passord</Form.Label>
                         <Form.Control
+                        className={page.page==="registrer"&&"registerInput"}
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

@@ -50,6 +50,9 @@ const Title = styled.h1`
     font-weight: 700;
     text-transform: capitalize;
     top: 50%;
+    :hover{
+        filter:invert(100%);
+    }
     left: 50%;
     color: ${props => props.Color};
     transform: translate(-50%, -50%);
