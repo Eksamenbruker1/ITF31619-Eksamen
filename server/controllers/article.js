@@ -66,5 +66,5 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
     );
   }
   article = await articleService.removeArticle(req.params.id);
-  res.status(204).json({});
+  res.status(204).json({success: 'Artikkelen har blitt slettet'});
 });

@@ -4,6 +4,8 @@ import { ApiFilters } from "../utils/apiFilters.js";
 export const getArticleBySlug = async (slug) =>
   Article.findOne({ slug: `${slug}` }).exec();
 
+  export const getArticleById = async (id) => Article.findById(id);
+
 // export const listArticles = async () => Article.find().populate('user','email','category','CategoryName');
 export const listArticles = async (queryStr) => {
   const { page, limit } = queryStr;
