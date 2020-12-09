@@ -44,6 +44,7 @@ const ArticleSchema = new Schema(
     },
     categoryname: {
       type: String,
+      ref: "categoryname",
       required: false,
     },
   },

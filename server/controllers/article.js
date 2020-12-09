@@ -29,18 +29,6 @@ export const list = catchAsyncErrors(async (req, res, next) => {
     const result = await articleService.listArticles(req.query);
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await userService.getUserById(decoded.id);
-    console.log(user.role);
-    console.log(result);
-    // console.log(result.data[0].category.id);
-    console.log(result.data[0]);
-
-    for(let i = 0; i < result.data.length; i++) {
-        const category = await categoryService.getCategoryById(result.data[i].category.id);
-        const categoryName = category.CategoryName;
-        console.log(result.data[i].categoryname);
-        result.data[i].categoryname = categoryName;
-        console.log(`Adding the category ${categoryName} `);
-    }
     
     res.status(200).json(result);
   }

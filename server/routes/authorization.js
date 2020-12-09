@@ -3,6 +3,7 @@ import { authorizationController } from "../controllers/index.js";
 import { isAuthenticated } from "../middleware/authorization.js";
 import { validateFields } from '../middleware/validation.js';
 import { loginSchema } from '../schemas/user.js';
+// import { registerSchema } from '../schemas/register.js';
 
 const router = express.Router();
 

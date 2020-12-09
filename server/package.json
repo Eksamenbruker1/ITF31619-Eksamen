@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "husky": "^4.3.4",
     "joi": "^17.3.0",
+    "joi-password-complexity": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.10",
     "morgan": "^1.10.0",

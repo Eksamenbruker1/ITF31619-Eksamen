@@ -29,6 +29,9 @@ const articleSchema = {
     category: Joi.string().required().messages({
         'any.required': 'En artikkel må ha en kategori'
     }),
+    categoryname: Joi.string().messages({
+        'any.required': 'Vær så snill å legg til kategori navn manuelt fordi jeg fikk ikke til å filtrere på en fremmednøkkel'
+    }),
 };
 
 export const createArticleSchema = Joi.object().keys({

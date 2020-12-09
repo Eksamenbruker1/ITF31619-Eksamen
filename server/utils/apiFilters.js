@@ -6,10 +6,10 @@ export class ApiFilters {
 
   filter() {
     const query = { ...this.queryStr };
+    console.log(query);
     const removeFields = ["sort", "query", "fields", "page", "limit"];
     removeFields.forEach((el) => delete query[el]);
-
-    this.query.find(query);
+    
     return this;
   }
 

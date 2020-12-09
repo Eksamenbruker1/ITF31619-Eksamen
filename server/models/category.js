@@ -29,6 +29,13 @@ CategorySchema.virtual("articles", {
   justOne: false,
 });
 
+CategorySchema.virtual("articles", {
+  ref: "Article",
+  localField: "CategoryName",
+  foreignField: "categoryname",
+  justOne: false,
+});
+
 CategorySchema.pre("save", function (next) {
   this.slug = slugify(this.CategoryName, { lower: true });
   next();
