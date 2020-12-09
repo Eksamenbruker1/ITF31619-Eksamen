@@ -8,7 +8,7 @@ import styled from "styled-components"
 import AboutUs from "../Components/AboutUs"
 import banner from "../img/login.gif"
 import { NavLink } from 'react-router-dom';
-import { useAuthContext } from '../Components/context/AuthProvider'; 
+import Form from "react-bootstrap/Form";
 
 
 
@@ -85,13 +85,13 @@ const Invert = styled.div`
 
 const Login = ({match},key) => {
     //Nutty webhack 3:)
+
     const path = window.location.pathname.split("/")
     const href = window.location.href.split("/")
     const [page,setPage] = useState(path[1])
 
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
-
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
@@ -102,6 +102,7 @@ const Login = ({match},key) => {
             this.props.login(username, password);
         }
     }
+    
 
     return(
         <Invert>
