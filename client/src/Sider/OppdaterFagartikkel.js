@@ -48,6 +48,7 @@ const Div = styled.div`
 
 const OppdaterFagartikkel = ({match}) => {
 
+    const [antallAvsnitt, setAntallAvsnitt] = useState(["item"])
     const [modal,setModal] = useState(false)
     const [visibility, setVisibility] = useState(false);
 
@@ -62,51 +63,45 @@ const OppdaterFagartikkel = ({match}) => {
     const [activeAvsnitt,setActiveAvsnitt] = useState([true,true,true,true,true])
 
     const [tittel,setTittel] = useState()
+    const [id,setId] = useState()
     const [avsnittContent,setAvsnitt] = useState()
     const [forfatter,setForfatter] = useState()
     const [kategori,setKategori] = useState()
     const [valgtKategori,setValgtKategori] = useState()
-    const [valgtForfatter,setValgtForfatter] = useState()
+    const [alleArtikler,setAlleArtikler] = useState()
+    
 
     const artikkelNavn = match.params.artikkel&&match.params.artikkel
     useEffect(() => {
         async function fetchData() {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/articles/`+match.params.artikkel)
+            res.data && !forfatter &&setForfatter(res.data.author)
+            res.data.id && setId(res.data.id)
             res.data && !artikkel &&setArtikkel(res.data)
             res.data && !avsnittContent &&setAvsnitt(res.data.content.split(":"))
-            res.data && !forfatter &&setForfatter(res.data.author)
             res.data && !tittel &&setTittel(res.data.title)
-            //res.data && !kategori &&setKategori(res.data.category)
-
-            
+            //res.data && !kategori &&setKategori(res.data.category)    
             const res2 = await axios.get(`http://localhost:5000/api/v1/categories/`);
-            const objectForLoop = res2.data&& !kategori&&(res2.data)
-            let categoryList = []
-            console.log(res2.data)
-            console.log(res2.data)
-            if(res.data && !kategori){
-            for(let i = 0;i< objectForLoop.length;i++){
-                    categoryList.push(objectForLoop[i].CategoryName)
-                }
-                setKategori(categoryList)
-            }
-            
-            
+            res2.data&& !kategori&& setKategori(res2.data)
+            const res3 = await axios.get(`http://localhost:5000/api/v1/articles/`)
+            res3.data && !alleArtikler &&setAlleArtikler(res.data.data)
           } catch (error) {
           } finally {
+            avsnittContent && avsnittContent.length!==antallAvsnitt.length && setAntallAvsnitt([antallAvsnitt,"item"])
             setIsLoading(false);
           }
         }
         fetchData();
     }, []); 
-
-
-
+    
+    
+    
     let staticAvsnitt = ""
     let staticForfatter = ""
     let staticKategori = ""
     let staticTittel = ""
+    let staticAlleArtikler = ""
 
     if(avsnittContent && staticAvsnitt      ==="")
         staticAvsnitt   = avsnittContent
@@ -116,6 +111,8 @@ const OppdaterFagartikkel = ({match}) => {
         staticKategori  =  kategori
     if(tittel && staticTittel   ==="") 
         staticTittel  =  tittel
+    if(alleArtikler && staticAlleArtikler   ==="") 
+        staticAlleArtikler  =  alleArtikler
 
     const ActivateAvsnitt = (index)=>{
         if(avsnittContent[index] === ""){
@@ -137,6 +134,12 @@ const OppdaterFagartikkel = ({match}) => {
         let insert =changedTitle
         setTittel(insert)
     }
+
+    const leggTilAvsnitt = (item) =>{ 
+        if(antallAvsnitt >= 5)return
+        setAvsnitt(...avsnittContent,item)
+        setAntallAvsnitt([...antallAvsnitt,"item"])
+    }
     
 
     const changeAvsnitt = (changedAvsnitt,index) =>{
@@ -150,39 +153,34 @@ const OppdaterFagartikkel = ({match}) => {
 
     const FormFunct = async () =>{
         let data = {
-            "_id":{"$oid":"5fce51385437c60e1c218ace"},
-            "secret":true,
             "title":"Vi tilbyr beste hemmelige badet for beste pris 1",
             "ingress":"Et beskrivende ingress for artikkelen er det her ja. Meget kult.",
             "content":"En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut",
             "author":"Lars Larsen",
-            "category":{"$oid":"5fce50e45437c60e1c218acd"},
-            "user":{"$oid":"5fce504c5437c60e1c218ac5"},
-            "createdAt":{"$date":{"$numberLong":"1607356728528"}},
-            "updatedAt":{"$date":{"$numberLong":"1607356728528"}},
-            "slug":"vi-tilbyr-beste-hemmelige-badet-for-beste-pris-1","__v":{"$numberInt":"0"}
+            "slug": "vi-tilbyr-beste-badet-for-beste-pris-1",
+            "category":"id"
         }
 
         let articleContenColonSeparated =""
 
-        for(let i = 0; i < activeAvsnitt.length;i++){
-            if(activeAvsnitt[i]){
+        for(let i = 0; i < avsnittContent.length;i++){
             articleContenColonSeparated+=":"+avsnittContent[i]
-            }
         }
-        console.log(data._id.$oid)
+        console.log(articleContenColonSeparated)
+
         data.title = tittel&&tittel
         data.content = articleContenColonSeparated!==""&&articleContenColonSeparated.substring(1);
         data.category = valgtKategori;
+        data.id = id;
+        let slug = ""
+        data.title.split(" ").map((word)=>slug+=word+"-")
+        data.slug = slug.slice(0, -1).toLowerCase();
+     
 
-
-
-        const res =  await axios.put('http://localhost:5000/api/v1/articles/'+data._id.$oid,data).then(res => {
-            console.log(res);
-            console.log(res.data);
+        const res =  await axios.put('http://localhost:5000/api/v1/articles/'+id,data).then(res => {
+            console.log(res.data)
         })
         
-
 
     }
 
@@ -191,7 +189,7 @@ const OppdaterFagartikkel = ({match}) => {
             <Header back={true} adressen={"oppdater-fagartikkel"} ActiveItem="fagartikler"></Header>
             <ImageCard imgSource={banner}TextColor="#1e1e1e" Content="Oppdater Artikkel" Width="Full"></ImageCard>
             <Line />
-            <CMS søk={artikkelNavn}/>
+            <CMS alleArtikler={alleArtikler} søk={artikkelNavn}/>
             <Line />
             <Wrapper>
             {modal&& (<ModalNewKat setModal={setModal}></ModalNewKat>)}
@@ -208,14 +206,20 @@ const OppdaterFagartikkel = ({match}) => {
                                         <Form.Group controlId="formGridAddress1">
                                             <Div id={index} onClick={()=>ActivateAvsnitt(index)} ><Form.Label >{"Avsnitt "+(index+1)}</Form.Label><Alert alert={true} /></Div>
 
-                                            <InputForm active={activeAvsnitt[index]} id={index} changeAvsnitt={changeAvsnitt} content={staticAvsnitt[index]}></InputForm>
+                                            <InputForm leggTilAvsnitt={leggTilAvsnitt} active={activeAvsnitt[index]} id={index} changeAvsnitt={changeAvsnitt} content={staticAvsnitt[index]}></InputForm>
                                             
                                         </Form.Group>
+
                                     ))}
+
+                   
+
+
                         <NyKategori setValgtKategori={setValgtKategori}  categoryList={kategori&&kategori}  setModal={setModal} modal={modal}>
-
-
+                        
                         </NyKategori>
+
+                        
 
                         <Form.Row>
                             <Form.Group controlId="formGridState">
@@ -229,7 +233,7 @@ const OppdaterFagartikkel = ({match}) => {
 
                         
                         <Button onClick={()=>FormFunct()} className="invert" variant="primary">
-                            Create
+                            Oppdater
                         </Button>
                     </Form>
             </Wrapper>

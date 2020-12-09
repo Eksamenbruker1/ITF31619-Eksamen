@@ -23,6 +23,7 @@ const Routes = ({location}) => {
         '/Create-poll'
 
     ]
+    
 return(
         <div className="App">
             <Store>

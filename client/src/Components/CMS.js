@@ -86,18 +86,35 @@ const Input = styled.input`
 `;
 
 
+const Container= styled.div`
+    overflow:hidden;
+    width: 175px;
+`;
 
 
-const CMS = ({søk}) => {
-    
+const CMS = ({søk},alleArtikler) => {
+    console.log(alleArtikler)
+    let alleartikler = []
+    alleArtikler = alleArtikler&&alleArtikler
+    const [state, setState] = useState(false)
+
     return(
         <>
-            <Wrapper>
+            <Wrapper   >
                 <Link to="/login/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
                     {søk&&(<Button><Input value={søk}></Input></Button>)}
                     {!søk&&(<Søk></Søk>)}
-                    <Filter kategorier={["porno","johnny"]}></Filter>
+                    {alleartikler!==[]&&(
+                    <Container onClick={()=>setState(true)}>
+                        {state&&alleArtikler.map(
+                            (category)=>(<option value={category.slug}>{category.title}</option>)
+                        )}
+                    </Container>
+                    )}
+                    
+                    <Filter onClick={()=>setState(true)} kategorier={["porno","johnny"]}></Filter>
+                    
                 </Splitter>
             </Wrapper>
         </>

@@ -18,7 +18,7 @@ const NyKategori = ({setModal,modal,categoryList,setValgtKategori}) => {
     let kategorier = []
     kategorier = categoryList&&categoryList
     const [state, setState] = useState(false)
-
+    console.log(categoryList&&categoryList[1].CategoryName)
 
     return(
         <Wrapper onClick={()=>setState(true)}>
@@ -27,7 +27,7 @@ const NyKategori = ({setModal,modal,categoryList,setValgtKategori}) => {
                 <Form.Label>Kategori</Form.Label>
                 <Form.Control onChange={(e) => { setValgtKategori(e.target.value)}} as="select" defaultValue="Choose...">
                 {state && kategorier!==[]&&kategorier.map(
-                    (category)=>(<option value={category}>{category}</option>)
+                    (category)=>(<option value={category.id}>{category.CategoryName}</option>)
                 )}
                 </Form.Control>
                 </Form.Group>

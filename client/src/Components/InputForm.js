@@ -9,12 +9,11 @@ const Input = styled.textarea`
     width:100%;
     border: 1px grey solid;
     padding: 7px;
-    background-color:${props => !props.active?"red":"white"};
 `
 
-const InputForm = ({content,changeAvsnitt,changeTittel,changeForfatter,changeKategori,id,active}) => {
+const InputForm = ({content,changeAvsnitt,changeTittel,changeForfatter,changeKategori,id,active},leggTilAvsnitt) => {
     const value = content;
-    console.log(active)
+    
 
     const run=(value,id)=>{
         changeAvsnitt&&changeAvsnitt(value,id)
@@ -23,9 +22,10 @@ const InputForm = ({content,changeAvsnitt,changeTittel,changeForfatter,changeKat
         changeKategori&&changeKategori(value)
     }
     
+    
 
     return(
-        <Input active={active} onChange={(e) => { run(e.target.value,id)}} defaultValue={value}>
+        <Input onChange={(e) => {leggTilAvsnitt("item")}}  active={active} onChange={(e) => { run(e.target.value,id)}} defaultValue={value}>
             
         </Input>
         )

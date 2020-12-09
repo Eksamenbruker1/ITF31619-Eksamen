@@ -8,6 +8,7 @@ import styled from "styled-components"
 import AboutUs from "../Components/AboutUs"
 import banner from "../img/login.gif"
 import { NavLink } from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider'; 
 
 
 
@@ -53,7 +54,6 @@ const A = styled.a`
     @media only screen and (max-width: 800px){
         display:none;
     }
-    
 `;
 
 const Reg = styled.div`
@@ -91,7 +91,17 @@ const Login = ({match},key) => {
 
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
-    
+
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+
+        this.setState({ submitted: true });
+        const { username, password } = this.state;
+        if (username && password) {
+            this.props.login(username, password);
+        }
+    }
 
     return(
         <Invert>

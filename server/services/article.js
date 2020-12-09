@@ -15,7 +15,7 @@ export const listArticles = async (queryStr) => {
     .limitFields()
     .searchByQuery();
 
-  const articles = await filters.query;
+  const articles = await filters.query;3
   const paginated = await filters
     .pagination()
     .query.populate("category", "CategoryName")

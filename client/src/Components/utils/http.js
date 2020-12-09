@@ -1,7 +1,8 @@
-import axios from 'axios';
+import Axios from 'axios';
 
-const http = axios.create({
+const http = Axios.create({
   baseURL: `${process.env.BASE_URL}${process.env.API_VERSION}`,
+  withCredentials: true,
 });
 
 export default http;
