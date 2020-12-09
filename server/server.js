@@ -55,6 +55,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     allowedHeaders: ["Content-Type", 'Authorization', 'x-csrf-token'],
+    credentials: true,
   })
 );
 
