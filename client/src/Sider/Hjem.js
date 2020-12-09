@@ -9,6 +9,8 @@ import AboutUs from "../Components/AboutUs"
 import PageParagraph from "../Components/PageParagraph"
 import Title from "../Components/Title"
 import styled from "styled-components"
+import AuthProvider from "../Components/context/AuthProvider"
+import { useAuthContext } from '../Components/context/AuthProvider';
 
 
 
@@ -24,6 +26,8 @@ const Line = styled.div`
 
 
 const Hjem = () => {
+    const { isLoggedIn, isAdmin } = useAuthContext();
+    console.log(isLoggedIn+"UNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKER")
 
     return(
         <div>
