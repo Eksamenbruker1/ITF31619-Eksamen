@@ -27,12 +27,18 @@ export const list = catchAsyncErrors(async (req, res, next) => {
     const result = await articleService.listArticles(req.query);
     res.status(200).json(result);
   } else {
-    console.log('User is logged in, returning all available articles if applicable');
-    const result = await articleService.listArticles(req.query);
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const user = await userService.getUserById(decoded.id);
+    if (decoded.id) {
+      console.log('HAS TOKEN USER ID IS KEWL User is logged in, returning all available articles if applicable');
+      const result = await articleService.listArticles(req.query);
+      res.status(200).json(result);
+    } else {
+      req.query.secret = false;
+      console.log('TOKEN MEN IKKE USER ID User is not logged in, only returning articles that are not secret');
+      const result = await articleService.listArticles(req.query);
 
-    res.status(200).json(result);
+      res.status(200).json(result);
+    }
   }
 });
 
