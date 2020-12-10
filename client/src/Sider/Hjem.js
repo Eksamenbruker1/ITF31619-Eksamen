@@ -26,13 +26,14 @@ const Line = styled.div`
 
 
 const Hjem = () => {
-    const { isLoggedIn, isAdmin } = useAuthContext();
-    console.log(isLoggedIn+"UNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKERUNKER")
+    const { user, isLoggedIn, isAdmin } = useAuthContext();
+    console.log("------------------------")
+    console.log(isLoggedIn)
 
     return(
         <div>
             <Header back={false} ActiveItem="hjem"></Header>
-            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Velkommen til LG Rørleggerservice AS" Width="Full"></ImageCard>
+            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content={isLoggedIn} Width="Full"></ImageCard>
             <GridContainer />
             <Line/>
             <ImageCard imgSource={banner2} TextColor="black" Width="900px"></ImageCard>
