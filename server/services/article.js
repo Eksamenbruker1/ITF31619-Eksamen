@@ -13,8 +13,17 @@ export const listArticles = async (queryStr) => {
 
     //Article.find({categoryname: queryStr.categoryname});
     let findArticle = "";
+    
     if(queryStr.categoryname) {
-        findArticle = Article.find({categoryname: queryStr.categoryname});
+        if(queryStr.secret != undefined) {
+            findArticle = Article.find({categoryname: queryStr.categoryname, secret: queryStr.secret});
+        }
+        else {
+            findArticle = Article.find({categoryname: queryStr.categoryname});
+        }
+    }
+    else if(queryStr.secret != undefined) {
+        findArticle = Article.find({secret: queryStr.secret});
     }
     else {
         findArticle = Article.find();

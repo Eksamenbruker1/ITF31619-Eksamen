@@ -6,7 +6,6 @@ export class ApiFilters {
 
   filter() {
     const query = { ...this.queryStr };
-    console.log(query);
     const removeFields = ["sort", "query", "fields", "page", "limit"];
     removeFields.forEach((el) => delete query[el]);
     
@@ -29,7 +28,6 @@ export class ApiFilters {
   searchByQuery() {
     if (this.queryStr.query) {
       const term = this.queryStr.query.split("-").join(" ");
-      console.log(term);
       this.query = this.query.find({ $text: { $search: `"${term}"` } });
     }
     return this;
