@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
           setUser(currentUser)
 
         } else {
-          setUser(null);
+          //setUser(null);
         }
         console.log(user)
         

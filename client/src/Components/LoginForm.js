@@ -58,12 +58,14 @@ const LoginForm = (page) => {
                 if (!data.success) {
                 setCloseBtnState(true);
                 } else {
-                const user = data?.user;
+                const userc = data?.user;
                 const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
-                setUser({ ...user, expire });
+                await setUser({ ...userc, expire });
                 setSuccess(true);
+                console.log(user)
+                console.log("9999999999999999999999999999999999999999999999999")
                 history.push('/');
-                console.log(data)
+                
         }
 
         };

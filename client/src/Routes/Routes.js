@@ -1,6 +1,6 @@
 import React from "react"
-import {Switch,Route,withRouter}  from 'react-router-dom';
-
+import {Switch,Route,withRouter,Redirect}  from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider';
 //Components
 import Hjem from "../Sider/Hjem";
 import Kontorer from "../Sider/Kontorer";
@@ -14,7 +14,42 @@ import Login from "../Sider/Login";
 import Registrer from "../Sider/Registrer";
 import Store from "../GlobalState"
 
+
+const AuthenticatedRoutes = ({ children, ...rest }) => {
+    const { isLoggedIn, isLoading } = useAuthContext();
+  
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          isLoggedIn && !isLoading ? (
+            <div>{children}</div>
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: location },
+              }}
+            />
+          )
+        }
+      />
+    );
+  };
+  
+  const AdminRoutes = ({ children, ...rest }) => {
+    const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  
+    return (
+      <Route
+        {...rest}
+        render={() => isLoggedIn && isAdmin && !isLoading && children}
+      />
+    );
+  };
+
 const Routes = ({location}) => {
+
     const login = "login"
     const register = "register"
 

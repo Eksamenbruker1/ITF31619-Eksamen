@@ -25,6 +25,8 @@ const Fagartikler = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    
+
     useEffect(() => {
         async function fetchData() {
           try {

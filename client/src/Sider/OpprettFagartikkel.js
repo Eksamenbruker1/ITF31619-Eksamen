@@ -14,7 +14,8 @@ import Alert from "../Components/Alert"
 import ModalNewKat from "../Components/ModalNewKat"
 import axios from "axios"
 import InputForm from "../Components/InputForm"
-
+import { useHistory } from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider'; 
 
 const Wrapper = styled.div`
     width: 65%;
@@ -49,6 +50,18 @@ const Div = styled.div`
 
 
 const OpprettFagartikkel = () => {
+
+    const history = useHistory();
+    
+    const {user, setUser, isLoggedIn,isAdmin } = useAuthContext();
+   
+        console.log(user)
+        console.log(user)
+        console.log("ffffffffffffffffffffffffffff")
+        console.log("ffffffffffffffffffffffffffff")
+        console.log("ffffffffffffffffffffffffffff")
+        console.log("ffffffffffffffffffffffffffff")
+  
     const [modal,setModal] = useState(false)
     const [antallAvsnitt, setAntallAvsnitt] = useState(["item"])
     const [visibility, setVisibility] = useState(false);
