@@ -6,7 +6,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-import csrf from 'csurf';
+// import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
@@ -49,12 +49,12 @@ app.use(cookieParser());
 
 app.use(express.static(`${__dirname}/public`));
 
-app.use(csrf({ cookie: true }));
+/* app.use(csrf({ cookie: true }));
 
 app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
   res.setHeader('X-CSRF-TOKEN', req.csrfToken());
   res.status(200).json({ data: req.csrfToken() });
-});
+}); */
 
 app.use(
   cors({
