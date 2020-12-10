@@ -49,18 +49,19 @@ const Div = styled.div`
 `
 
 
-const OpprettFagartikkel = () => {
+const OpprettFagartikkel = (bacdkAdress) => {
 
     const history = useHistory();
     
     const {user, setUser, isLoggedIn,isAdmin } = useAuthContext();
-   
-        console.log(user)
-        console.log(user)
-        console.log("ffffffffffffffffffffffffffff")
-        console.log("ffffffffffffffffffffffffffff")
-        console.log("ffffffffffffffffffffffffffff")
-        console.log("ffffffffffffffffffffffffffff")
+
+    console.log("Checking user object for Fagartikler")
+    console.log(user)
+    console.log(isLoggedIn)
+
+
+    
+        
   
     const [modal,setModal] = useState(false)
     const [antallAvsnitt, setAntallAvsnitt] = useState(["item"])
@@ -114,7 +115,7 @@ const OpprettFagartikkel = () => {
             const fAvsnitt = activeAvsnitt
             const value = false
             fAvsnitt[index]  = value
-            console.log(fAvsnitt)
+
             setActiveAvsnitt(fAvsnitt)
         }else{
             const fAvsnitt = activeAvsnitt
@@ -170,7 +171,7 @@ const OpprettFagartikkel = () => {
      
 
         const res =  await axios.post('http://localhost:5000/api/v1/articles/'+id,data).then(res => {
-            console.log(res.data)
+           
         })
         
 

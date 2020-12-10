@@ -126,7 +126,7 @@ const Login = ({match},key) => {
                 </>
             )}
                 
-                <LoginForm page={page}></LoginForm>
+                <LoginForm backAdress={adress}  page={page}></LoginForm>
             </Div>
             {
             page==="login"&&

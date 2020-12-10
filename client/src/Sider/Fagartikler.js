@@ -8,6 +8,8 @@ import banner from "../img/artikler.gif"
 import styled from "styled-components"
 import axios from "axios"
 import list from "../Components/utils/articleService"
+import { useAuthContext } from '../Components/context/AuthProvider'; 
+
 
 const Line = styled.div`
     margin: 50px auto;
@@ -21,11 +23,12 @@ const Line = styled.div`
 
 
 const Fagartikler = () => {
+    const {user, setUser, isLoggedIn } = useAuthContext();
     const [data, setData] = useState();
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    
+
 
     useEffect(() => {
         async function fetchData() {

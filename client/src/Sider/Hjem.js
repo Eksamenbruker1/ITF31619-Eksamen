@@ -11,6 +11,7 @@ import Title from "../Components/Title"
 import styled from "styled-components"
 import AuthProvider from "../Components/context/AuthProvider"
 import { useAuthContext } from '../Components/context/AuthProvider';
+import { isElementOfType } from "react-dom/test-utils"
 
 
 
@@ -26,10 +27,12 @@ const Line = styled.div`
 
 
 const Hjem = () => {
-    const { user, isLoggedIn, isAdmin } = useAuthContext();
-    console.log("------------------------")
-    console.log(isLoggedIn)
+    const { user, isLoggedIn, isAdmin } = useAuthContext()
 
+    console.log("Checking user object for Hjem")
+    console.log(user)
+    
+    
     return(
         <div>
             <Header back={false} ActiveItem="hjem"></Header>

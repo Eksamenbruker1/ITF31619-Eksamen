@@ -19,7 +19,8 @@ const Wrapper = styled.section`
     }
 `;
 
-const LoginForm = (page) => {
+const LoginForm = (page,backAdress) => {
+        
         const [closeBtnState, setCloseBtnState] = useState(false);
 
         const [email, setEmail] = useState("");
@@ -27,6 +28,10 @@ const LoginForm = (page) => {
         const {user, setUser, isLoggedIn } = useAuthContext();
         const [password, setPassword] = useState("");
         const [password2, setPassword2] = useState("");
+
+
+        console.log("Checking user object for LoginForm Outer")
+        console.log(user)
 
         const history = useHistory();
         const { state } = useLocation();
@@ -53,18 +58,20 @@ const LoginForm = (page) => {
             if(email.length <= 0 && password.length <= 0 ){
                 alert("Du har ikke fylt ut feltene")
                 return 
-            }
+            }   
+            if(!user){
             const { data } = await login(credentials);
                 if (!data.success) {
                 setCloseBtnState(true);
                 } else {
                 const userc = data?.user;
                 const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
-                await setUser({ ...userc, expire });
+                console.log("Data som blir hentet fra server")
+                console.log(data)
+                user===null&&setUser(userc)
                 setSuccess(true);
-                console.log(user)
-                console.log("9999999999999999999999999999999999999999999999999")
-                history.push('/');
+                //history.push('/');
+            }
                 
         }
 

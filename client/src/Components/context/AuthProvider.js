@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
       if (user === null) {
         setLoading(true);
         const data = await getUserInfo()
-
         if (data?.success) {
           console.log("setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)")
           console.log(currentUser)
@@ -33,11 +32,12 @@ const AuthProvider = ({ children }) => {
   }, [user]);
 
   return (
+    
     <Provider
       value={{
         isLoading: loading,
         isAdmin: user?.role === 'admin',
-        isLoggedIn: !!user,
+        isLoggedIn: user&&true,
         user,
         setUser,
       }}
