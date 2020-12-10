@@ -1,7 +1,7 @@
-import argon2 from "argon2";
-import mongoose from "mongoose";
-import validator from "validator";
-import jwt from "jsonwebtoken";
+import argon2 from 'argon2';
+import mongoose from 'mongoose';
+import validator from 'validator';
+import jwt from 'jsonwebtoken';
 
 const { Schema } = mongoose;
 
@@ -9,33 +9,33 @@ const UserSchema = new Schema(
   {
     email: {
       type: String,
-      required: [true, "Fyll ut ønsket epost"],
+      required: [true, 'Fyll ut ønsket epost'],
       unique: true, // unique index and value
-      validate: [validator.isEmail, "Eposten er ikke gyldig"],
+      validate: [validator.isEmail, 'Eposten er ikke gyldig'],
     },
     password: {
       type: String,
-      required: [true, "Fyll ut ønsket passord"],
-      minlength: [5, "Passordet må minmum bestå av 5 tegn"],
+      required: [true, 'Fyll ut ønsket passord'],
+      minlength: [3, 'Passordet må minmum bestå av 3 tegn'],
       select: false,
     },
     name: {
       type: String,
-      required: [true, "Fyll ut ditt navn"],
+      required: [true, 'Fyll ut ditt navn'],
       minLength: [
         2,
-        "Tviler på at du har et navn på en bokstav, skriv både fornavn og etternavn",
+        'Tviler på at du har et navn på en bokstav, skriv både fornavn og etternavn',
       ],
     },
     role: {
       type: String,
       enum: {
-        values: ["user", "admin"],
+        values: ['user', 'admin'],
       },
-      default: "user",
+      default: 'user',
     },
   },
-  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } },
 );
 
 /*
@@ -44,7 +44,7 @@ UserSchema.pre('save', async function (next) {
   next();
 }); */
 
-UserSchema.pre("save", async function () {
+UserSchema.pre('save', async function () {
   this.password = await argon2.hash(this.password);
 });
 
@@ -59,20 +59,20 @@ UserSchema.methods.comparePassword = async function (password) {
   return result;
 };
 
-UserSchema.virtual("articles", {
-  ref: "Article",
-  localField: "_id",
-  foreignField: "user",
+UserSchema.virtual('articles', {
+  ref: 'Article',
+  localField: '_id',
+  foreignField: 'user',
   justOne: false,
 });
 
-UserSchema.virtual("reference", {
-  ref: "Reference",
-  localField: "_id",
-  foreignField: "user",
+UserSchema.virtual('reference', {
+  ref: 'Reference',
+  localField: '_id',
+  foreignField: 'user',
   justOne: false,
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 export default User;

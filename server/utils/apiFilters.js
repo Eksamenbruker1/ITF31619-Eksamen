@@ -6,10 +6,9 @@ export class ApiFilters {
 
   filter() {
     const query = { ...this.queryStr };
-    console.log(query);
-    const removeFields = ["sort", "query", "fields", "page", "limit"];
+    const removeFields = ['sort', 'query', 'fields', 'page', 'limit'];
     removeFields.forEach((el) => delete query[el]);
-    
+
     return this;
   }
 
@@ -18,18 +17,17 @@ export class ApiFilters {
     // console.log("this.query", this.queryStr);
 
     if (this.queryStr.sort) {
-      const sortBy = this.queryStr.sort.split(",").join(" ");
+      const sortBy = this.queryStr.sort.split(',').join(' ');
       this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort("-updated");
+      this.query = this.query.sort('-updated');
     }
     return this;
   }
 
   searchByQuery() {
     if (this.queryStr.query) {
-      const term = this.queryStr.query.split("-").join(" ");
-      console.log(term);
+      const term = this.queryStr.query.split('-').join(' ');
       this.query = this.query.find({ $text: { $search: `"${term}"` } });
     }
     return this;
@@ -37,10 +35,10 @@ export class ApiFilters {
 
   limitFields() {
     if (this.queryStr.fields) {
-      const fields = this.queryStr.fields.split(",").join(" ");
+      const fields = this.queryStr.fields.split(',').join(' ');
       this.query = this.query.select(fields);
     } else {
-      this.query = this.query.select("-__v");
+      this.query = this.query.select('-__v');
     }
 
     return this;
