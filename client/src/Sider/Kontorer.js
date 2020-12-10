@@ -47,27 +47,41 @@ const Enlarge = styled.span`
     
 `;
 
+const Button = styled.button`
+
+`;
+
 const Kontorer = () => {
     const data = require('../data/dataKontor.json');
     const [state,setState] = useState(data)
     const [activeCity,setActiveCity] = useState()
+    const [viewType, setViewType] = useState(true)
 
     const hoverTrigger = (city)=>{
         setActiveCity(city)
     }
 
+    const handleList = ()=>{
+        console.log(viewType)
+        setViewType(!viewType)
+        
+    }
+    
+    
     
     return(
             <Wrapper>
                 <Header ActiveItem="kontorer"></Header>
                 <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Våre Kontorer" Width="Full"></ImageCard>
                 <Line />
-                
+                <Button onClick={()=>handleList()}>
+                    CLickme
+                </Button>
                 {state.map((city)=>(
                     <> 
                         <BigHeading>Velg et kontor <Enlarge>⤵</Enlarge></BigHeading>
                         <Title>{city.By+" ("+city.Kontor.length+" kontorer)"}</Title>
-                        <SimpleCardContainer setActiveCity={setActiveCity} data={city}></SimpleCardContainer>
+                        <SimpleCardContainer viewType={viewType} setActiveCity={setActiveCity} data={city}></SimpleCardContainer>
                         <Line />
                         
                     </>

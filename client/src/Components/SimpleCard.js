@@ -2,26 +2,10 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import { Router, Link, useHistory, useLocation} from 'react-router-dom';
 import Routes from "../Routes/Routes"
-
-
-
-const Wrapper = styled.nav`
-    display:flex;
-    flex-direction:column;
-    border:solid 2px #cecece;
-    background-color:#f0f0f0;
-    @media only screen and (max-width: 500px){
-        max-width: 100%;
-        align-items:center;
-    }
-    &:hover {
-        cursor: arrow;
-        border:solid 2px #1e1e1e;
-    }
-    padding: 20px 10px;
-`;
+import "./Styles/styles.css"
 
 const Title = styled.h3`
+    color:${props => !props.viewType?"#479eb9":"#212529"};
     opacity: 1;
     :hover{
        
@@ -29,13 +13,14 @@ const Title = styled.h3`
         color: black;
     }
     margin-bottom:25px;
-    font-size:135%;
-    @media only screen and (max-width: 500px){
+    font-size:150%;
+    @media only screen and (max-width: 800px){
         font-size:100%;
     }
+    
 `;
+
 const Tekst = styled.a`
-    font-size:75%;
     margin-bottom: 11px;
     
 `;
@@ -44,7 +29,6 @@ const Tekst = styled.a`
 const Appear = styled.a`
     color:#f0f0f0;
     font-weight:700;
-    font-size:75%;
     &:hover ~ ${Tekst} {
     color: red;
     font-weight: 900;
@@ -58,26 +42,42 @@ const Div = styled.a`
     
 `
 
+const Wrapper = styled.nav`
+    display:flex;
+    flex-direction:column;
+    border:solid 2px #cecece;
+    background-color:#f0f0f0;
+    @media only screen and (max-width: 500px){
+        max-width: 100%;
+
+    }
+    &:hover {
+        cursor: arrow;
+        border:solid 2px #1e1e1e;
+    }
+    padding: 20px 10px;
+    justify-content:center;
+
+    justify-content: space-between;
+`;
 
 
 
-const SimpleCard =  (office,{location}) => {
+
+const SimpleCard =  (office,viewType) => {
     let history = useHistory();
     //Haha, se så performance-vennlig dette er
     const navn = office.data.navn.replace(/\s+/, "").replace(/\s+/, "").replace(/\s+/, "").replace(/\s+/, "")
-
-    const funct = ()=>{
-        //history.push(`/kontor`, {state:{navn:office.data.navn} })
-    }
-
-
+    console.log(viewType)
     return(
-        <Wrapper> 
-            <Link to={'/kontor/'+navn}><Title onClick={()=>funct()}>{office.data.navn}</Title></Link>
-            <Tekst >{office.data.gate+" "+4}</Tekst>
-            <Div><Appear>Call: </Appear><Tekst href={"tel:"+office.data.nummer}>{office.data.nummer}</Tekst></Div>
-            <Div><Appear>Mail: </Appear><Tekst href={"mailto:"+office.data.epost} >{office.data.epost}</Tekst></Div>
-        </Wrapper>
+        <Link  to={'/kontor/'+navn}>
+            <Wrapper className={!viewType.data?"cardlist":"cardC"} > 
+                <Link  to={'/kontor/'+navn}><Title className={viewType&true} >{office.data.navn}</Title ></Link>
+                <Tekst   >{office.data.gate+" "+4}</Tekst>
+                <Div   ><Appear>Call: </Appear><Tekst href={"tel:"+office.data.nummer}>{office.data.nummer}</Tekst></Div>
+                <Div   ><Appear>Mail: </Appear><Tekst href={"mailto:"+office.data.epost} >{office.data.epost}</Tekst></Div>
+            </Wrapper>
+        </Link>
         )
 
 }

@@ -79,3 +79,54 @@
 #katbtn{
     filter:invert(100%);
 }
+
+
+
+.cardlist{
+    flex-direction: row!important;
+    top:0!important;
+
+}
+.cardlist a{
+    margin:0;
+    font-size:100%;
+    margin-right:20px;
+    height:100%;
+    display: block;
+}
+
+@media only screen and (max-width: 800px){
+    .cardlist > *{
+        margin:0;
+        font-size:90%;
+        margin-right:20px;
+        height:100%;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .cardlist > *{
+        margin:0;
+        font-size:80%;
+        margin-right:20px;
+        height:100%;
+        display: block;
+    }
+}
+
+.cardlist a h3{
+    font-size: 96%;
+}
+
+nav .cardlist {
+    padding:0px;
+    height:30px!important;
+    
+}
+
+
+.cardC{
+    flex-direction: column!important;
+    height: 400px;
+}
