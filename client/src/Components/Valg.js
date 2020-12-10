@@ -117,7 +117,7 @@ const Valg = ({søk}) => {
     return(
         <>
             <Wrapper>
-                <Link to="/login/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
+                <Link to="/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
                     {søk&&(<Button><Input value={søk}></Input></Button>)}
                     {!søk&&(<Søk></Søk>)}

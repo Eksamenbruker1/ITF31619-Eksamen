@@ -14,17 +14,13 @@ const AuthProvider = ({ children }) => {
       if (user === null) {
         setLoading(true);
         const data = await getUserInfo()
-        if (data?.success) {
-          console.log("setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)")
-          console.log(currentUser)
-          const currentUser = data.user;
-          setUser(currentUser)
-
+        if (data.data?.success) {
+          console.log("Resultat på get user info i Auth Provider")
+          console.log(data.data.data)
+          setUser(data.data.data)
         } else {
-          //setUser(null);
+          setUser(null);
         }
-        console.log(user)
-        
         setLoading(false);
       }
     };

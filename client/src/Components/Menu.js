@@ -2,6 +2,8 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import { NavLink } from 'react-router-dom';
 import "./Styles/styles.css"
+import { useAuthContext } from '../Components/context/AuthProvider';
+
 
 const MenuItemContainter = styled.ul`   
     @media only screen and (max-width: 500px){
@@ -65,6 +67,8 @@ const Wrapper = styled.nav`
 `;
 
 const Menu = ({ActiveItem,setActive,name,forceShow,spreadDown,location,patch}) => {
+
+
     const [isShown, setIsShown] = useState([false,false,false,false]);
     const [Patch, setPatch] = useState(patch)
     const href = window.location.href.split("/")

@@ -2,6 +2,9 @@ import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {BrowserRouter as Link}  from 'react-router-dom';
 
+
+
+
 const StyledButton = styled.div`
     min-width:109px;
     background-color: #1e88da;
@@ -18,11 +21,17 @@ const Innhold = styled.p`
     color: ${props => props.utheving};
     font-weight:600;
 `;
-const LoginButton = ({back}) =>{
+const LoginButton = ({back},isLoggedIn) =>{
+    
     
     return(
         <StyledButton utheving={back?"black":"white"}> 
-            <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>
+            {isLoggedIn&&
+                <Innhold   utheving={back?"black":"white"}>Log ut ✖</Innhold>
+            }
+            {!isLoggedIn&&
+                <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>
+            }
         </StyledButton>
         )
 

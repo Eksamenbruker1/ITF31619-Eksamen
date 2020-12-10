@@ -19,6 +19,10 @@ const Wrapper = styled.section`
     }
 `;
 
+const Display = styled.section`
+    
+`;
+
 const LoginForm = (page,backAdress) => {
         
         const [closeBtnState, setCloseBtnState] = useState(false);
@@ -53,28 +57,30 @@ const LoginForm = (page,backAdress) => {
         }, [isLoggedIn, state]);
 
         const onSubmit = async (credentials) => {
-         
-
+            if(!user){
+                const { data } = await login(credentials);
+                    if (!data.success) {
+                    
+                    setCloseBtnState(true);
+                    } else {
+                    const userc = data?.user;
+                    const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
+                    console.log("Data som blir hentet fra server")
+    
+                    console.log(data)
+                    user===null&&setUser(userc)
+                    setSuccess(true);
+                    
+                    }
+                    
+                }
+            if(user)setUser(null)
             if(email.length <= 0 && password.length <= 0 ){
-                alert("Du har ikke fylt ut feltene")
+                !user&&alert("Du har ikke fylt ut feltene")
                 return 
             }   
-            if(!user){
-            const { data } = await login(credentials);
-                if (!data.success) {
-                setCloseBtnState(true);
-                } else {
-                const userc = data?.user;
-                const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
-                console.log("Data som blir hentet fra server")
-                console.log(data)
-                user===null&&setUser(userc)
-                setSuccess(true);
-                //history.push('/');
-            }
-                
-        }
-
+            console.log("linken som man skal bli redirectet til")
+            console.log(backAdress)
         };
         
         
@@ -86,6 +92,8 @@ const LoginForm = (page,backAdress) => {
         </styles>
         <Wrapper >
             <Form onSubmit={formSubmit}>
+            {!user&&(
+            <Display>
             <Form.Group size="mid" controlId="email">
                 <Form.Label className={page.page==="registrer"&&"registerInput"}>Email</Form.Label>
                 <Form.Control
@@ -116,12 +124,14 @@ const LoginForm = (page,backAdress) => {
                         />
                     </Form.Group>
             )}
+            </Display>
+            )}
             <Button  
                 className="invert" block size="lg" type="submit" disabled={email.length > 0 && password.length > 0 &&onSubmit}
                 isLoading={formState.isSubmitting}
                 type="submit"
             >
-                Login
+                {user?"Log ut":"Login"}
                 
             </Button>
             </Form>

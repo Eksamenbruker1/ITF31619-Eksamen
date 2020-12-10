@@ -58,6 +58,7 @@ const OpprettFagartikkel = (bacdkAdress) => {
     console.log("Checking user object for Fagartikler")
     console.log(user)
     console.log(isLoggedIn)
+    !isLoggedIn&&history.push('/login/opprett-fagartikkel');
 
 
     
