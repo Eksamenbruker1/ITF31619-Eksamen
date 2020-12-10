@@ -1,5 +1,6 @@
 import http from './http';
 
+
 export const getCsrfToken = async () => {
   try {
     const { data } = await http.get('/csrf-token');

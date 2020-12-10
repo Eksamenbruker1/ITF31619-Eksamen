@@ -23,16 +23,13 @@ const LoginForm = (page) => {
         const [closeBtnState, setCloseBtnState] = useState(false);
 
         const [email, setEmail] = useState("");
-        const { setUser, isLoggedIn } = useAuthContext();
+        const [success, setSuccess] = useState(false);
+        const {user, setUser, isLoggedIn } = useAuthContext();
         const [password, setPassword] = useState("");
         const [password2, setPassword2] = useState("");
 
         const history = useHistory();
         const { state } = useLocation();
-
-
-        console.log(page.page)
-        console.log("lllllllllllllllllllllllllll")
 
         const formSubmit = ()=>{
             onSubmit({"email":email,"password":password})
@@ -51,24 +48,24 @@ const LoginForm = (page) => {
         }, [isLoggedIn, state]);
 
         const onSubmit = async (credentials) => {
-            console.log(credentials)
-            console.log(credentials)
-            console.log(credentials)
-            console.log(credentials)
+         
 
             if(email.length <= 0 && password.length <= 0 ){
                 alert("Du har ikke fylt ut feltene")
                 return 
             }
             const { data } = await login(credentials);
-            if (!data.success) {
-            setCloseBtnState(true);
-            } else {
-            const user = data?.user;
-            const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
-            setUser({ ...user, expire });
-            history.push('/');
-            }
+                if (!data.success) {
+                setCloseBtnState(true);
+                } else {
+                const user = data?.user;
+                const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
+                setUser({ ...user, expire });
+                setSuccess(true);
+                history.push('/');
+                console.log(data)
+        }
+
         };
         
         

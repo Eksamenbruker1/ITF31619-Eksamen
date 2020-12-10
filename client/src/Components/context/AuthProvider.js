@@ -12,25 +12,20 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserdata = async () => {
       if (user === null) {
-        console.log("data")
         setLoading(true);
-          const data = {
-            "success": true,
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZDAwYjE5NGMzNmNkODZlMGU2M2RmOCIsImlhdCI6MTYwNzU1MTYyMiwiZXhwIjoxNjA3ODEwODIyfQ.qss2xgI12CO1P8WgmiP8YDloPlppbBvI7KE0gZrWYO0",
-            "user": {
-                "id": "5fd00b194c36cd86e0e63df8",
-                "email": "testregisteradmin@test.no",
-                "role": "admin"
-            }
-        }
+        const data = await getUserInfo()
+
         if (data?.success) {
-      
-          const currentUser = data.user;
           console.log("setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)setUser(currentUser)")
-          console.log(setUser(currentUser))
+          console.log(currentUser)
+          const currentUser = data.user;
+          setUser(currentUser)
+
         } else {
           setUser(null);
         }
+        console.log(user)
+        
         setLoading(false);
       }
     };
