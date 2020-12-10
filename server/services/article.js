@@ -56,10 +56,12 @@ export const createArticle = async (data) => {
 };
 
 export const updateArticle = async (id, data) => {
-  const category = await categoryService.getCategoryById(data.category);
-  console.log(category.CategoryName);
+  if (data.category) {
+    const category = await categoryService.getCategoryById(data.category);
+    console.log(`${category.CategoryName}`);
 
-  data.categoryname = category.CategoryName;
+    data.categoryname = category.CategoryName;
+  }
 
   const article = await Article.findByIdAndUpdate(id, data, {
     new: true,

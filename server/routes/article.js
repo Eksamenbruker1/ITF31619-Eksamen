@@ -9,11 +9,11 @@ const router = express.Router();
 router.get('/:slug', articleController.get);
 router.get('/', articleController.list);
 
-router.post('/', validateFields(createArticleSchema), articleController.create);
-// router.post("/", validateFields(createArticleSchema), [isAuthenticated, isAuthorized()], articleController.create);
+// router.post('/', validateFields(createArticleSchema), articleController.create);
+router.post('/', validateFields(createArticleSchema), [isAuthenticated, isAuthorized()], articleController.create);
 
-// router.put("/:id", [isAuthenticated, isAuthorized()], articleController.update);
-router.put('/:id', articleController.update);
+router.put('/:id', [isAuthenticated, isAuthorized()], articleController.update);
+// router.put('/:id', articleController.update);
 
 router.delete(
   '/:id',
