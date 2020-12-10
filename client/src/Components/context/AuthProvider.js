@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getUserInfo } from '../utils/authService';
 
 
+
 const AuthContext = createContext();
 
 const { Provider } = AuthContext;
@@ -12,19 +13,22 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log("Dette er data for fetch User data")
     const fetchUserdata = async () => {
+      
+          
       if (user === null) {
         setLoading(true);
         const data = await getUserInfo()
+        console.log(data.data.data)
         if (data.data?.success) {
-          console.log("Resultat på get user info i Auth Provider")
-          console.log(data.data.data)
-          setUser(data.data.data)
+          
+          setUser({...data.data.data,"online":true})
         } else {
           //setUser(null);
         }
         setLoading(false);
-      }
+        }
     };
     fetchUserdata();
   }, [user]);

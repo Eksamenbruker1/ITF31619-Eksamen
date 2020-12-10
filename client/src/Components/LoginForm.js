@@ -58,6 +58,7 @@ const LoginForm = (page,backAdress) => {
 
         const onSubmit = async (credentials) => {
             console.log(credentials)
+            console.log(user)
             if(user === null){
                 const { data } = await login(credentials);
                     console.log("Data som blir hentet fra server")

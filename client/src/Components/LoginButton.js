@@ -1,6 +1,7 @@
 import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {BrowserRouter as Link}  from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider'; 
 
 
 
@@ -21,11 +22,18 @@ const Innhold = styled.p`
     color: ${props => props.utheving};
     font-weight:600;
 `;
-const LoginButton = ({back},isLoggedIn) =>{
+const LoginButton = ({back}) =>{
+    const {user, setUser, isLoggedIn } = useAuthContext();
+
     
+
+    const handleLogout = () =>{
+        console.log("Resultat på get user info i Auth Provider 3 ------------------------------")
+
+    }
     
     return(
-        <StyledButton utheving={back?"black":"white"}> 
+        <StyledButton  onClick={()=>handleLogout} utheving={back?"black":"white"}> 
             {isLoggedIn&&
                 <Innhold   utheving={back?"black":"white"}>Log ut ✖</Innhold>
             }

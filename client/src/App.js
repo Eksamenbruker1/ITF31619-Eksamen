@@ -22,6 +22,8 @@ function App() {
   return (
 
     <AuthProvider>
+      <meta http-equiv="Pragma" content="no-cache" />
+	    <meta http-equiv="Expires" content="0" />
       <Router>
         <Routes />
       </Router>
