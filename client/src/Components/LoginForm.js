@@ -57,8 +57,11 @@ const LoginForm = (page,backAdress) => {
         }, [isLoggedIn, state]);
 
         const onSubmit = async (credentials) => {
-            if(!user){
+            console.log(credentials)
+            if(user === null){
                 const { data } = await login(credentials);
+                    console.log("Data som blir hentet fra server")
+                    console.log(data)
                     if (!data.success) {
                     
                     setCloseBtnState(true);

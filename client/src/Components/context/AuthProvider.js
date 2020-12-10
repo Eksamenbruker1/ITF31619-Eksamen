@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getUserInfo } from '../utils/authService';
 
+
 const AuthContext = createContext();
 
 const { Provider } = AuthContext;
 
 const AuthProvider = ({ children }) => {
+  
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +21,7 @@ const AuthProvider = ({ children }) => {
           console.log(data.data.data)
           setUser(data.data.data)
         } else {
-          setUser(null);
+          //setUser(null);
         }
         setLoading(false);
       }
