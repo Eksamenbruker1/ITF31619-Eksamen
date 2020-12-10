@@ -47,6 +47,11 @@ const ArticleSchema = new Schema(
       ref: 'categoryname',
       required: false,
     },
+    image: {
+      type: String,
+      ref: 'image',
+      required: false,
+    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } },
 );

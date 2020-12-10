@@ -36,6 +36,9 @@ const articleSchema = {
   categoryname: Joi.string().messages({
     'any.required': 'Vær så snill å legg til kategori navn manuelt fordi jeg fikk ikke til å filtrere på en fremmednøkkel',
   }),
+  image: Joi.string().messages({
+    'any.required': 'Legg ved filepath til et nytt opplastet bilde, hvis du er en admin som ser denne meldingen så har det skjedd en feil, kontakt utviklerne.',
+  }),
 };
 
 export const createArticleSchema = Joi.object().keys({

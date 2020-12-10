@@ -16,7 +16,7 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: [true, 'Fyll ut ønsket passord'],
-      minlength: [5, 'Passordet må minmum bestå av 5 tegn'],
+      minlength: [3, 'Passordet må minmum bestå av 3 tegn'],
       select: false,
     },
     name: {
