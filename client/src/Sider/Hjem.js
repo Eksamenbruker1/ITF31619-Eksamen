@@ -11,6 +11,7 @@ import Title from "../Components/Title"
 import styled from "styled-components"
 import AuthProvider from "../Components/context/AuthProvider"
 import { useAuthContext } from '../Components/context/AuthProvider';
+import { isElementOfType } from "react-dom/test-utils"
 
 
 
@@ -26,14 +27,16 @@ const Line = styled.div`
 
 
 const Hjem = () => {
-    const { user, isLoggedIn, isAdmin } = useAuthContext();
-    console.log("------------------------")
-    console.log(isLoggedIn)
+    const { user, isLoggedIn, isAdmin } = useAuthContext()
 
+    console.log("Checking user object for Hjem")
+    console.log(user)
+    
+    
     return(
         <div>
             <Header back={false} ActiveItem="hjem"></Header>
-            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content={isLoggedIn} Width="Full"></ImageCard>
+            <ImageCard imgSource={banner} TextColor="#1e1e1e" Content="Velkommen til rørlegger LG" Width="Full"></ImageCard>
             <GridContainer />
             <Line/>
             <ImageCard imgSource={banner2} TextColor="black" Width="900px"></ImageCard>

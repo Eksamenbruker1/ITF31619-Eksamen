@@ -1,8 +1,13 @@
 import React, { useEffect ,useState} from "react"
 import styled from "styled-components"
 import {BrowserRouter as Link}  from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider'; 
+
+
+
 
 const StyledButton = styled.div`
+    cursor: pointer;
     min-width:109px;
     background-color: #1e88da;
     :hover{
@@ -19,10 +24,23 @@ const Innhold = styled.p`
     font-weight:600;
 `;
 const LoginButton = ({back}) =>{
+    const {user, setUser, isLoggedIn } = useAuthContext();
+
+    
+
+    const handleLogout = () =>{
+        console.log("Resultat på get user info i Auth Provider 3 ------------------------------")
+
+    }
     
     return(
-        <StyledButton utheving={back?"black":"white"}> 
-            <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>
+        <StyledButton  onClick={()=>handleLogout} utheving={back?"black":"white"}> 
+            {isLoggedIn&&
+                <Innhold   utheving={back?"black":"white"}>YMSE ( ❛ ͜ʖ ❛ )</Innhold>
+            }
+            {!isLoggedIn&&
+                <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>
+            }
         </StyledButton>
         )
 

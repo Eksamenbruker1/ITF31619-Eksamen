@@ -13,7 +13,9 @@ const Input = styled.textarea`
 
 const InputForm = ({content,changeAvsnitt,changeTittel,changeForfatter,changeKategori,id,active},leggTilAvsnitt) => {
     const value = content;
-    
+
+    console.log(".............................................hhh."+changeAvsnitt)
+    console.log("..............................................hhhh,"+changeAvsnitt)
 
     const run=(value,id)=>{
         changeAvsnitt&&changeAvsnitt(value,id)

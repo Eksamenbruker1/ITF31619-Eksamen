@@ -20,7 +20,7 @@ export const getUserInfo = async () => {
 
 export const login = async (credentials) => {
   try {
-    await getCsrfToken();
+    //await getCsrfToken();
     return await http.post('/login',credentials);
   } catch (err) {
     return err.response;

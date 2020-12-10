@@ -64,8 +64,8 @@ const Button = styled.button`
 
 const Splitter = styled.section`
     display:flex;
-    justify-content:space-between;
-    width:100%;
+    justify-content:space-around;
+    width:70%;
     @media only screen and (max-width: 500px){
         margin-top: 15px;
     }

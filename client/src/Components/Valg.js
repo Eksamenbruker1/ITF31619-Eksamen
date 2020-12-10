@@ -40,9 +40,10 @@ const Button = styled.button`
     padding:40px;
     font-weight:500;
     :hover{
-        border: solid darkgrey 3px;
+        
         @media only screen and (min-width: 800px){
            padding:37px; 
+           border: solid darkgrey 3px;
         }
 
     }
@@ -117,7 +118,7 @@ const Valg = ({søk}) => {
     return(
         <>
             <Wrapper>
-                <Link to="/login/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
+                <Link to="/opprett-fagartikkel"><Button>Ny Artikkel</Button></Link>
                 <Splitter>
                     {søk&&(<Button><Input value={søk}></Input></Button>)}
                     {!søk&&(<Søk></Søk>)}

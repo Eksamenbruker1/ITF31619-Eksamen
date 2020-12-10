@@ -19,7 +19,12 @@ const Wrapper = styled.section`
     }
 `;
 
-const LoginForm = (page) => {
+const Display = styled.section`
+    
+`;
+
+const LoginForm = (page,backAdress) => {
+        
         const [closeBtnState, setCloseBtnState] = useState(false);
 
         const [email, setEmail] = useState("");
@@ -27,6 +32,10 @@ const LoginForm = (page) => {
         const {user, setUser, isLoggedIn } = useAuthContext();
         const [password, setPassword] = useState("");
         const [password2, setPassword2] = useState("");
+
+
+        console.log("Checking user object for LoginForm Outer")
+        console.log(user)
 
         const history = useHistory();
         const { state } = useLocation();
@@ -48,24 +57,34 @@ const LoginForm = (page) => {
         }, [isLoggedIn, state]);
 
         const onSubmit = async (credentials) => {
-         
-
+            console.log(credentials)
+            console.log(user)
+            if(user === null){
+                const { data } = await login(credentials);
+                    console.log("Data som blir hentet fra server")
+                    console.log(data)
+                    if (!data.success) {
+                    
+                    setCloseBtnState(true);
+                    } else {
+                    const userc = data?.user;
+                    const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
+                    console.log("Data som blir hentet fra server")
+    
+                    console.log(data)
+                    user===null&&setUser(userc)
+                    setSuccess(true);
+                    
+                    }
+                    
+                }
+            if(user)setUser(null)
             if(email.length <= 0 && password.length <= 0 ){
-                alert("Du har ikke fylt ut feltene")
+                !user&&alert("Du har ikke fylt ut feltene")
                 return 
-            }
-            const { data } = await login(credentials);
-                if (!data.success) {
-                setCloseBtnState(true);
-                } else {
-                const user = data?.user;
-                const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
-                setUser({ ...user, expire });
-                setSuccess(true);
-                history.push('/');
-                console.log(data)
-        }
-
+            }   
+            console.log("linken som man skal bli redirectet til")
+            console.log(backAdress)
         };
         
         
@@ -77,6 +96,8 @@ const LoginForm = (page) => {
         </styles>
         <Wrapper >
             <Form onSubmit={formSubmit}>
+            {!user&&(
+            <Display>
             <Form.Group size="mid" controlId="email">
                 <Form.Label className={page.page==="registrer"&&"registerInput"}>Email</Form.Label>
                 <Form.Control
@@ -107,14 +128,16 @@ const LoginForm = (page) => {
                         />
                     </Form.Group>
             )}
-            <Button  
+            </Display>
+            )}
+            {!user&&(<Button  
                 className="invert" block size="lg" type="submit" disabled={email.length > 0 && password.length > 0 &&onSubmit}
                 isLoading={formState.isSubmitting}
                 type="submit"
             >
-                Login
-                
-            </Button>
+        
+                Logg inn
+            </Button>)}
             </Form>
         </Wrapper>
         </>

@@ -9,6 +9,8 @@ import AboutUs from "../Components/AboutUs"
 import banner from "../img/login.gif"
 import { NavLink } from 'react-router-dom';
 import Form from "react-bootstrap/Form";
+import { useAuthContext } from '../Components/context/AuthProvider'; 
+
 
 
 
@@ -85,23 +87,14 @@ const Invert = styled.div`
 
 const Login = ({match},key) => {
     //Nutty webhack 3:)
-
     const path = window.location.pathname.split("/")
     const href = window.location.href.split("/")
     const [page,setPage] = useState(path[1])
 
+    const {user, setUser, isLoggedIn } = useAuthContext();
+
     let adress = match.params.back&&match.params.back
     if(adress==="oppdater-fagartikkel")adress+="/default"
-
-    const handleSubmitLogin = (e) => {
-        e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login(username, password);
-        }
-    }
     
 
     return(
@@ -116,7 +109,7 @@ const Login = ({match},key) => {
             page==="login"&&
             (
                 <>
-                    <Heading id="login">Logg inn</Heading>
+                    <Heading style={{margin:"0 auto",textAlign:"center"}} id="login">{user?"Denne nettleseren er allerede oppkoblet mot innholdshåndtering":"Oppkobling av innholdshåndtering i nettleser"}</Heading>
                 </>
             )}
             {page==="registrer"&&
@@ -126,10 +119,10 @@ const Login = ({match},key) => {
                 </>
             )}
                 
-                <LoginForm page={page}></LoginForm>
+                <LoginForm backAdress={adress}  page={page}></LoginForm>
             </Div>
             {
-            page==="login"&&
+            !user && page==="login"&&
             (
                 <>
                     <NavLink to="/registrer/login"><Reg><A href="">Registrer</A></Reg></NavLink>

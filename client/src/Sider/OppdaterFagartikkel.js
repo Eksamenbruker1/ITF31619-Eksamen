@@ -130,6 +130,10 @@ const OppdaterFagartikkel = ({match}) => {
 
     }
 
+    const fjernAvsnitt = (item) =>{ 
+        setAntallAvsnitt(antallAvsnitt.slice(0, -1))
+    }
+
     const changeTittel = (changedTitle) =>{
         let insert =changedTitle
         setTittel(insert)
@@ -186,28 +190,29 @@ const OppdaterFagartikkel = ({match}) => {
 
     return(
             <Outer>
-            <Header back={true} adressen={"oppdater-fagartikkel"} ActiveItem="fagartikler"></Header>
-            <ImageCard imgSource={banner}TextColor="#1e1e1e" Content="Oppdater Artikkel" Width="Full"></ImageCard>
-            <Line />
-            <CMS alleArtikler={alleArtikler} søk={artikkelNavn}/>
-            <Line />
-            <Wrapper>
-            {modal&& (<ModalNewKat setModal={setModal}></ModalNewKat>)}
-            <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
-                                        <Form.Group controlId="formGridAddress1">
-                                            <Div><Form.Label>Tittel</Form.Label><Alert alert={true} /></Div>
-
-                                            <InputForm content={tittel} active={tittel?true:false} changeTittel={changeTittel} ></InputForm>
-                                            
-                                        </Form.Group>
+                <Header back={true} adressen={"oppdater-fagartikkel"} ActiveItem="fagartikler"></Header>
+                <ImageCard imgSource={banner}TextColor="#1e1e1e" Content="Oppdater Artikkel" Width="Full"></ImageCard>
+                <Line />
+                <CMS alleArtikler={alleArtikler} søk={artikkelNavn}/>
+                <Line />
+                <Wrapper>
+                    {modal&& (<ModalNewKat setModal={setModal}></ModalNewKat>)}
+                    <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
+                                            <Form.Group controlId="formGridAddress1">
+                                                <Div><Form.Label>Tittel</Form.Label><Alert alert={true} /></Div>
+                                                <InputForm content={tittel} active={tittel?true:false} changeTittel={changeTittel} ></InputForm>
+                                            </Form.Group>
                                         
-                        {avsnittContent&&avsnittContent.map((avsnitt,index)=>(
-                                        
+                                        {avsnittContent&&avsnittContent.map((avsnitt,index)=>(      
                                         <Form.Group controlId="formGridAddress1">
-                                            <Div id={index} onClick={()=>ActivateAvsnitt(index)} ><Form.Label >{"Avsnitt "+(index+1)}</Form.Label><Alert alert={true} /></Div>
-
+                                            <Div id={index} ><Form.Label >{"Avsnitt "+(index+1)}</Form.Label><Alert alert={true} /></Div>
                                             <InputForm leggTilAvsnitt={leggTilAvsnitt} active={activeAvsnitt[index]} id={index} changeAvsnitt={changeAvsnitt} content={staticAvsnitt[index]}></InputForm>
                                             
+                                            {antallAvsnitt.length > 1 &&(
+                                                    <Button onClick={()=>fjernAvsnitt("item")} style={{backgroundColor:"red",border:"none"}}>
+                                                        Fjern Avsnitt
+                                                    </Button>
+                                                    )}
                                         </Form.Group>
 
                                     ))}

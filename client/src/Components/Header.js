@@ -4,6 +4,8 @@ import Menu from "./Menu"
 import LoginButton from "./LoginButton"
 import Hamburger from "./Hamburger"
 import { Router, NavLink, useHistory, useLocation} from 'react-router-dom';
+import { useAuthContext } from '../Components/context/AuthProvider';
+import { logout } from './utils/authService';
 
 
 /**
@@ -69,6 +71,18 @@ const Header = ({adressen,ActiveItem,backAdress,back}) => {
     }
     const link = backAdress==="hjem"?"":backAdress;
 
+    const { user, isLoggedIn, isAdmin, setUser } = useAuthContext()
+
+    console.log("Checking user object for Header")
+    console.log(user)
+    console.log(isLoggedIn)
+
+    const handleLogout = async () => {
+        await logout();
+        setUser(null);
+        setUser(null);
+      };
+
     return(
         <StyledHeader>
             <NavLink to="/"><CompanyInitials>FG</CompanyInitials></NavLink>
@@ -77,8 +91,10 @@ const Header = ({adressen,ActiveItem,backAdress,back}) => {
                     <A onClick={()=>handleClick()}><Hamburger visibility={visibility} ></Hamburger></A>
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
-                {adressen&&(<NavLink to={back?"/login/"+adressen:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
-                {!adressen&&(<NavLink to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
+                <div onClick={()=>handleLogout}>
+                    {adressen&&(<NavLink to="/profil"><LoginButton isLoggedIn={isLoggedIn} back={back}></LoginButton></NavLink>)}
+                    {!adressen&&(<NavLink to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
+                </div>
             </RightInternalWrapper>
         </StyledHeader>
         )
