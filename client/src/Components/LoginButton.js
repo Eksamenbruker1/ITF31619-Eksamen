@@ -36,7 +36,7 @@ const LoginButton = ({back}) =>{
     return(
         <StyledButton  onClick={()=>handleLogout} utheving={back?"black":"white"}> 
             {isLoggedIn&&
-                <Innhold   utheving={back?"black":"white"}>Profil ( ❛ ͜ʖ ❛ )</Innhold>
+                <Innhold   utheving={back?"black":"white"}>YMSE ( ❛ ͜ʖ ❛ )</Innhold>
             }
             {!isLoggedIn&&
                 <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>

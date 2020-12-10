@@ -59,10 +59,6 @@ const OpprettFagartikkel = (bacdkAdress) => {
     console.log(user)
     console.log(isLoggedIn)
     !isLoggedIn&&history.push('/login/opprett-fagartikkel');
-
-
-    
-        
   
     const [modal,setModal] = useState(false)
     const [antallAvsnitt, setAntallAvsnitt] = useState(["item"])
@@ -86,17 +82,22 @@ const OpprettFagartikkel = (bacdkAdress) => {
     const [kategori,setKategori] = useState()
     const [valgtKategori,setValgtKategori] = useState()
     const [artikkelValg, setArtikkelValg] = useState()
+    const [alleArtikler,setAlleArtikler] = useState()
 
     useEffect(() => {
         async function fetchData() {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/articles/`)
-            res.data && !forfatter &&setForfatter(res.data.author)
-            console.log("data stream fra articles.........................")
-            console.log(res.data.data)
-
+            res.data.data[1] && !forfatter &&setForfatter(res.data.author)
+            res.data.data[1].id && setId(res.data.id)
+            res.data.data[1] && !artikkel &&setArtikkel(res.data)
+            res.data.data[1] && !avsnittContent &&setAvsnitt(res.data.content.split(":"))
+            res.data.data[1] && !tittel &&setTittel(res.data.title)
+           
             const res2 = await axios.get(`http://localhost:5000/api/v1/categories/`);
             res2.data&& !kategori&& setKategori(res2.data)
+            const res3 = await axios.get(`http://localhost:5000/api/v1/articles/`)
+            res3.data && !alleArtikler &&setAlleArtikler(res.data.data)
           } catch (error) {
           } finally {
             setIsLoading(false);
@@ -105,6 +106,24 @@ const OpprettFagartikkel = (bacdkAdress) => {
         fetchData();
     }, []); 
     
+
+    let staticAvsnitt = ""
+    let staticForfatter = ""
+    let staticKategori = ""
+    let staticTittel = ""
+    let staticAlleArtikler = ""
+
+    if(avsnittContent && staticAvsnitt      ==="")
+        staticAvsnitt   = avsnittContent
+    if (forfatter && staticForfatter ==="") 
+        staticForfatter = forfatter
+    if(kategori && staticKategori   ==="") 
+        staticKategori  =  kategori
+    if(tittel && staticTittel   ==="") 
+        staticTittel  =  tittel
+    if(alleArtikler && staticAlleArtikler   ==="") 
+        staticAlleArtikler  =  alleArtikler
+
 
     const leggTilAvsnitt = (item) =>{ 
         setAntallAvsnitt([...antallAvsnitt,item])
@@ -149,12 +168,12 @@ const OpprettFagartikkel = (bacdkAdress) => {
 
     const FormFunct = async () =>{
         let data = {
-            "title":"Vi tilbyr beste hemmelige badet for beste pris 1",
-            "ingress":"Et beskrivende ingress for artikkelen er det her ja. Meget kult.",
-            "content":"En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut:En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut",
-            "author":"Lars Larsen",
-            "slug": "vi-tilbyr-beste-badet-for-beste-pris-1",
-            "category":"id"
+                "title": "slett denne",
+                "ingress": "Et beskrivende ingress for artikkelen er det her ja. Meget kult.",
+                "content": "En utfyllende artikkel som tar og gir deg bakoversveis. Helt utrolig og veldig viktig at artikkelen er lengre enn ingressen hvis ikke så hadde dette vært flaut",
+                "author": "Lars Larsen",
+                "secret": "false",
+                "category": "5fce50e45437c60e1c218acd"
         }
 
         let articleContenColonSeparated =""
@@ -190,19 +209,17 @@ const OpprettFagartikkel = (bacdkAdress) => {
                 <CMS />
                 <Line />
                 <Wrapper>
-
                     {modal&& (<ModalNewKat setModal={setModal}></ModalNewKat>)}
-
                     <Form style={{padding: "50px", backgroundColor: "#fffeeb"}}>
                             <Form.Group controlId="formGridAddress1">
                                 <Div><Form.Label>Tittel</Form.Label><Alert alert={true} /></Div>
-                                <Form.Control placeholder="Skriv her..." />
+                                <InputForm content={tittel} active={tittel?true:false} changeTittel={changeTittel} ></InputForm>
                             </Form.Group>
                             
                             {antallAvsnitt.length>0&&antallAvsnitt.map((avsnitt,index)=>
                                 <Form.Group controlId="formGridAddress1">
                                     <Div><Form.Label>Avsnitt {index+1}</Form.Label><Alert alert={true} /></Div>
-                                   <InputForm/>
+                                    <InputForm leggTilAvsnitt={leggTilAvsnitt} active={activeAvsnitt[index]} id={index} changeAvsnitt={changeAvsnitt} content={staticAvsnitt[index]}></InputForm>
                                 </Form.Group>
                             )}
                             
@@ -229,8 +246,8 @@ const OpprettFagartikkel = (bacdkAdress) => {
                             <Form.Group controlId="formGridState">
                             <Div><Form.Label>Forfatter</Form.Label><Alert /></Div>
                             <Form.Control as="select" defaultValue="Choose...">
-                                <option value={forfatter}>{forfatter}</option>
-
+                                <option value={"Lars Larsen"}>Lars Larsen</option>
+                                <option value={"Kåre Kåresen"}>Kåre Kåresen</option>
                             </Form.Control>
                             </Form.Group>
                         </Form.Row>

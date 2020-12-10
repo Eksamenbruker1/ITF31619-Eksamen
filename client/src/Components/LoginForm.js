@@ -130,14 +130,14 @@ const LoginForm = (page,backAdress) => {
             )}
             </Display>
             )}
-            <Button  
+            {!user&&(<Button  
                 className="invert" block size="lg" type="submit" disabled={email.length > 0 && password.length > 0 &&onSubmit}
                 isLoading={formState.isSubmitting}
                 type="submit"
             >
-                {user?"Log ut":"Bekreft Autentisering"}
-                
-            </Button>
+        
+                Logg inn
+            </Button>)}
             </Form>
         </Wrapper>
         </>
