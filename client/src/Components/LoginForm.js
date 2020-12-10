@@ -135,7 +135,7 @@ const LoginForm = (page,backAdress) => {
                 isLoading={formState.isSubmitting}
                 type="submit"
             >
-                {user?"Log ut":"Login"}
+                {user?"Log ut":"Bekreft Autentisering"}
                 
             </Button>
             </Form>

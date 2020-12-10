@@ -5,7 +5,7 @@ import Routes from "../Routes/Routes"
 import "./Styles/styles.css"
 
 const Title = styled.h3`
-    color:${props => !props.viewType?"#479eb9":"#212529"};
+    color:${props => !props.viewType?"#000000":"#212529"};
     opacity: 1;
     :hover{
        
@@ -22,12 +22,14 @@ const Title = styled.h3`
 
 const Tekst = styled.a`
     margin-bottom: 11px;
-    
+    font-size:90%;
+
 `;
 
 
 const Appear = styled.a`
     color:#f0f0f0;
+    display:flex;
     font-weight:700;
     &:hover ~ ${Tekst} {
     color: red;
@@ -37,8 +39,10 @@ const Appear = styled.a`
 `
 
 
-const Div = styled.a`
+const Div = styled.div`
     display: flex;
+    flex-direction:row;
+    margin-right: 0;
     
 `
 
@@ -49,14 +53,22 @@ const Wrapper = styled.nav`
     background-color:#f0f0f0;
     @media only screen and (max-width: 500px){
         max-width: 100%;
-
+        font-size:60%;
+    }
+    @media only screen and (max-width: 800px){
+        max-width: 100%;
+        font-size:80%;
     }
     &:hover {
         cursor: arrow;
         border:solid 2px #1e1e1e;
     }
-    padding: 20px 10px;
+    padding: 0;
+    @media only screen and (max-width: 500px){
+        padding: 10px 5px;
+    }
     justify-content:center;
+    min-height:37x;
 
     justify-content: space-between;
 `;
@@ -74,8 +86,8 @@ const SimpleCard =  (office,viewType) => {
             <Wrapper className={!viewType.data?"cardlist":"cardC"} > 
                 <Link  to={'/kontor/'+navn}><Title className={viewType&true} >{office.data.navn}</Title ></Link>
                 <Tekst   >{office.data.gate+" "+4}</Tekst>
-                <Div   ><Appear>Call: </Appear><Tekst href={"tel:"+office.data.nummer}>{office.data.nummer}</Tekst></Div>
-                <Div   ><Appear>Mail: </Appear><Tekst href={"mailto:"+office.data.epost} >{office.data.epost}</Tekst></Div>
+                <Div   ><Appear>Call: </Appear><Tekst className={"plass"} href={"tel:"+office.data.nummer}>{office.data.nummer}</Tekst></Div>
+                <Div   ><Appear>Mail: </Appear><Tekst  className={"plass"} href={"mailto:"+office.data.epost} >{office.data.epost}</Tekst></Div>
             </Wrapper>
         </Link>
         )

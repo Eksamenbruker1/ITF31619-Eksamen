@@ -7,6 +7,7 @@ import { useAuthContext } from '../Components/context/AuthProvider';
 
 
 const StyledButton = styled.div`
+    cursor: pointer;
     min-width:109px;
     background-color: #1e88da;
     :hover{
@@ -35,7 +36,7 @@ const LoginButton = ({back}) =>{
     return(
         <StyledButton  onClick={()=>handleLogout} utheving={back?"black":"white"}> 
             {isLoggedIn&&
-                <Innhold   utheving={back?"black":"white"}>Log ut ✖</Innhold>
+                <Innhold   utheving={back?"black":"white"}>Profil ( ❛ ͜ʖ ❛ )</Innhold>
             }
             {!isLoggedIn&&
                 <Innhold  utheving={back?"black":"white"}>{back?"Tilbake↩":"Logg inn"}</Innhold>

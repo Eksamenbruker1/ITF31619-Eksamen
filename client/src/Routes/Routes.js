@@ -9,6 +9,7 @@ import Fagartikler from "../Sider/Fagartikler";
 import Fagartikkel from "../Sider/Fagartikkel";
 import OpprettFagartikkel from "../Sider/OpprettFagartikkel";
 import OppdaterFagartikkel from "../Sider/OppdaterFagartikkel";
+import Profil from "../Sider/Profil";
 import Kontakt from "../Sider/Kontakt";
 import Login from "../Sider/Login";
 import Registrer from "../Sider/Registrer";
@@ -71,6 +72,7 @@ return(
                     <Route path="/opprett-fagartikkel" exact component={OpprettFagartikkel} />
                     <Route path="/oppdater-fagartikkel/:artikkel" exact component={OppdaterFagartikkel} />
                     <Route path="/kontakt" exact component={Kontakt} />
+                    <Route path="/profil" exact component={Profil} />
                     <Route key="login" path="/login/:back" exact component={Login} />
                     <Route key="registrer" path="/registrer/:back" exact component={Registrer} />
                 </Switch>

@@ -85,12 +85,15 @@ const OpprettFagartikkel = (bacdkAdress) => {
     const [forfatter,setForfatter] = useState()
     const [kategori,setKategori] = useState()
     const [valgtKategori,setValgtKategori] = useState()
+    const [artikkelValg, setArtikkelValg] = useState()
 
     useEffect(() => {
         async function fetchData() {
           try {
             const res = await axios.get(`http://localhost:5000/api/v1/articles/`)
             res.data && !forfatter &&setForfatter(res.data.author)
+            console.log("data stream fra articles.........................")
+            console.log(res.data.data)
 
             const res2 = await axios.get(`http://localhost:5000/api/v1/categories/`);
             res2.data&& !kategori&& setKategori(res2.data)

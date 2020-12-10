@@ -92,7 +92,7 @@ const Header = ({adressen,ActiveItem,backAdress,back}) => {
                     <Menu ActiveItem={ActiveItem}></Menu>
                 </Div>
                 <div onClick={()=>handleLogout}>
-                    {adressen&&(<NavLink to={back?"/login/"+adressen:"/"+link}><LoginButton isLoggedIn={isLoggedIn} back={back}></LoginButton></NavLink>)}
+                    {adressen&&(<NavLink to="/profil"><LoginButton isLoggedIn={isLoggedIn} back={back}></LoginButton></NavLink>)}
                     {!adressen&&(<NavLink to={!back?"/login/"+ActiveItem:"/"+link}><LoginButton back={back}></LoginButton></NavLink>)}
                 </div>
             </RightInternalWrapper>

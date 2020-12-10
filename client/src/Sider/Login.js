@@ -109,7 +109,7 @@ const Login = ({match},key) => {
             page==="login"&&
             (
                 <>
-                    <Heading id="login">{user?"Du er logget inn":"Log in"}</Heading>
+                    <Heading style={{margin:"0 auto",textAlign:"center"}} id="login">{user?"Denne nettleseren er allerede oppkoblet mot innholdshåndtering":"Oppkobling av innholdshåndtering i nettleser"}</Heading>
                 </>
             )}
             {page==="registrer"&&
